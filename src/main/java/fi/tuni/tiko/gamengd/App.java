@@ -14,4 +14,18 @@ public class App extends GameCore {
         setResolution(800,600);
         launch();
     }
+
+    @Override
+    public void init() {
+        super.init();
+
+        Sprite dude = new Sprite("dude.png");
+        dude.setVelocityX(10);
+        dude.setVelocityY(10);
+
+        Sprite dude2 = new Sprite("fasdail.png", 10, 10);
+
+        sc.addSprite(dude);
+        sc.addSprite(dude2);
+    }
 }

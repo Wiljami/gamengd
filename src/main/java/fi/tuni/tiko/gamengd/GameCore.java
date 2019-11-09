@@ -6,7 +6,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,9 +15,12 @@ public class GameCore extends Application {
     private static double resolutionY = 800;
     private static String windowTitle = "GamEngD Game Engine";
     private Canvas canvas;
+    SpriteController sc;
 
     @Override
     public void init() {
+        canvas();
+        sc = new SpriteController(canvas);
         System.out.println("This is GameCore::Init");
     }
 
@@ -34,22 +36,12 @@ public class GameCore extends Application {
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.show();
-
-        Sprite dude = new Sprite("dude.png");
-        dude.setVelocityX(10);
-        dude.setVelocityY(10);
-
-        Sprite dude2 = new Sprite("fasdail.png", 10, 10);
-
-        SpriteController sc = new SpriteController(canvas);
-        sc.addSprite(dude);
-        sc.addSprite(dude2);
         sc.start();
     }
 
     private BorderPane createRoot () {
         BorderPane root = new BorderPane();
-        root.setCenter(canvas());
+        root.setCenter(canvas);
         root.setTop(topBar());
         root.setBottom(bottomBar());
         root.setRight(rightColumn());
