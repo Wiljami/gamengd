@@ -8,6 +8,6 @@ package fi.tuni.tiko.gamengd;
 
 public class App extends GameCore {
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }

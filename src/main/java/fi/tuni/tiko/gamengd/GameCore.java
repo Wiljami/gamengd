@@ -9,6 +9,16 @@ import javafx.stage.StageStyle;
 
 public class GameCore extends Application {
     @Override
+    public void init() {
+        System.out.println("This is GameCore::Init");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("This is GameCore::Stop");
+    }
+
+    @Override
     public void start(Stage window) {
         window.setTitle("JavaFX HelloWorld!");
         Canvas canvas = canvas();
