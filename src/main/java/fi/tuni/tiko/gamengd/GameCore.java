@@ -3,7 +3,11 @@ package fi.tuni.tiko.gamengd;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -11,6 +15,7 @@ public class GameCore extends Application {
     private static double resolutionX = 1200;
     private static double resolutionY = 800;
     private static String windowTitle = "GamEngD Game Engine";
+    private Canvas canvas;
 
     @Override
     public void init() {
@@ -25,11 +30,9 @@ public class GameCore extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle(windowTitle);
-        Canvas canvas = canvas();
-        StackPane root = new StackPane(canvas);
-        Scene content = new Scene(root, resolutionX, resolutionY);
+        Scene scene = new Scene(createRoot(), resolutionX, resolutionY);
         stage.initStyle(StageStyle.DECORATED);
-        stage.setScene(content);
+        stage.setScene(scene);
         stage.show();
 
         Sprite dude = new Sprite("dude.png");
@@ -44,8 +47,44 @@ public class GameCore extends Application {
         sc.start();
     }
 
+    private BorderPane createRoot () {
+        BorderPane root = new BorderPane();
+        root.setCenter(canvas());
+        root.setTop(topBar());
+        root.setBottom(bottomBar());
+        root.setRight(rightColumn());
+        root.setLeft(leftColumn());
+        return root;
+    }
+
     private Canvas canvas() {
-        return new Canvas(1200,800);
+        canvas = new Canvas(1200,800);
+        return canvas;
+    }
+
+    private VBox topBar() {
+        MenuBar menuBar = new MenuBar();
+        Label label = new Label("Hi, I am the topBar");
+        VBox topBar = new VBox(menuBar, label);
+        return topBar;
+    }
+
+    private VBox bottomBar() {
+        Label label = new Label("Hi, I am the bottomBar");
+        VBox topBar = new VBox(label);
+        return topBar;
+    }
+
+    private VBox rightColumn() {
+        Label label = new Label("Hi, I am the rightColumn");
+        VBox topBar = new VBox(label);
+        return topBar;
+    }
+
+    private VBox leftColumn() {
+        Label label = new Label("Hi, I am the leftColumn");
+        VBox topBar = new VBox(label);
+        return topBar;
     }
 
     static void setResolution(double x, double y) {

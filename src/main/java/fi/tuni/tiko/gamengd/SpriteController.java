@@ -8,17 +8,20 @@ import java.util.ArrayList;
 
 public class SpriteController extends AnimationTimer {
     private long lastNanoTime;
-    GraphicsContext gc;
-    ArrayList<Sprite> sprites;
+    private GraphicsContext gc;
+    private ArrayList<Sprite> sprites;
+    private Canvas canvas;
 
     public SpriteController(Canvas canvas) {
         lastNanoTime = System.nanoTime();
         gc = canvas.getGraphicsContext2D();
         sprites = new ArrayList<>();
+        this.canvas = canvas;
     }
 
     @Override
     public void handle(long currentNanoTime) {
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
         lastNanoTime = currentNanoTime;
         for (Sprite s : sprites) {
