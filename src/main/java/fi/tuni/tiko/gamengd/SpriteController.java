@@ -19,6 +19,8 @@ public class SpriteController extends AnimationTimer {
         this.canvas = canvas;
     }
 
+    //TODO: Should probably move responsibility of actually drawing things to a separate class. SpriteController
+    //should just concern itself with sprites and then hand the sprites to this other class
     @Override
     public void handle(long currentNanoTime) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
