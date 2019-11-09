@@ -22,7 +22,7 @@ public class Sprite {
     }
 
     public Sprite(String file, double positionX, double positionY, double velocityX, double velocityY) {
-        setImage(loadImage(file));
+        setImage(Util.loadImage(file));
         setPositionX(positionX);
         setPositionY(positionY);
         setVelocityX(velocityX);
@@ -38,12 +38,6 @@ public class Sprite {
 
     public void render(GraphicsContext gc) {
         gc.drawImage(image, positionX, positionY);
-    }
-
-    //TODO: Add an actual util class/feature to take care of the loading files.
-    private Image loadImage(String file) {
-        Image i = new Image("dude.png");
-        return i;
     }
 
     public boolean collides(Sprite s) {

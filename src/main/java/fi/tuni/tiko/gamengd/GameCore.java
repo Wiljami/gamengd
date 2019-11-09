@@ -13,7 +13,7 @@ public class GameCore extends Application {
         window.setTitle("JavaFX HelloWorld!");
         Canvas canvas = canvas();
         StackPane root = new StackPane(canvas);
-        Scene content = new Scene(root, 800, 800);
+        Scene content = new Scene(root, 1200, 800);
         window.initStyle(StageStyle.DECORATED);
         window.setScene(content);
         window.show();
@@ -22,7 +22,7 @@ public class GameCore extends Application {
         dude.setVelocityX(10);
         dude.setVelocityY(10);
 
-        Sprite dude2 = new Sprite("dude.png", 10, 10);
+        Sprite dude2 = new Sprite("fasdail.png", 10, 10);
 
         SpriteController sc = new SpriteController(canvas);
         sc.addSprite(dude);
@@ -32,7 +32,7 @@ public class GameCore extends Application {
 
 
     private Canvas canvas() {
-        Canvas canvas = new Canvas(800,800);
+        Canvas canvas = new Canvas(1200,800);
         return canvas;
     }
 }
