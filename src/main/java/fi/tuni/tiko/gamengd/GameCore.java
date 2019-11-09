@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class GameCore extends Application {
+    private static double resolutionX = 1200;
+    private static double resolutionY = 800;
+
     @Override
     public void init() {
         System.out.println("This is GameCore::Init");
@@ -19,14 +22,14 @@ public class GameCore extends Application {
     }
 
     @Override
-    public void start(Stage window) {
-        window.setTitle("JavaFX HelloWorld!");
+    public void start(Stage stage) {
+        stage.setTitle("JavaFX HelloWorld!");
         Canvas canvas = canvas();
         StackPane root = new StackPane(canvas);
-        Scene content = new Scene(root, 1200, 800);
-        window.initStyle(StageStyle.DECORATED);
-        window.setScene(content);
-        window.show();
+        Scene content = new Scene(root, resolutionX, resolutionY);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setScene(content);
+        stage.show();
 
         Sprite dude = new Sprite("dude.png");
         dude.setVelocityX(10);
@@ -40,9 +43,12 @@ public class GameCore extends Application {
         sc.start();
     }
 
-
     private Canvas canvas() {
-        Canvas canvas = new Canvas(1200,800);
-        return canvas;
+        return new Canvas(1200,800);
+    }
+
+    static void setResolution(double x, double y) {
+        resolutionX = x;
+        resolutionY = y;
     }
 }
