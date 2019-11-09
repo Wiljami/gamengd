@@ -10,6 +10,7 @@ import javafx.stage.StageStyle;
 public class GameCore extends Application {
     private static double resolutionX = 1200;
     private static double resolutionY = 800;
+    private static String windowTitle = "GamEngD Game Engine";
 
     @Override
     public void init() {
@@ -23,7 +24,7 @@ public class GameCore extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("JavaFX HelloWorld!");
+        stage.setTitle(windowTitle);
         Canvas canvas = canvas();
         StackPane root = new StackPane(canvas);
         Scene content = new Scene(root, resolutionX, resolutionY);
@@ -50,5 +51,9 @@ public class GameCore extends Application {
     static void setResolution(double x, double y) {
         resolutionX = x;
         resolutionY = y;
+    }
+
+    static void setWindowTitle(String title) {
+        windowTitle = title;
     }
 }
