@@ -21,7 +21,9 @@ public class GameCore extends Application {
 
     private Canvas canvas;
     SpriteController sc;
-    ArrayList<KeyListener> keyListeners;
+    ArrayList<KeyListener> keyListeners = new ArrayList<>();
+    ArrayList<String> input = new ArrayList<>();
+    private long lastNanoTime;
 
     @Override
     public void init() {
@@ -35,10 +37,6 @@ public class GameCore extends Application {
         System.out.println("This is GameCore::Stop");
     }
 
-    ArrayList<String> input = new ArrayList<>();
-
-    private long lastNanoTime;
-
     @Override
     public void start(Stage stage) {
         stage.setTitle(windowTitle);
@@ -50,22 +48,24 @@ public class GameCore extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                handleInput();
-                handleGraphics(currentNanoTime);
+                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
+                lastNanoTime = currentNanoTime;
+                handleInput(elapsedTime);
+                handleGraphics(elapsedTime);
             }
         }.start();
     }
 
-    private void handleGraphics(long currentNanoTime) {
+    private void handleGraphics(double elapsedTime) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
-        lastNanoTime = currentNanoTime;
         sc.render(gc, elapsedTime);
     }
 
-    private void handleInput() {
-
+    private void handleInput(double elapsedTime) {
+        for (KeyListener listener : keyListeners) {
+            listener.receiveInput(input, elapsedTime);
+        }
     }
 
     private Scene createScene() {

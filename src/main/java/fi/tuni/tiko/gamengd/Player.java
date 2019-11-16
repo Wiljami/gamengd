@@ -8,7 +8,7 @@ public class Player extends Entity implements KeyListener {
     }
 
     @Override
-    public void receiveInput(List<String> input) {
+    public void receiveInput(List<String> input, double elapsedTime) {
         if (input.contains("LEFT")) {
             System.out.println("LEFT");
         }
