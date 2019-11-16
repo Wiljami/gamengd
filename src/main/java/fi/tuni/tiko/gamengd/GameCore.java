@@ -91,7 +91,7 @@ public class GameCore extends Application {
     }
 
     void addPlayer(Player player) {
-        sc.addSprite(player.getSprite());
+        sc.addEntitySprite(player.getSprite());
         keyListeners.add(player);
     }
 

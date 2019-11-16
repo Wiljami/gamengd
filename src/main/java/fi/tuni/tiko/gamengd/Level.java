@@ -20,7 +20,7 @@ public class Level {
     public void addTilesToSpriteController(SpriteController sc) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                sc.addSprite(map[x][y].getSprite());
+                sc.addTileSprite(map[x][y].getSprite());
             }
         }
     }
