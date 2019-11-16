@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.ui.GameView;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ public class GameCore extends Application {
     private static double resolutionY = 800;
     private static String windowTitle = "GamEngD Game Engine";
 
-    private Canvas canvas;
+    private GameView gameView;
     SpriteController sc;
     ArrayList<KeyListener> keyListeners = new ArrayList<>();
     ArrayList<String> input = new ArrayList<>();
@@ -28,8 +29,8 @@ public class GameCore extends Application {
     @Override
     public void init() {
         System.out.println("Author: Viljami Pietarila");
-        canvas();
         sc = new SpriteController();
+        gameView = new GameView();
         System.out.println("This is GameCore::Init");
     }
 
@@ -61,6 +62,7 @@ public class GameCore extends Application {
     }
 
     private void handleGraphics(double elapsedTime) {
+        Canvas canvas = gameView.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         sc.render(gc, elapsedTime);
@@ -101,7 +103,7 @@ public class GameCore extends Application {
 
     private BorderPane createRoot () {
         BorderPane root = new BorderPane();
-        root.setCenter(canvas);
+        root.setCenter(gameView);
         root.setTop(topBar());
         root.setBottom(bottomBar());
         root.setRight(rightColumn());
@@ -109,10 +111,7 @@ public class GameCore extends Application {
         return root;
     }
 
-    private Canvas canvas() {
-        canvas = new Canvas(resolutionX,resolutionY);
-        return canvas;
-    }
+
 
     private VBox topBar() {
         MenuBar menuBar = new MenuBar();
