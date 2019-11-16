@@ -26,6 +26,13 @@ public class App extends GameCore {
         Sprite dude2 = new Sprite("fasdail.png", 10, 10);
 
         sc.addSprite(dude);
-        sc.addSprite(dude2);
+
+        Player player = new Player(dude2);
+
+        Level level = new Level(10,10);
+
+
+
+        addPlayer(player);
     }
 }
