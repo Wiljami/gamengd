@@ -23,7 +23,7 @@ public class App extends GameCore {
 
         player.setXY(4,4);
 
-        Level level = new Level(10,10);
+        Level level = new Level(9,9);
         addLevel(level);
         addPlayer(player);
     }

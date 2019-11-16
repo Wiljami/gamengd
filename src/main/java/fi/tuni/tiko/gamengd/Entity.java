@@ -41,8 +41,6 @@ public class Entity {
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
-        sprite.setPositionX(x*100);
-        sprite.setPositionY(y*100);
     }
 
     void move(int x, int y) {

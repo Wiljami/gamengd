@@ -3,8 +3,13 @@ package fi.tuni.tiko.gamengd;
 import java.util.List;
 
 public class Player extends Entity implements KeyListener {
+    private Camera camera;
     public Player(Sprite sprite) {
         super(sprite);
+    }
+
+    public void setupCamera (Camera camera) {
+        this.camera = camera;
     }
 
     @Override
@@ -30,5 +35,11 @@ public class Player extends Entity implements KeyListener {
         } else if (input.equals("DOWN") || input.equals("NUMPAD2")) {
             move(0,1);
         }
+    }
+
+    @Override
+    void move(int x, int y) {
+        super.move(x, y);
+        camera.setXY(getX() + 0.5, getY() + 0.5);
     }
 }
