@@ -8,8 +8,11 @@ public class Player extends Entity implements KeyListener {
         super(sprite);
     }
 
+
+    //TODO: Add location to entity and have the sprite recalculate its position based on that.
     @Override
     public void receiveInput(List<String> input, double elapsedTime) {
+        Sprite sprite = getSprite();
         sprite.setVelocityX(0);
         sprite.setVelocityY(0);
         if (input.contains("LEFT")) {
