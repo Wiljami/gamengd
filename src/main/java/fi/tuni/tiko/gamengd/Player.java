@@ -10,10 +10,10 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void receiveInput(List<String> input) {
         if (input.contains("LEFT")) {
-
+            System.out.println("LEFT");
         }
         if (input.contains("RIGHT")) {
-
+            System.out.println("RIGHT");
         }
     }
 }

@@ -20,7 +20,8 @@ public class GameCore extends Application {
     private static String windowTitle = "GamEngD Game Engine";
 
     private Canvas canvas;
-    private SpriteController sc;
+    SpriteController sc;
+    ArrayList<KeyListener> keyListeners;
 
     @Override
     public void init() {
@@ -49,13 +50,18 @@ public class GameCore extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
-                lastNanoTime = currentNanoTime;
-                sc.render(gc, elapsedTime);
+                handleInput();
+                handleGraphics(currentNanoTime);
             }
         }.start();
+    }
+
+    private void handleGraphics(long currentNanoTime) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
+        lastNanoTime = currentNanoTime;
+        sc.render(gc, elapsedTime);
     }
 
     private void handleInput() {
