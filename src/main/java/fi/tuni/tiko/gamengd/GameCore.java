@@ -27,6 +27,7 @@ public class GameCore extends Application {
 
     @Override
     public void init() {
+        System.out.println("Author: Viljami Pietarila");
         canvas();
         sc = new SpriteController();
         System.out.println("This is GameCore::Init");
