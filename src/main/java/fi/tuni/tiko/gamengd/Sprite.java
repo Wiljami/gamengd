@@ -18,15 +18,22 @@ public class Sprite {
     }
 
     public Sprite(String file, double positionX, double positionY) {
-        this(file, positionX, positionY, 0, 0);
+        setImage(Util.loadImage(file));
+        setupPosition(positionX, positionY);
     }
 
-    public Sprite(String file, double positionX, double positionY, double velocityX, double velocityY) {
-        setImage(Util.loadImage(file));
+    public Sprite(Image image) {
+        this(image, 0, 0);
+    }
+
+    public Sprite(Image image, double positionX, double positionY) {
+        setImage(image);
+        setupPosition(positionX, positionY);
+    }
+
+    private void setupPosition(double positionX, double positionY) {
         setPositionX(positionX);
         setPositionY(positionY);
-        setVelocityX(velocityX);
-        setVelocityY(velocityY);
         setWidth(getImage().getWidth());
         setHeight(getImage().getHeight());
     }

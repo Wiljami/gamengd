@@ -1,12 +1,15 @@
 package fi.tuni.tiko.gamengd;
 
-public class Tile {
-    private Sprite sprite;
-    public Tile(int x, int y) {
-        sprite = new Sprite("tile.png", x*100, y*100);
+import javafx.scene.image.Image;
+
+public class Tile extends Entity {
+    private static Image emptyTile;
+
+    public static void setupTiles() {
+        emptyTile = Util.loadImage("tile.png");
     }
 
-    public Sprite getSprite() {
-        return sprite;
+    public Tile(int x, int y) {
+        super(new Sprite(emptyTile), x, y);
     }
 }
