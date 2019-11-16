@@ -111,8 +111,6 @@ public class GameCore extends Application {
         return root;
     }
 
-
-
     private VBox topBar() {
         MenuBar menuBar = new MenuBar();
         Label label = new Label("Hi, I am the topBar");
