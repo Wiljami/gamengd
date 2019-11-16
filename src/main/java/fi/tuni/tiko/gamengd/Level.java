@@ -14,7 +14,6 @@ public class Level {
                 map[x][y] = new Tile(x, y);
             }
         }
-        System.out.println(map[0][2]);
     }
 
     public void addTilesToSpriteController(SpriteController sc) {
@@ -23,5 +22,12 @@ public class Level {
                 sc.addTileSprite(map[x][y].getSprite());
             }
         }
+    }
+
+    public Sprite getTileAt(int x, int y) {
+        if (x < 0 || x >= width || y < 0 || y >= height) {
+            return Tile.voidTile();
+        }
+        return map[x][y].getSprite();
     }
 }

@@ -20,11 +20,16 @@ public class GameCore extends Application {
     private static double resolutionY = 800;
     private static String windowTitle = "GamEngD Game Engine";
 
+    private static double tileSize = 100;
+
     private GameView gameView;
-    SpriteController sc;
-    ArrayList<KeyListener> keyListeners = new ArrayList<>();
-    ArrayList<String> input = new ArrayList<>();
+    private SpriteController sc;
+    private ArrayList<KeyListener> keyListeners = new ArrayList<>();
+    private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
+
+    private Player player;
+    private Level level;
 
     @Override
     public void init() {
@@ -66,7 +71,27 @@ public class GameCore extends Application {
         Canvas canvas = gameView.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        updateSprites();
         sc.render(gc, elapsedTime);
+    }
+
+    private void updateSprites() {
+        sc.clear();
+        Canvas canvas = gameView.getCanvas();
+        int width = (int) Math.ceil (canvas.getWidth() / tileSize);
+        int height = (int) Math.ceil (canvas.getHeight() / tileSize);
+        System.out.println("Width: " + width + " Height: " + height);
+        double centerSpriteX = canvas.getWidth()-tileSize;
+        double centerSpriteY = canvas.getHeight()-tileSize;
+        System.out.println("Width: " + centerSpriteX + " Height: " + centerSpriteY);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Sprite s = level.getTileAt(x, y);
+                s.setPositionX(tileSize*x);
+                s.setPositionY(tileSize*y);
+                sc.addTileSprite(s);
+            }
+        }
     }
 
     private void handleInput(double elapsedTime) {
@@ -97,12 +122,14 @@ public class GameCore extends Application {
     }
 
     void addPlayer(Player player) {
+        this.player = player;
         sc.addEntitySprite(player.getSprite());
         keyListeners.add(player);
     }
 
     void addLevel(Level level) {
-        level.addTilesToSpriteController(sc);
+        //level.addTilesToSpriteController(sc);
+        this.level = level;
     }
 
     private BorderPane createRoot () {

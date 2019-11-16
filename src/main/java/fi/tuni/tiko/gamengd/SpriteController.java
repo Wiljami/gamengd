@@ -2,12 +2,13 @@ package fi.tuni.tiko.gamengd;
 
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SpriteController {
 
-    private ArrayList<Sprite> entitySprites = new ArrayList<>();
-    private ArrayList<Sprite> tileSprites = new ArrayList<>();
+    private List<Sprite> entitySprites = new LinkedList<>();
+    private List<Sprite> tileSprites = new LinkedList<>();
 
     public void render(GraphicsContext gc, double time) {
         for (Sprite s : tileSprites) {
@@ -27,5 +28,10 @@ public class SpriteController {
 
     public void addTileSprite(Sprite sprite) {
         tileSprites.add(sprite);
+    }
+
+    public void clear() {
+        entitySprites.clear();
+        tileSprites.clear();
     }
 }
