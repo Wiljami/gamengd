@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -55,12 +56,13 @@ public class GameCore extends Application {
         stage.setTitle(windowTitle);
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(createScene());
-        stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
             camera.setCameraChanged(true);
-        });
-        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-            camera.setCameraChanged(true);
-        });
+
+        stage.widthProperty().addListener(stageSizeListener);
+        stage.heightProperty().addListener(stageSizeListener);
+
         stage.show();
         stage.setMinWidth(minResolutionX);
         stage.setMinHeight(minResolutionY);
@@ -90,7 +92,6 @@ public class GameCore extends Application {
     }
 
     private void updateSprites() {
-        camera.setCameraChanged(false);
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
 
@@ -106,8 +107,8 @@ public class GameCore extends Application {
         int centerTileX = (int) camera.getX();
         int centerTileY = (int) camera.getY();
 
-        for (int x = -horizontalTiles/2; x < horizontalTiles/2; x++) {
-            for (int y = -verticalTiles/2; y < verticalTiles/2; y++) {
+        for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
+            for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
                 Sprite tile = level.getTileAt(centerTileX + x, centerTileY + y);
                 tile.setPositionX(centerSpriteX + x * tileSize);
                 tile.setPositionY(centerSpriteY + y * tileSize);
@@ -119,6 +120,7 @@ public class GameCore extends Application {
         player.getSprite().setPositionY(centerSpriteY + (centerTileY - player.getY()) * tileSize);
 
         spriteController.addEntitySprite(player.getSprite());
+        camera.setCameraChanged(false);
     }
 
     private void handleInput(double elapsedTime) {
@@ -157,7 +159,6 @@ public class GameCore extends Application {
     }
 
     void addLevel(Level level) {
-        //level.addTilesToSpriteController(sc);
         this.level = level;
     }
 

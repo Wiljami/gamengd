@@ -16,16 +16,6 @@ public class Level {
         }
     }
 
-
-    //TODO: REMOVE THIS?
-    public void addTilesToSpriteController(SpriteController sc) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                sc.addTileSprite(map[x][y].getSprite());
-            }
-        }
-    }
-
     public Sprite getTileAt(int x, int y) {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             return Tile.voidTile();
