@@ -44,7 +44,11 @@ public class Sprite {
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(image, positionX, positionY);
+        gc.drawImage(getImage(), getPositionX(), getPositionY(), getWidth(), getHeight());
+    }
+
+    public void render(GraphicsContext gc, double size) {
+        gc.drawImage(getImage(), getPositionX(), getPositionY(), size, size);
     }
 
     public boolean collides(Sprite s) {

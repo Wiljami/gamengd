@@ -13,12 +13,12 @@ public class SpriteController {
     public void render(GraphicsContext gc, double time) {
         for (Sprite s : tileSprites) {
             s.update(time);
-            s.render(gc);
+            s.render(gc, GameCore.getTileSize());
         }
 
         for (Sprite s : entitySprites) {
             s.update(time);
-            s.render(gc);
+            s.render(gc, GameCore.getTileSize());
         }
     }
 

@@ -210,4 +210,12 @@ public class GameCore extends Application {
     static void setWindowTitle(String title) {
         windowTitle = title;
     }
+
+    public static double getTileSize() {
+        return tileSize;
+    }
+
+    public static void setTileSize(double s) {
+        tileSize = s;
+    }
 }
