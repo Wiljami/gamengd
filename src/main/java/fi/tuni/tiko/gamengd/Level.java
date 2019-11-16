@@ -11,7 +11,7 @@ public class Level {
         map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                map[x][y] = new Tile();
+                map[x][y] = new Tile(x, y);
             }
         }
         System.out.println(map[0][2]);
