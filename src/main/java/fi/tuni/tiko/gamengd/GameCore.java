@@ -90,8 +90,8 @@ public class GameCore extends Application {
         return scene;
     }
 
-    void addPlayer(Sprite sprite) {
-        Player player = new Player(sprite);
+    void addPlayer(Player player) {
+        sc.addSprite(player.getSprite());
         keyListeners.add(player);
     }
 
