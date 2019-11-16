@@ -20,7 +20,7 @@ public class GameCore extends Application {
     private static String windowTitle = "GamEngD Game Engine";
 
     private Canvas canvas;
-    SpriteController sc;
+    private SpriteController sc;
 
     @Override
     public void init() {
@@ -56,6 +56,10 @@ public class GameCore extends Application {
                 sc.render(gc, elapsedTime);
             }
         }.start();
+    }
+
+    private void handleInput() {
+
     }
 
     private Scene createScene() {
