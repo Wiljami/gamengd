@@ -45,19 +45,7 @@ public class Entity {
         sprite.setPositionY(y*100);
     }
 
-    void moveLeft() {
-        setX(getX()-1);
-    }
-
-    void moveRight() {
-        setX(getX()+1);
-    }
-
-    void moveUp() {
-        setY(getY()-1);
-    }
-
-    void moveDown() {
-        setY(getY()+1);
+    void move(int x, int y) {
+        setXY(getX() + x, getY() + y);
     }
 }
