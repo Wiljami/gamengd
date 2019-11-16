@@ -202,6 +202,11 @@ public class GameCore extends Application {
         resolutionY = y;
     }
 
+    static void setMinResolution(double x, double y) {
+        minResolutionX = x;
+        minResolutionY = y;
+    }
+
     static void setWindowTitle(String title) {
         windowTitle = title;
     }
