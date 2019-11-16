@@ -3,7 +3,7 @@ package fi.tuni.tiko.gamengd;
 import java.util.List;
 
 public class Player extends Entity implements KeyListener {
-    private int playerSpeed = 20;
+    private int playerSpeed = 50;
     public Player(Sprite sprite) {
         super(sprite);
     }
