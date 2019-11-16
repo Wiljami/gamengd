@@ -1,8 +1,10 @@
 package fi.tuni.tiko.gamengd;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
@@ -10,17 +12,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
+
 public class GameCore extends Application {
     private static double resolutionX = 1200;
     private static double resolutionY = 800;
     private static String windowTitle = "GamEngD Game Engine";
+
     private Canvas canvas;
     SpriteController sc;
 
     @Override
     public void init() {
         canvas();
-        sc = new SpriteController(canvas);
+        sc = new SpriteController();
         System.out.println("This is GameCore::Init");
     }
 
@@ -29,14 +34,44 @@ public class GameCore extends Application {
         System.out.println("This is GameCore::Stop");
     }
 
+    ArrayList<String> input = new ArrayList<>();
+
+    private long lastNanoTime;
+
     @Override
     public void start(Stage stage) {
         stage.setTitle(windowTitle);
         Scene scene = new Scene(createRoot(), resolutionX, resolutionY);
+
+        scene.setOnKeyPressed(keyEvent -> {
+            String key = keyEvent.getCode().toString();
+            if (!input.contains(key)) {
+                input.add(key);
+            }
+        });
+
+        scene.setOnKeyReleased(keyEvent -> {
+            String key = keyEvent.getCode().toString();
+            input.remove(key);
+        });
+
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.show();
-        sc.start();
+
+        lastNanoTime = System.nanoTime();
+
+        new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
+                lastNanoTime = currentNanoTime;
+                sc.render(gc, elapsedTime);
+            }
+        }.start();
+
     }
 
     private BorderPane createRoot () {
