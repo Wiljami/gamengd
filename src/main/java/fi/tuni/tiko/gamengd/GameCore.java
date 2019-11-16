@@ -43,7 +43,10 @@ public class GameCore extends Application {
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(createScene());
         stage.show();
+        startAnimationTimer();
+    }
 
+    private void startAnimationTimer() {
         lastNanoTime = System.nanoTime();
         new AnimationTimer() {
             @Override
