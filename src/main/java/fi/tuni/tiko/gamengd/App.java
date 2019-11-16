@@ -30,7 +30,7 @@ public class App extends GameCore {
         Player player = new Player(dude2);
 
         Level level = new Level(10,10);
-
+        addLevel(level);
 
 
         addPlayer(player);

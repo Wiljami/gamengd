@@ -95,6 +95,10 @@ public class GameCore extends Application {
         keyListeners.add(player);
     }
 
+    void addLevel(Level level) {
+        level.addTilesToSpriteController(sc);
+    }
+
     private BorderPane createRoot () {
         BorderPane root = new BorderPane();
         root.setCenter(canvas);
