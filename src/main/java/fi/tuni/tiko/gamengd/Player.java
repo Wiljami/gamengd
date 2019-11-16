@@ -3,25 +3,26 @@ package fi.tuni.tiko.gamengd;
 import java.util.List;
 
 public class Player extends Entity implements KeyListener {
-    private int playerSpeed = 50;
     public Player(Sprite sprite) {
         super(sprite);
     }
 
-
-    //TODO: Add location to entity and have the sprite recalculate its position based on that.
     @Override
     public void receiveInput(List<String> input, double elapsedTime) {
-        if (input.contains("LEFT")) {
+    }
+
+    @Override
+    public void receiveInput(String input) {
+        if (input.equals("LEFT")) {
             moveLeft();
         }
-        if (input.contains("RIGHT")) {
+        if (input.equals("RIGHT")) {
             moveRight();
         }
-        if (input.contains("UP")) {
+        if (input.equals("UP")) {
             moveUp();
         }
-        if (input.contains("DOWN")) {
+        if (input.equals("DOWN")) {
             moveDown();
         }
     }

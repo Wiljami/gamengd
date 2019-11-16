@@ -87,6 +87,9 @@ public class GameCore extends Application {
         scene.setOnKeyReleased(keyEvent -> {
             String key = keyEvent.getCode().toString();
             input.remove(key);
+            for (KeyListener listener : keyListeners) {
+                listener.receiveInput(key);
+            }
         });
 
         return scene;
