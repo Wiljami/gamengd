@@ -16,6 +16,8 @@ public class Level {
         }
     }
 
+
+    //TODO: REMOVE THIS?
     public void addTilesToSpriteController(SpriteController sc) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
