@@ -27,5 +27,7 @@ public class App extends GameCore {
 
         sc.addSprite(dude);
         sc.addSprite(dude2);
+        addPlayer(dude2);
+
     }
 }

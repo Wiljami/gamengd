@@ -86,6 +86,11 @@ public class GameCore extends Application {
         return scene;
     }
 
+    void addPlayer(Sprite sprite) {
+        Player player = new Player(sprite);
+        keyListeners.add(player);
+    }
+
     private BorderPane createRoot () {
         BorderPane root = new BorderPane();
         root.setCenter(canvas);
@@ -97,7 +102,7 @@ public class GameCore extends Application {
     }
 
     private Canvas canvas() {
-        canvas = new Canvas(1200,800);
+        canvas = new Canvas(resolutionX,resolutionY);
         return canvas;
     }
 
