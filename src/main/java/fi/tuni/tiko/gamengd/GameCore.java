@@ -41,6 +41,24 @@ public class GameCore extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle(windowTitle);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setScene(createScene());
+        stage.show();
+
+        lastNanoTime = System.nanoTime();
+        new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
+                lastNanoTime = currentNanoTime;
+                sc.render(gc, elapsedTime);
+            }
+        }.start();
+    }
+
+    private Scene createScene() {
         Scene scene = new Scene(createRoot(), resolutionX, resolutionY);
 
         scene.setOnKeyPressed(keyEvent -> {
@@ -55,23 +73,7 @@ public class GameCore extends Application {
             input.remove(key);
         });
 
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setScene(scene);
-        stage.show();
-
-        lastNanoTime = System.nanoTime();
-
-        new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
-                lastNanoTime = currentNanoTime;
-                sc.render(gc, elapsedTime);
-            }
-        }.start();
-
+        return scene;
     }
 
     private BorderPane createRoot () {
