@@ -1,10 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.entity.Wall;
-import fi.tuni.tiko.gamengd.ui.GameView;
-import fi.tuni.tiko.gamengd.ui.UI;
-import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.entity.Floor;
+import fi.tuni.tiko.gamengd.ui.*;
+import fi.tuni.tiko.gamengd.entity.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -38,8 +35,9 @@ public class GameCore extends Application {
     public void init() {
         System.out.println("Author: Viljami Pietarila");
         System.out.println("This is GameCore::Init");
-        Floor.setupFloors();
-        Wall.setupWalls();
+        Floor.setup();
+        Wall.setup();
+        Monster.setup();
         spriteController = new SpriteController();
         gameView = new GameView();
         camera = new Camera(0,0);

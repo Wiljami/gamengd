@@ -8,7 +8,7 @@ public class Floor extends Entity {
     private static Image floor;
     private static Image emptyFloor;
 
-    public static void setupFloors() {
+    public static void setup() {
         floor = Util.loadImage("tile.png");
         emptyFloor = Util.loadImage("voidtile.png");
     }

@@ -4,14 +4,14 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Util;
 import javafx.scene.image.Image;
 
-public class Wall extends Entity {
-    private static Image wall;
+public class Monster extends Unit {
+    private static Image image;
 
     public static void setup() {
-        wall = Util.loadImage("wall.png");
+        image = Util.loadImage("monster.png");
     }
 
-    public Wall() {
-        super(new Sprite(wall));
+    public Monster() {
+        super(new Sprite(image));
     }
 }
