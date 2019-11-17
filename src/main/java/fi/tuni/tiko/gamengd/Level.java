@@ -3,17 +3,17 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.entity.Floor;
 
 public class Level {
-    private Floor[][] map;
+    private Tile[][] map;
     private int width;
     private int height;
 
     public Level(int width, int height) {
         this.width = width;
         this.height = height;
-        map = new Floor[width][height];
+        map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                map[x][y] = new Floor(x, y);
+                map[x][y] = new Tile(x, y, new Floor());
             }
         }
     }
@@ -22,6 +22,6 @@ public class Level {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             return Floor.voidTile();
         }
-        return map[x][y].getSprite();
+        return map[x][y].getFloor().getSprite();
     }
 }
