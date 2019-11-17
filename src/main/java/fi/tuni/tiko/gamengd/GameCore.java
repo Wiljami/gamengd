@@ -104,13 +104,13 @@ public class GameCore extends Application {
         int centerTileX = (int) camera.getX();
         int centerTileY = (int) camera.getY();
 
-        calculateVisibleTiles(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
-        calculateVisibleUnits(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
+        updateTileSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
+        updateUnitSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
 
         camera.setCameraChanged(false);
     }
 
-    private void calculateVisibleUnits(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
+    private void updateUnitSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
         double tileSize = camera.getTileSize();
         for (Unit unit : units) {
             Sprite s = unit.getSprite();
@@ -120,7 +120,7 @@ public class GameCore extends Application {
         }
     }
 
-    private void calculateVisibleTiles(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
+    private void updateTileSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
         Canvas canvas = gameView.getCanvas();
         double tileSize = camera.getTileSize();
 
