@@ -6,7 +6,7 @@ import fi.tuni.tiko.gamengd.Sprite;
 
 import java.util.List;
 
-public class Player extends Entity implements KeyListener {
+public class Player extends Unit implements KeyListener {
     private Camera camera;
     public Player(Sprite sprite) {
         super(sprite);

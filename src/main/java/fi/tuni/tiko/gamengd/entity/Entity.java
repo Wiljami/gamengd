@@ -44,8 +44,4 @@ public class Entity {
         this.x = x;
         this.y = y;
     }
-
-    void move(int x, int y) {
-        setXY(getX() + x, getY() + y);
-    }
 }
