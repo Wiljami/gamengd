@@ -1,4 +1,8 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.entity;
+
+import fi.tuni.tiko.gamengd.Camera;
+import fi.tuni.tiko.gamengd.KeyListener;
+import fi.tuni.tiko.gamengd.Sprite;
 
 import java.util.List;
 

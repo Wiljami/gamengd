@@ -1,5 +1,7 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.Util;
 import javafx.scene.image.Image;
 
 public class Tile extends Entity {

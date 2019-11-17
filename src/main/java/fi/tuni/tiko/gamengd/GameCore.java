@@ -2,6 +2,8 @@ package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
+import fi.tuni.tiko.gamengd.entity.Player;
+import fi.tuni.tiko.gamengd.entity.Tile;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;

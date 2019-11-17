@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.entity.Tile;
+
 public class Level {
     private Tile[][] map;
     private int width;

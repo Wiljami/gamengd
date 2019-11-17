@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.entity.Player;
+
 /**
  * App is a helper class for development and testing.
  *
