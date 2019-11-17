@@ -1,16 +1,13 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.ui.GameView;
+import fi.tuni.tiko.gamengd.ui.UI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -131,7 +128,7 @@ public class GameCore extends Application {
     }
 
     private Scene createScene() {
-        Scene scene = new Scene(createRoot(), resolutionX, resolutionY);
+        Scene scene = new Scene(new UI(gameView), resolutionX, resolutionY);
 
         scene.setOnKeyPressed(keyEvent -> {
             String key = keyEvent.getCode().toString();
@@ -161,41 +158,6 @@ public class GameCore extends Application {
 
     void addLevel(Level level) {
         this.level = level;
-    }
-
-    private BorderPane createRoot () {
-        BorderPane root = new BorderPane();
-        root.setCenter(gameView);
-        root.setTop(topBar());
-        root.setBottom(bottomBar());
-        root.setRight(rightColumn());
-        root.setLeft(leftColumn());
-        return root;
-    }
-
-    private VBox topBar() {
-        MenuBar menuBar = new MenuBar();
-        Label label = new Label("Hi, I am the topBar");
-        VBox topBar = new VBox(menuBar, label);
-        return topBar;
-    }
-
-    private VBox bottomBar() {
-        Label label = new Label("Hi, I am the bottomBar");
-        VBox topBar = new VBox(label);
-        return topBar;
-    }
-
-    private VBox rightColumn() {
-        Label label = new Label("Hi, I am the rightColumn");
-        VBox topBar = new VBox(label);
-        return topBar;
-    }
-
-    private VBox leftColumn() {
-        Label label = new Label("Hi, I am the leftColumn");
-        VBox topBar = new VBox(label);
-        return topBar;
     }
 
     static void setResolution(double x, double y) {
