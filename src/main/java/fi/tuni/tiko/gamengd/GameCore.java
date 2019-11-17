@@ -135,7 +135,7 @@ public class GameCore extends Application {
         for (Unit unit : units) {
             Sprite s = unit.getSprite();
             s.setPositionX(centerSpriteX + (centerTileX - unit.getX()) * tileSize);
-            s.setPositionY(centerSpriteY + (centerTileX - unit.getY()) * tileSize);
+            s.setPositionY(centerSpriteY + (centerTileY - unit.getY()) * tileSize);
             spriteController.addUnitSprite(s);
         }
 
