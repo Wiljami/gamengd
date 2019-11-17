@@ -22,7 +22,6 @@ public class App extends GameCore {
         super.init();
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude);
-
         player.setXY(4,4);
 
         Level level = new Level(9,9);

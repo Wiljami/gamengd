@@ -2,11 +2,14 @@ package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.Camera;
 import fi.tuni.tiko.gamengd.KeyListener;
+import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 
 import java.util.List;
 
 public class Player extends Unit implements KeyListener {
+    //TODO: Is there a better way to do this?
+    private Level level;
     private Camera camera;
     public Player(Sprite sprite) {
         super(sprite);
@@ -14,6 +17,10 @@ public class Player extends Unit implements KeyListener {
 
     public void setupCamera (Camera camera) {
         this.camera = camera;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     @Override
@@ -43,7 +50,9 @@ public class Player extends Unit implements KeyListener {
 
     @Override
     void move(int x, int y) {
-        super.move(x, y);
-        camera.setXY(getX() + 0.5, getY() + 0.5);
+        if (level.getTileAt(getX()+x, getY()+y).isPassable()) {
+            super.move(x, y);
+            camera.setXY(getX() + 0.5, getY() + 0.5);
+        }
     }
 }

@@ -170,6 +170,7 @@ public class GameCore extends Application {
     void addPlayer(Player player) {
         this.player = player;
         player.setupCamera(camera);
+        player.setLevel(level);
         camera.setXY(player.getX() + 0.5, player.getY() + 0.5);
         spriteController.addUnitSprite(player.getSprite());
         keyListeners.add(player);
