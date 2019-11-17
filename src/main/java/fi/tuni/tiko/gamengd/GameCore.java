@@ -87,6 +87,7 @@ public class GameCore extends Application {
         spriteController.render(gc, elapsedTime, camera.getTileSize());
     }
 
+    //TODO: Should this maybe be Camera's job?
     private void updateSprites() {
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
