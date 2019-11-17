@@ -8,7 +8,7 @@ import fi.tuni.tiko.gamengd.Sprite;
 import java.util.List;
 
 public class Player extends Unit implements KeyListener {
-    //TODO: Is there a better way to do this?
+    //TODO: Is there a better way to do this? Does player really need a pointer to level?
     private Level level;
     private Camera camera;
     public Player(Sprite sprite) {
