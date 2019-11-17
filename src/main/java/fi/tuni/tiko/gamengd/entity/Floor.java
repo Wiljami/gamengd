@@ -4,7 +4,7 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Util;
 import javafx.scene.image.Image;
 
-public class Tile extends Entity {
+public class Floor extends Entity {
     private static Image emptyTile;
     private static Image voidTile;
 
@@ -13,7 +13,7 @@ public class Tile extends Entity {
         voidTile = Util.loadImage("voidtile.png");
     }
 
-    public Tile(int x, int y) {
+    public Floor(int x, int y) {
         super(new Sprite(emptyTile), x, y);
     }
 

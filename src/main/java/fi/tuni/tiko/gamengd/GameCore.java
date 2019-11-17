@@ -3,7 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
 import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.entity.Tile;
+import fi.tuni.tiko.gamengd.entity.Floor;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -37,7 +37,7 @@ public class GameCore extends Application {
     public void init() {
         System.out.println("Author: Viljami Pietarila");
         System.out.println("This is GameCore::Init");
-        Tile.setupTiles();
+        Floor.setupTiles();
         spriteController = new SpriteController();
         gameView = new GameView();
         camera = new Camera(0,0);
@@ -110,7 +110,7 @@ public class GameCore extends Application {
 
         for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
             for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
-                Sprite tile = level.getTileAt(centerTileX + x, centerTileY + y);
+                Sprite tile = level.getFloorAt(centerTileX + x, centerTileY + y);
                 tile.setPositionX(centerSpriteX + x * tileSize);
                 tile.setPositionY(centerSpriteY + y * tileSize);
                 spriteController.addTileSprite(tile);
