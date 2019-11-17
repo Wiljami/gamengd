@@ -10,6 +10,7 @@ public class Tile {
     private Floor floor;
     private Wall wall;
     private boolean hasWall = false;
+    private boolean passable = true;
 
     public Tile(int x, int y, Floor floor) {
         this.x = x;
@@ -19,6 +20,7 @@ public class Tile {
 
     public Tile() {
         setFloor(new Floor());
+        passable = false;
     }
 
     public void setFloor(Floor floor) {
@@ -32,6 +34,7 @@ public class Tile {
     public void addWall(Wall wall) {
         this.wall = wall;
         hasWall = true;
+        passable = false;
     }
 
     public Wall getWall() {
@@ -40,5 +43,9 @@ public class Tile {
 
     public boolean hasWall() {
         return hasWall;
+    }
+
+    public boolean isPassable() {
+        return passable;
     }
 }
