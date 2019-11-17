@@ -134,8 +134,8 @@ public class GameCore extends Application {
 
         for (Unit unit : units) {
             Sprite s = unit.getSprite();
-            s.setPositionX(centerSpriteX + (centerTileX - unit.getX()) * tileSize);
-            s.setPositionY(centerSpriteY + (centerTileY - unit.getY()) * tileSize);
+            s.setPositionX(centerSpriteX + (unit.getX() - centerTileX) * tileSize);
+            s.setPositionY(centerSpriteY + (unit.getY() - centerTileY) * tileSize);
             spriteController.addUnitSprite(s);
         }
 
@@ -174,9 +174,12 @@ public class GameCore extends Application {
         player.setupCamera(camera);
         player.setLevel(level);
         camera.setXY(player.getX() + 0.5, player.getY() + 0.5);
-        spriteController.addUnitSprite(player.getSprite());
         keyListeners.add(player);
         units.add(player);
+    }
+
+    void addMonster(Monster monster) {
+        units.add(monster);
     }
 
     void addLevel(Level level) {

@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
 
 /**
@@ -27,5 +28,9 @@ public class App extends GameCore {
         Level level = new Level(9,9);
         addLevel(level);
         addPlayer(player);
+
+        Monster monster = new Monster();
+        monster.setXY(2,4);
+        addMonster(monster);
     }
 }
