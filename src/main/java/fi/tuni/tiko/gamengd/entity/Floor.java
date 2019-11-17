@@ -5,19 +5,19 @@ import fi.tuni.tiko.gamengd.Util;
 import javafx.scene.image.Image;
 
 public class Floor extends Entity {
-    private static Image emptyTile;
-    private static Image voidTile;
+    private static Image floor;
+    private static Image emptyFloor;
 
     public static void setupTiles() {
-        emptyTile = Util.loadImage("tile.png");
-        voidTile = Util.loadImage("voidtile.png");
+        floor = Util.loadImage("tile.png");
+        emptyFloor = Util.loadImage("voidtile.png");
     }
 
     public Floor(int x, int y) {
-        super(new Sprite(emptyTile), x, y);
+        super(new Sprite(floor), x, y);
     }
 
     public static Sprite voidTile() {
-        return new Sprite(voidTile);
+        return new Sprite(emptyFloor);
     }
 }
