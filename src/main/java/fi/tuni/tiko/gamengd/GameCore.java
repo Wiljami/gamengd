@@ -112,6 +112,7 @@ public class GameCore extends Application {
             for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
                 Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
                 Sprite floor = tile.getFloor().getSprite();
+
                 double positionX = centerSpriteX + x * tileSize;
                 double positionY = centerSpriteY + y * tileSize;
 
@@ -119,6 +120,12 @@ public class GameCore extends Application {
                 floor.setPositionY(positionY);
 
                 spriteController.addFloorSprite(floor);
+                if (tile.hasWall()) {
+                    Sprite wall = tile.getWall().getSprite();
+                    wall.setPositionY(positionX);
+                    wall.setPositionY(positionY);
+                    spriteController.addWallSprite(wall);
+                }
             }
         }
 
