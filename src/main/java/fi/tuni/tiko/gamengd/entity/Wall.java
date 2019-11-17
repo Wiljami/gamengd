@@ -11,7 +11,7 @@ public class Wall extends Entity {
         wall = Util.loadImage("wall.png");
     }
 
-    public Wall(Sprite sprite, int x, int y) {
-        super(sprite, x, y);
+    public Wall() {
+        super(new Sprite(wall));
     }
 }
