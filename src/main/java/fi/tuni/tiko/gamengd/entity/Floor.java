@@ -13,11 +13,11 @@ public class Floor extends Entity {
         emptyFloor = Util.loadImage("voidtile.png");
     }
 
-    public Floor() {
+    public Floor(String type) {
         super(new Sprite(floor));
     }
 
-    public static Sprite voidTile() {
-        return new Sprite(emptyFloor);
+    public Floor() {
+        super(new Sprite(emptyFloor));
     }
 }

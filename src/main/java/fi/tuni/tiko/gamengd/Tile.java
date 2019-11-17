@@ -13,6 +13,10 @@ public class Tile {
         setFloor(floor);
     }
 
+    public Tile() {
+        setFloor(new Floor());
+    }
+
     public void setFloor(Floor floor) {
         this.floor = floor;
     }

@@ -13,15 +13,15 @@ public class Level {
         map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                map[x][y] = new Tile(x, y, new Floor());
+                map[x][y] = new Tile(x, y, new Floor("floor"));
             }
         }
     }
 
-    public Sprite getFloorAt(int x, int y) {
+    public Tile getTileAt(int x, int y) {
         if (x < 0 || x >= width || y < 0 || y >= height) {
-            return Floor.voidTile();
+            return new Tile();
         }
-        return map[x][y].getFloor().getSprite();
+        return map[x][y];
     }
 }

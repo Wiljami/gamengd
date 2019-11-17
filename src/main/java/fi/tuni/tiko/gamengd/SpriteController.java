@@ -28,7 +28,7 @@ public class SpriteController {
         }
     }
 
-    public void addTileSprite(Sprite sprite) {
+    public void addFloorSprite(Sprite sprite) {
         tileSprites.add(sprite);
     }
 

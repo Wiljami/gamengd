@@ -110,10 +110,15 @@ public class GameCore extends Application {
 
         for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
             for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
-                Sprite tile = level.getFloorAt(centerTileX + x, centerTileY + y);
-                tile.setPositionX(centerSpriteX + x * tileSize);
-                tile.setPositionY(centerSpriteY + y * tileSize);
-                spriteController.addTileSprite(tile);
+                Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
+                Sprite floor = tile.getFloor().getSprite();
+                double positionX = centerSpriteX + x * tileSize;
+                double positionY = centerSpriteY + y * tileSize;
+
+                floor.setPositionX(positionX);
+                floor.setPositionY(positionY);
+
+                spriteController.addFloorSprite(floor);
             }
         }
 
