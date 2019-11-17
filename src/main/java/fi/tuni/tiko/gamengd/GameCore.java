@@ -92,6 +92,7 @@ public class GameCore extends Application {
     }
 
     //TODO: Should this maybe be Camera's job?
+    //TODO: This method is big. Cut it to pieces
     private void updateSprites() {
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
