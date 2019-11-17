@@ -132,6 +132,7 @@ public class GameCore extends Application {
             }
         }
 
+        //TODO: Do this properly
         player.getSprite().setPositionX(centerSpriteX + (centerTileX - player.getX()) * tileSize);
         player.getSprite().setPositionY(centerSpriteY + (centerTileY - player.getY()) * tileSize);
 
