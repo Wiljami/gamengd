@@ -56,6 +56,7 @@ public class Camera implements KeyListener {
         return tileSize;
     }
 
+    //TODO: Smooth out the zoom with some sort of algorithm. Currently it zooms too fast once close.
     private void zoomIn() {
         setTileSize(getTileSize()+1);
     }
