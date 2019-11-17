@@ -24,8 +24,6 @@ public class GameCore extends Application {
     private static boolean fullScreen = false;
     private static String windowTitle = "GamEngD Game Engine";
 
-    private static double tileSize = 100;
-
     private GameView gameView;
     private SpriteController spriteController;
     private ArrayList<KeyListener> keyListeners = new ArrayList<>();
@@ -44,6 +42,7 @@ public class GameCore extends Application {
         spriteController = new SpriteController();
         gameView = new GameView();
         camera = new Camera(0,0);
+        keyListeners.add(camera);
     }
 
     @Override
@@ -88,12 +87,14 @@ public class GameCore extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         if (camera.isCameraChanged()) updateSprites();
-        spriteController.render(gc, elapsedTime);
+        spriteController.render(gc, elapsedTime, camera.getTileSize());
     }
 
     private void updateSprites() {
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
+
+        double tileSize = camera.getTileSize();
 
         int horizontalTiles = (int) Math.ceil(canvas.getWidth() / tileSize) + 1;
         if (horizontalTiles % 2 == 0) horizontalTiles++;
@@ -209,13 +210,5 @@ public class GameCore extends Application {
 
     static void setWindowTitle(String title) {
         windowTitle = title;
-    }
-
-    public static double getTileSize() {
-        return tileSize;
-    }
-
-    public static void setTileSize(double s) {
-        tileSize = s;
     }
 }

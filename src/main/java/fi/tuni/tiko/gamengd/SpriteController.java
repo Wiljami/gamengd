@@ -10,15 +10,15 @@ public class SpriteController {
     private List<Sprite> entitySprites = new LinkedList<>();
     private List<Sprite> tileSprites = new LinkedList<>();
 
-    public void render(GraphicsContext gc, double time) {
+    public void render(GraphicsContext gc, double time, double tileSize) {
         for (Sprite s : tileSprites) {
             s.update(time);
-            s.render(gc, GameCore.getTileSize());
+            s.render(gc, tileSize);
         }
 
         for (Sprite s : entitySprites) {
             s.update(time);
-            s.render(gc, GameCore.getTileSize());
+            s.render(gc, tileSize);
         }
     }
 

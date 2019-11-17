@@ -1,13 +1,21 @@
 package fi.tuni.tiko.gamengd;
 
-public class Camera {
+import java.util.List;
+
+public class Camera implements KeyListener {
     private double x;
     private double y;
     boolean cameraChanged;
+    private double tileSize = 100;
 
     public Camera(double x, double y) {
+        this(x, y, 100);
+    }
+
+    public Camera(double x, double y, double tileSize) {
         setX(x);
         setY(y);
+        setTileSize(tileSize);
     }
 
     public boolean isCameraChanged() {
@@ -37,7 +45,40 @@ public class Camera {
         return y;
     }
 
+    public void setTileSize(double tileSize) {
+        if (tileSize < 10) tileSize = 10;
+        if (tileSize > 100) tileSize = 100;
+        this.tileSize = tileSize;
+        setCameraChanged(true);
+    }
+
+    public double getTileSize() {
+        return tileSize;
+    }
+
+    private void zoomIn() {
+        setTileSize(getTileSize()+1);
+    }
+
+    private void zoomOut() {
+        setTileSize(getTileSize()-1);
+    }
+
     public void setCameraChanged(boolean cameraChanged) {
         this.cameraChanged = cameraChanged;
+    }
+
+    @Override
+    public void receiveInput(List<String> input, double elapsedTime) {
+        if (input.contains("ADD")) {
+            zoomIn();
+        } else if (input.contains("SUBTRACT")) {
+            zoomOut();
+        }
+    }
+
+    @Override
+    public void receiveInput(String input) {
+
     }
 }
