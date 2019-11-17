@@ -43,5 +43,6 @@ public class SpriteController {
     public void clear() {
         unitSprites.clear();
         tileSprites.clear();
+        wallSprites.clear();
     }
 }
