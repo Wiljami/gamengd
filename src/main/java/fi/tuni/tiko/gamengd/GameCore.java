@@ -92,18 +92,11 @@ public class GameCore extends Application {
     }
 
     //TODO: Should this maybe be Camera's job?
-    //TODO: This method is big. Cut it to pieces
     private void updateSprites() {
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
 
         double tileSize = camera.getTileSize();
-
-        int horizontalTiles = (int) Math.ceil(canvas.getWidth() / tileSize) + 1;
-        if (horizontalTiles % 2 == 0) horizontalTiles++;
-
-        int verticalTiles = (int) Math.ceil(canvas.getHeight() / tileSize) + 1;
-        if (verticalTiles % 2 == 0) verticalTiles++;
 
         double centerSpriteX = canvas.getWidth() / 2 - (tileSize / 2);
         double centerSpriteY = canvas.getHeight() / 2 - (tileSize / 2);
@@ -111,6 +104,31 @@ public class GameCore extends Application {
         int centerTileX = (int) camera.getX();
         int centerTileY = (int) camera.getY();
 
+        calculateVisibleTiles(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
+        calculateVisibleUnits(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
+
+        camera.setCameraChanged(false);
+    }
+
+    private void calculateVisibleUnits(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
+        double tileSize = camera.getTileSize();
+        for (Unit unit : units) {
+            Sprite s = unit.getSprite();
+            s.setPositionX(centerSpriteX + (unit.getX() - centerTileX) * tileSize);
+            s.setPositionY(centerSpriteY + (unit.getY() - centerTileY) * tileSize);
+            spriteController.addUnitSprite(s);
+        }
+    }
+
+    private void calculateVisibleTiles(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
+        Canvas canvas = gameView.getCanvas();
+        double tileSize = camera.getTileSize();
+
+        int horizontalTiles = (int) Math.ceil(canvas.getWidth() / tileSize) + 1;
+        if (horizontalTiles % 2 == 0) horizontalTiles++;
+
+        int verticalTiles = (int) Math.ceil(canvas.getHeight() / tileSize) + 1;
+        if (verticalTiles % 2 == 0) verticalTiles++;
         for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
             for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
                 Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
@@ -131,15 +149,6 @@ public class GameCore extends Application {
                 }
             }
         }
-
-        for (Unit unit : units) {
-            Sprite s = unit.getSprite();
-            s.setPositionX(centerSpriteX + (unit.getX() - centerTileX) * tileSize);
-            s.setPositionY(centerSpriteY + (unit.getY() - centerTileY) * tileSize);
-            spriteController.addUnitSprite(s);
-        }
-
-        camera.setCameraChanged(false);
     }
 
     private void handleInput(double elapsedTime) {
