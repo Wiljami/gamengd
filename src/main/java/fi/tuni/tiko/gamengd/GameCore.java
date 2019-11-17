@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.entity.Wall;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
 import fi.tuni.tiko.gamengd.entity.Player;
@@ -37,7 +38,8 @@ public class GameCore extends Application {
     public void init() {
         System.out.println("Author: Viljami Pietarila");
         System.out.println("This is GameCore::Init");
-        Floor.setupTiles();
+        Floor.setupFloors();
+        Wall.setupWalls();
         spriteController = new SpriteController();
         gameView = new GameView();
         camera = new Camera(0,0);
