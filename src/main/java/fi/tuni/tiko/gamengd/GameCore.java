@@ -27,6 +27,7 @@ public class GameCore extends Application {
     private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
 
+    private ArrayList<Unit> units = new ArrayList<>();
     private Player player;
     private Level level;
     private Camera camera;
@@ -131,11 +132,13 @@ public class GameCore extends Application {
             }
         }
 
-        //TODO: Do this properly
-        player.getSprite().setPositionX(centerSpriteX + (centerTileX - player.getX()) * tileSize);
-        player.getSprite().setPositionY(centerSpriteY + (centerTileY - player.getY()) * tileSize);
+        for (Unit unit : units) {
+            Sprite s = unit.getSprite();
+            s.setPositionX(centerSpriteX + (centerTileX - unit.getX()) * tileSize);
+            s.setPositionY(centerSpriteY + (centerTileX - unit.getY()) * tileSize);
+            spriteController.addUnitSprite(s);
+        }
 
-        spriteController.addUnitSprite(player.getSprite());
         camera.setCameraChanged(false);
     }
 
@@ -173,6 +176,7 @@ public class GameCore extends Application {
         camera.setXY(player.getX() + 0.5, player.getY() + 0.5);
         spriteController.addUnitSprite(player.getSprite());
         keyListeners.add(player);
+        units.add(player);
     }
 
     void addLevel(Level level) {
