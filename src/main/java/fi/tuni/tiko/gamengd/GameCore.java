@@ -124,7 +124,7 @@ public class GameCore extends Application {
                 spriteController.addFloorSprite(floor);
                 if (tile.hasWall()) {
                     Sprite wall = tile.getWall().getSprite();
-                    wall.setPositionY(positionX);
+                    wall.setPositionX(positionX);
                     wall.setPositionY(positionY);
                     spriteController.addWallSprite(wall);
                 }
