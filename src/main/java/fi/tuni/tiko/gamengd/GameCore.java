@@ -120,7 +120,7 @@ public class GameCore extends Application {
         player.getSprite().setPositionX(centerSpriteX + (centerTileX - player.getX()) * tileSize);
         player.getSprite().setPositionY(centerSpriteY + (centerTileY - player.getY()) * tileSize);
 
-        spriteController.addEntitySprite(player.getSprite());
+        spriteController.addUnitSprite(player.getSprite());
         camera.setCameraChanged(false);
     }
 
@@ -155,7 +155,7 @@ public class GameCore extends Application {
         this.player = player;
         player.setupCamera(camera);
         camera.setXY(player.getX() + 0.5, player.getY() + 0.5);
-        spriteController.addEntitySprite(player.getSprite());
+        spriteController.addUnitSprite(player.getSprite());
         keyListeners.add(player);
     }
 
