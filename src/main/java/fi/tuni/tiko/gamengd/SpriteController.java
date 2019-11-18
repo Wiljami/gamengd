@@ -35,13 +35,18 @@ public class SpriteController {
         wallSprites.add(sprite);
     }
 
+    public void addFurnSprite(Sprite sprite) {
+        furnSprites.add(sprite);
+    }
+
     public void addUnitSprite(Sprite sprite) {
         unitSprites.add(sprite);
     }
 
     public void clear() {
-        unitSprites.clear();
         tileSprites.clear();
         wallSprites.clear();
+        furnSprites.clear();
+        unitSprites.clear();
     }
 }
