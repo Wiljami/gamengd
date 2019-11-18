@@ -9,20 +9,19 @@ public class SpriteController {
 
     private List<Sprite> tileSprites = new LinkedList<>();
     private List<Sprite> wallSprites = new LinkedList<>();
+    private List<Sprite> furnSprites = new LinkedList<>();
     private List<Sprite> unitSprites = new LinkedList<>();
 
     public void render(GraphicsContext gc, double time, double tileSize) {
-        for (Sprite s : tileSprites) {
-            s.update(time);
-            s.render(gc, tileSize);
-        }
+        renderSprites(gc, time, tileSize, tileSprites);
+        renderSprites(gc, time, tileSize, wallSprites);
+        renderSprites(gc, time, tileSize, furnSprites);
+        renderSprites(gc, time, tileSize, unitSprites);
+    }
 
-        for (Sprite s : wallSprites) {
-            s.update(time);
-            s.render(gc, tileSize);
-        }
-
-        for (Sprite s : unitSprites) {
+    private void renderSprites(GraphicsContext gc, double time,
+                               double tileSize, List<Sprite> sprites) {
+        for (Sprite s : sprites) {
             s.update(time);
             s.render(gc, tileSize);
         }
