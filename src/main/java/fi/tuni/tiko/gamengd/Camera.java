@@ -71,15 +71,14 @@ public class Camera implements KeyListener {
 
     @Override
     public void receiveInput(List<String> input, double elapsedTime) {
-        if (input.contains("ADD")) {
+        if (input.contains("ADD") || input.contains(("PLUS"))) {
             zoomIn();
-        } else if (input.contains("SUBTRACT")) {
+        } else if (input.contains("SUBTRACT") || input.contains("MINUS")) {
             zoomOut();
         }
     }
 
     @Override
     public void receiveInput(String input) {
-
     }
 }
