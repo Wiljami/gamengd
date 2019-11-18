@@ -1,7 +1,11 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.entity.Floor;
+import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Wall;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tile class holds the information for each gametile.
@@ -17,6 +21,7 @@ public class Tile {
     private int y;
     private Floor floor;
     private Wall wall;
+    private List<Furniture> furnitures = new ArrayList<>();
     private boolean hasWall = false;
     private boolean passable = true;
 
@@ -43,6 +48,14 @@ public class Tile {
         this.wall = wall;
         hasWall = true;
         passable = false;
+    }
+
+    public void addFurniture(Furniture furniture) {
+        furnitures.add(furniture);
+    }
+
+    public List<Furniture> getFurnitures() {
+        return furnitures;
     }
 
     public Wall getWall() {
