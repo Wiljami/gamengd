@@ -50,6 +50,12 @@ public class Tile {
         passable = false;
     }
 
+    public void removeWall() {
+        this.wall = null;
+        hasWall = false;
+        passable = true;
+    }
+
     public void addFurniture(Furniture furniture) {
         furnitures.add(furniture);
     }

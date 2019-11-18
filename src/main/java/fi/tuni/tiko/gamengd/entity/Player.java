@@ -53,6 +53,7 @@ public class Player extends Unit implements KeyListener {
         if (level.getTileAt(getX()+x, getY()+y).isPassable()) {
             super.move(x, y);
             camera.setXY(getX() + 0.5, getY() + 0.5);
+            System.out.println("Player at x: " + getX() + " y: " + getY());
         }
     }
 }

@@ -21,12 +21,23 @@ public class Level {
         }
     }
 
-    public void createRoom(int width, int height) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+    /**
+     * createRoom method creates a room with floors and walls surrounding it.
+     *
+     * Creates a room with walls and floors. Currently there is no check to see if
+     * the room is within the level.
+     * @param positionX x-coordinate of the top left corner
+     * @param positionY y-coordinate of the top left corner
+     * @param width width of the room
+     * @param height height of the room
+     */
+    public void createRoom(int positionX, int positionY, int width, int height) {
+        for (int x = positionX; x < width + positionX; x++) {
+            for (int y = positionY; y < height + positionY; y++) {
                 Tile tile =  new Tile(x, y, new Floor("floor"));
                 map[x][y] = tile;
-                if (x == 0 || y == 0 || x == width-1 || y == height-1) {
+                if (x == positionX || y == positionY ||
+                        x == width + positionX-1 || y == height + positionY-1) {
                     tile.addWall(new Wall());
                 }
             }

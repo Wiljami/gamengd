@@ -23,9 +23,16 @@ public class App extends GameCore {
         super.init();
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude);
-        player.setXY(4,4);
+        player.setXY(3,3);
 
-        Level level = new Level(9,9);
+        Level level = new Level(50,50);
+        level.createRoom(0,0, 9,9);
+        level.createRoom(3,8, 3, 10);
+        level.createRoom(5, 15, 10, 3);
+        level.createRoom(14, 12, 9, 9);
+        level.getTileAt(4,8).removeWall();
+        level.getTileAt(5,16).removeWall();
+        level.getTileAt(14,16).removeWall();
         addLevel(level);
         addPlayer(player);
 
