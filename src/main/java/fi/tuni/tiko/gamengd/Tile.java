@@ -3,6 +3,14 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Wall;
 
+/**
+ * Tile class holds the information for each gametile.
+ *
+ * Tile class holds the information what is on this one specific Tile.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1118
+ */
 public class Tile {
     //TODO: Does Tile need to know where it is?
     private int x;
