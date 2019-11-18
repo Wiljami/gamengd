@@ -69,4 +69,8 @@ public class Tile {
     public boolean isPassable() {
         return passable;
     }
+
+    public void setPassable(boolean passable) {
+        this.passable = passable;
+    }
 }

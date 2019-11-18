@@ -14,6 +14,16 @@ public class Level {
         map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
+                Tile tile =  new Tile(x, y, new Floor());
+                tile.setPassable(false);
+                map[x][y] = tile;
+            }
+        }
+    }
+
+    public void createRoom(int width, int height) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 Tile tile =  new Tile(x, y, new Floor("floor"));
                 map[x][y] = tile;
                 if (x == 0 || y == 0 || x == width-1 || y == height-1) {
@@ -21,6 +31,7 @@ public class Level {
                 }
             }
         }
+
     }
 
     public Tile getTileAt(int x, int y) {
