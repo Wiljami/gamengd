@@ -13,6 +13,12 @@ import javafx.scene.image.Image;
  * @version 2019.1118
  */
 public class Util {
+
+    /**
+     * file name of the fail picture that is used when picture is not found.
+     */
+    private static final String failPicture = "fail.png";
+
     /**
      * loadImage method creates an Image from a file.
      *
@@ -28,7 +34,7 @@ public class Util {
             image = new Image(file);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
-            image = new Image("fail.png");
+            image = new Image(failPicture);
         }
         return image;
     }
