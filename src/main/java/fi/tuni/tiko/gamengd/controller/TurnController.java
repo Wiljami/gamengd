@@ -21,7 +21,10 @@ public class TurnController {
     }
 
     public void doTurn() {
-        TurnInfo turnInfo = new TurnInfo();
+        TurnInfo turnInfo = new TurnInfo(getTurn());
+        for (TurnActor actor : turnActors) {
+            actor.doTurn(turnInfo);
+        }
     }
 
     public void setTurn(int turn) {
