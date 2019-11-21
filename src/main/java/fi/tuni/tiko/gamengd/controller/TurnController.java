@@ -39,6 +39,7 @@ public class TurnController {
     private void newTurn() {
         turn++;
         currentTurnActors = (ArrayList<TurnActor>)turnActors.clone();
+        doTurn();
     }
 
     public void setTurn(int turn) {

@@ -4,6 +4,7 @@ import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.KeyListener;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.controller.TurnInfo;
 
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class Player extends Unit implements KeyListener {
     public Player(Sprite sprite) {
         super(sprite);
     }
+    private TurnInfo latestTurn;
+
+    private boolean playerTurn = false;
 
     public void setupCamera (CameraController camera) {
         this.camera = camera;
@@ -29,6 +33,10 @@ public class Player extends Unit implements KeyListener {
 
     @Override
     public void receiveInput(String input) {
+        if (playerTurn) sortInput(input);
+    }
+
+    private void sortInput(String input) {
         if (input.equals("HOME") || input.equals("NUMPAD7")) {
             move(-1, -1);
         } else if (input.equals("END") || input.equals("NUMPAD1")) {
@@ -46,6 +54,9 @@ public class Player extends Unit implements KeyListener {
         } else if (input.equals("DOWN") || input.equals("NUMPAD2")) {
             move(0,1);
         }
+        playerTurn = false;
+        System.out.println("Player finished turn : " + latestTurn.getTurn());
+        latestTurn.getTurnController().finishedTurn();
     }
 
     @Override
@@ -55,5 +66,11 @@ public class Player extends Unit implements KeyListener {
             camera.setXY(getX() + 0.5, getY() + 0.5);
             System.out.println("Player at x: " + getX() + " y: " + getY());
         }
+    }
+
+    @Override
+    public void doTurn(TurnInfo turnInfo) {
+        playerTurn = true;
+        latestTurn = turnInfo;
     }
 }
