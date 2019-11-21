@@ -12,6 +12,14 @@ public class TurnController {
         turnActors = new ArrayList<>();
     }
 
+    public void addTurn(TurnActor turnActor) {
+        turnActors.add(turnActor);
+    }
+
+    public boolean removeTurn(TurnActor turnActor) {
+        return turnActors.remove(turnActor);
+    }
+
     public void setTurn(int turn) {
         this.turn = turn;
     }
