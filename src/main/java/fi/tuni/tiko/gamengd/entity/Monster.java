@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Util;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
@@ -12,8 +13,8 @@ public class Monster extends Unit {
         image = Util.loadImage("monster.png");
     }
 
-    public Monster() {
-        super(new Sprite(image));
+    public Monster(Level level) {
+        super(new Sprite(image), level);
     }
 
     @Override

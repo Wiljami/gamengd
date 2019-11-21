@@ -9,22 +9,17 @@ import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import java.util.List;
 
 public class Player extends Unit implements KeyListener {
-    //TODO: Is there a better way to do this? Does player really need a pointer to level?
-    private Level level;
     private CameraController camera;
-    public Player(Sprite sprite) {
-        super(sprite);
+    public Player(Sprite sprite, Level level) {
+        super(sprite, level);
     }
+
     private TurnInfo latestTurn;
 
     private boolean playerTurn = false;
 
     public void setupCamera (CameraController camera) {
         this.camera = camera;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
     }
 
     @Override

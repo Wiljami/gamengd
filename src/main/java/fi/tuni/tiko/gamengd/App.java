@@ -21,9 +21,6 @@ public class App extends GameCore {
     @Override
     public void init() {
         super.init();
-        Sprite dude = new Sprite("dude.png");
-        Player player = new Player(dude);
-        player.setXY(3,3);
 
         Level level = new Level(50,50);
         level.createRoom(0,0, 9,9);
@@ -34,9 +31,14 @@ public class App extends GameCore {
         level.getTileAt(5,16).removeWall();
         level.getTileAt(14,16).removeWall();
         addLevel(level);
+
+        Sprite dude = new Sprite("dude.png");
+        Player player = new Player(dude, level);
+        player.setXY(3,3);
+
         addPlayer(player);
 
-        Monster monster = new Monster();
+        Monster monster = new Monster(level);
         monster.setXY(2,4);
         addMonster(monster);
     }
