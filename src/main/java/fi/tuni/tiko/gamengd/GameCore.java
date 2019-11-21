@@ -70,6 +70,10 @@ public class GameCore extends Application {
         startAnimationTimer();
     }
 
+    private void startTurnController() {
+
+    }
+
     private void startAnimationTimer() {
         lastNanoTime = System.nanoTime();
         new AnimationTimer() {
