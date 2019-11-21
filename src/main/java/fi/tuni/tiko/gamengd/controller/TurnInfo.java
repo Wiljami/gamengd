@@ -10,11 +10,18 @@ package fi.tuni.tiko.gamengd.controller;
  */
 public class TurnInfo {
     private int turn;
-    public TurnInfo(int turn) {
+    private TurnController turnController;
+
+    public TurnInfo(int turn, TurnController turnController) {
         this.turn = turn;
+        this.turnController = turnController:
     }
 
     public int getTurn() {
         return turn;
+    }
+
+    public TurnController getTurnController() {
+        return turnController;
     }
 }

@@ -2,6 +2,7 @@ package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.controller.SpriteController;
+import fi.tuni.tiko.gamengd.controller.TurnController;
 import fi.tuni.tiko.gamengd.ui.*;
 import fi.tuni.tiko.gamengd.entity.*;
 import javafx.animation.AnimationTimer;
@@ -24,7 +25,6 @@ public class GameCore extends Application {
     private static String windowTitle = "GamEngD Game Engine";
 
     private GameView gameView;
-    private SpriteController spriteController;
     private ArrayList<KeyListener> keyListeners = new ArrayList<>();
     private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
@@ -32,7 +32,10 @@ public class GameCore extends Application {
     private ArrayList<Unit> units = new ArrayList<>();
     private Player player;
     private Level level;
+
     private CameraController cameraController;
+    private SpriteController spriteController;
+    private TurnController turnController;
 
     @Override
     public void init() {
@@ -43,6 +46,7 @@ public class GameCore extends Application {
         Wall.setup();
         Monster.setup();
         spriteController = new SpriteController();
+        turnController = new TurnController();
         gameView = new GameView();
         cameraController = new CameraController(0,0);
         keyListeners.add(cameraController);
@@ -70,10 +74,11 @@ public class GameCore extends Application {
         stage.setMinHeight(minResolutionY);
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
+        startTurnController();
     }
 
     private void startTurnController() {
-
+        turnController.doTurn();
     }
 
     private void startAnimationTimer() {
@@ -191,10 +196,12 @@ public class GameCore extends Application {
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         keyListeners.add(player);
         units.add(player);
+        turnController.addTurn(player);
     }
 
     void addMonster(Monster monster) {
         units.add(monster);
+        turnController.addTurn(monster);
     }
 
     void addLevel(Level level) {
