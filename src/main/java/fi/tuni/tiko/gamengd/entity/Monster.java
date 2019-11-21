@@ -21,6 +21,10 @@ public class Monster extends Unit {
     public void doTurn(TurnInfo turnInfo) {
         int x = (int)(Math.random()*3) - 1;
         int y = (int)(Math.random()*3) - 1;
+        while (!level.getTileAt(getX()+x, getY()+y).isPassable()) {
+            x = (int)(Math.random()*3) - 1;
+            y = (int)(Math.random()*3) - 1;
+        }
         move(x, y);
         super.doTurn(turnInfo);
     }

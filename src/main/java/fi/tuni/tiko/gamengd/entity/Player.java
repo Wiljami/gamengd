@@ -32,35 +32,46 @@ public class Player extends Unit implements KeyListener {
     }
 
     private void sortInput(String input) {
+        int x = 0;
+        int y = 0;
         if (input.equals("HOME") || input.equals("NUMPAD7")) {
-            move(-1, -1);
+            x = -1;
+            y = -1;
         } else if (input.equals("END") || input.equals("NUMPAD1")) {
-            move(-1, 1);
+            x = -1;
+            y = 1;
         } else if (input.equals("PAGE_UP") || input.equals("NUMPAD9")) {
-            move(1, -1);
+            x = 1;
+            y = -1;
         } else if (input.equals("PAGE_DOWN") || input.equals("NUMPAD3")) {
-            move(1, 1);
+            x = 1;
+            y = 1;
         } else if (input.equals("LEFT") || input.equals("NUMPAD4")) {
-            move(-1,0);
+            x = -1;
+            y = 0;
         } else if (input.equals("RIGHT") || input.equals("NUMPAD6")) {
-            move(1,0);
+            x = 1;
+            y = 0;
         } else if (input.equals("UP") || input.equals("NUMPAD8")) {
-            move(0,-1);
+            x = 0;
+            y = -1;
         } else if (input.equals("DOWN") || input.equals("NUMPAD2")) {
-            move(0,1);
+            x = 0;
+            y = 1;
         }
-        playerTurn = false;
-        System.out.println("Player finished turn : " + latestTurn.getTurn());
-        latestTurn.getTurnController().finishedTurn();
+        if (level.getTileAt(getX()+x, getY()+y).isPassable()) {
+            move(x, y);
+            playerTurn = false;
+            System.out.println("Player finished turn : " + latestTurn.getTurn());
+            latestTurn.getTurnController().finishedTurn();
+        }
     }
 
     @Override
     void move(int x, int y) {
-        if (level.getTileAt(getX()+x, getY()+y).isPassable()) {
-            super.move(x, y);
-            camera.setXY(getX() + 0.5, getY() + 0.5);
-            System.out.println("Player at x: " + getX() + " y: " + getY());
-        }
+        super.move(x, y);
+        camera.setXY(getX() + 0.5, getY() + 0.5);
+        System.out.println("Player at x: " + getX() + " y: " + getY());
     }
 
     @Override
