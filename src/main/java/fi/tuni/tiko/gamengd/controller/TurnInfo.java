@@ -14,7 +14,7 @@ public class TurnInfo {
 
     public TurnInfo(int turn, TurnController turnController) {
         this.turn = turn;
-        this.turnController = turnController:
+        this.turnController = turnController;
     }
 
     public int getTurn() {
