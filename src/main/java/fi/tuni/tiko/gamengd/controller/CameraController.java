@@ -1,18 +1,20 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.controller;
+
+import fi.tuni.tiko.gamengd.KeyListener;
 
 import java.util.List;
 
-public class Camera implements KeyListener {
+public class CameraController implements KeyListener {
     private double x;
     private double y;
     boolean cameraChanged;
     private double tileSize = 100;
 
-    public Camera(double x, double y) {
+    public CameraController(double x, double y) {
         this(x, y, 100);
     }
 
-    public Camera(double x, double y, double tileSize) {
+    public CameraController(double x, double y, double tileSize) {
         setX(x);
         setY(y);
         setTileSize(tileSize);

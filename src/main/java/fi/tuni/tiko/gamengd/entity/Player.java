@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
-import fi.tuni.tiko.gamengd.Camera;
+import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.KeyListener;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
@@ -10,12 +10,12 @@ import java.util.List;
 public class Player extends Unit implements KeyListener {
     //TODO: Is there a better way to do this? Does player really need a pointer to level?
     private Level level;
-    private Camera camera;
+    private CameraController camera;
     public Player(Sprite sprite) {
         super(sprite);
     }
 
-    public void setupCamera (Camera camera) {
+    public void setupCamera (CameraController camera) {
         this.camera = camera;
     }
 

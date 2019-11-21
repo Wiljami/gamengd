@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.controller.CameraController;
+import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.ui.*;
 import fi.tuni.tiko.gamengd.entity.*;
 import javafx.animation.AnimationTimer;
@@ -30,7 +32,7 @@ public class GameCore extends Application {
     private ArrayList<Unit> units = new ArrayList<>();
     private Player player;
     private Level level;
-    private Camera camera;
+    private CameraController cameraController;
 
     @Override
     public void init() {
@@ -42,8 +44,8 @@ public class GameCore extends Application {
         Monster.setup();
         spriteController = new SpriteController();
         gameView = new GameView();
-        camera = new Camera(0,0);
-        keyListeners.add(camera);
+        cameraController = new CameraController(0,0);
+        keyListeners.add(cameraController);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class GameCore extends Application {
         stage.setScene(createScene());
 
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
-            camera.setCameraChanged(true);
+            cameraController.setCameraChanged(true);
 
         stage.widthProperty().addListener(stageSizeListener);
         stage.heightProperty().addListener(stageSizeListener);
@@ -91,8 +93,8 @@ public class GameCore extends Application {
         Canvas canvas = gameView.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        if (camera.isCameraChanged()) updateSprites();
-        spriteController.render(gc, elapsedTime, camera.getTileSize());
+        if (cameraController.isCameraChanged()) updateSprites();
+        spriteController.render(gc, elapsedTime, cameraController.getTileSize());
     }
 
     //TODO: Should this maybe be Camera's job?
@@ -100,22 +102,22 @@ public class GameCore extends Application {
         spriteController.clear();
         Canvas canvas = gameView.getCanvas();
 
-        double tileSize = camera.getTileSize();
+        double tileSize = cameraController.getTileSize();
 
         double centerSpriteX = canvas.getWidth() / 2 - (tileSize / 2);
         double centerSpriteY = canvas.getHeight() / 2 - (tileSize / 2);
 
-        int centerTileX = (int) camera.getX();
-        int centerTileY = (int) camera.getY();
+        int centerTileX = (int) cameraController.getX();
+        int centerTileY = (int) cameraController.getY();
 
         updateTileSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
         updateUnitSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
 
-        camera.setCameraChanged(false);
+        cameraController.setCameraChanged(false);
     }
 
     private void updateUnitSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
-        double tileSize = camera.getTileSize();
+        double tileSize = cameraController.getTileSize();
         for (Unit unit : units) {
             Sprite s = unit.getSprite();
             s.setPositionX(centerSpriteX + (unit.getX() - centerTileX) * tileSize);
@@ -126,7 +128,7 @@ public class GameCore extends Application {
 
     private void updateTileSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
         Canvas canvas = gameView.getCanvas();
-        double tileSize = camera.getTileSize();
+        double tileSize = cameraController.getTileSize();
 
         int horizontalTiles = (int) Math.ceil(canvas.getWidth() / tileSize) + 1;
         if (horizontalTiles % 2 == 0) horizontalTiles++;
@@ -184,9 +186,9 @@ public class GameCore extends Application {
 
     void addPlayer(Player player) {
         this.player = player;
-        player.setupCamera(camera);
+        player.setupCamera(cameraController);
         player.setLevel(level);
-        camera.setXY(player.getX() + 0.5, player.getY() + 0.5);
+        cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         keyListeners.add(player);
         units.add(player);
     }
