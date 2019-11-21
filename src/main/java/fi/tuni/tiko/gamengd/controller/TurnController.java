@@ -20,6 +20,10 @@ public class TurnController {
         return turnActors.remove(turnActor);
     }
 
+    public void doTurn() {
+        TurnInfo turnInfo = new TurnInfo();
+    }
+
     public void setTurn(int turn) {
         this.turn = turn;
     }

@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.TurnActor;
-import fi.tuni.tiko.gamengd.TurnInfo;
+import fi.tuni.tiko.gamengd.controller.TurnInfo;
 
 public class Unit extends Entity implements TurnActor {
     public Unit(Sprite sprite) {
