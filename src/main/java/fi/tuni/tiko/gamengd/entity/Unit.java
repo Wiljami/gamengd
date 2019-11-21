@@ -1,13 +1,20 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.TurnActor;
+import fi.tuni.tiko.gamengd.TurnInfo;
 
-public class Unit extends Entity {
+public class Unit extends Entity implements TurnActor {
     public Unit(Sprite sprite) {
         super(sprite);
     }
 
     void move(int x, int y) {
         setXY(getX() + x, getY() + y);
+    }
+
+    @Override
+    public void doTurn(TurnInfo turnInfo) {
+
     }
 }
