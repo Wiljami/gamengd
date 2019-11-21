@@ -9,4 +9,12 @@ package fi.tuni.tiko.gamengd.controller;
  * @version 2019.1121
  */
 public class TurnInfo {
+    private int turn;
+    public TurnInfo(int turn) {
+        this.turn = turn;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
 }
