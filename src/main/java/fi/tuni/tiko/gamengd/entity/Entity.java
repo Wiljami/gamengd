@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.Sprite;
 
-public class Entity {
+public abstract class Entity {
     private Sprite sprite;
     private int x;
     private int y;
