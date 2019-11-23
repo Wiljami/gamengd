@@ -1,4 +1,4 @@
-package fi.tuni.tiko.gamengd.scripts;
+package fi.tuni.tiko.gamengd.scripts.pathfinding;
 
 /**
  * A* search algorithm

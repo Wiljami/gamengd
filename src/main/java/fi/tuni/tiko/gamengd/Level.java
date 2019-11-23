@@ -67,4 +67,12 @@ public class Level {
     public ArrayList<Unit> getUnits() {
         return units;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
