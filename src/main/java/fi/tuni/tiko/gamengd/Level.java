@@ -1,12 +1,16 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.entity.Floor;
+import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
+
+import java.util.ArrayList;
 
 public class Level {
     private Tile[][] map;
     private int width;
     private int height;
+    private ArrayList<Unit> units = new ArrayList<>();
 
     public Level(int width, int height) {
         this.width = width;
@@ -50,5 +54,13 @@ public class Level {
             return new Tile();
         }
         return map[x][y];
+    }
+
+    public void addUnit(Unit unit) {
+        units.add(unit);
+    }
+
+    public ArrayList<Unit> getUnits() {
+        return units;
     }
 }

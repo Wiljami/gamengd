@@ -48,7 +48,7 @@ public class GameCore extends Application {
         spriteController = new SpriteController();
         turnController = new TurnController();
         gameView = new GameView();
-        cameraController = new CameraController(gameView.getCanvas());
+        cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputListeners.add(cameraController);
     }
 
@@ -102,70 +102,9 @@ public class GameCore extends Application {
         spriteController.render(gc, elapsedTime, cameraController.getTileSize());
     }
 
-    //TODO: Should this maybe be Camera's job?
     private void updateSprites() {
         spriteController.clear();
-        Canvas canvas = gameView.getCanvas();
-
-        double tileSize = cameraController.getTileSize();
-
-        double centerSpriteX = canvas.getWidth() / 2 - (tileSize / 2);
-        double centerSpriteY = canvas.getHeight() / 2 - (tileSize / 2);
-
-        int centerTileX = (int) cameraController.getX();
-        int centerTileY = (int) cameraController.getY();
-
-        updateTileSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
-        updateUnitSprites(centerTileX, centerTileY, centerSpriteX, centerSpriteY);
-
-        cameraController.setCameraChanged(false);
-    }
-
-    private void updateUnitSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
-        double tileSize = cameraController.getTileSize();
-        for (Unit unit : units) {
-            Sprite s = unit.getSprite();
-            s.setPositionX(centerSpriteX + (unit.getX() - centerTileX) * tileSize);
-            s.setPositionY(centerSpriteY + (unit.getY() - centerTileY) * tileSize);
-            spriteController.addUnitSprite(s);
-        }
-    }
-
-    private void updateTileSprites(int centerTileX, int centerTileY, double centerSpriteX, double centerSpriteY) {
-        Canvas canvas = gameView.getCanvas();
-        double tileSize = cameraController.getTileSize();
-
-        int horizontalTiles = (int) Math.ceil(canvas.getWidth() / tileSize) + 1;
-        if (horizontalTiles % 2 == 0) horizontalTiles++;
-
-        int verticalTiles = (int) Math.ceil(canvas.getHeight() / tileSize) + 1;
-        if (verticalTiles % 2 == 0) verticalTiles++;
-        for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
-            for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
-                Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
-                Sprite floor = tile.getFloor().getSprite();
-
-                double positionX = centerSpriteX + x * tileSize;
-                double positionY = centerSpriteY + y * tileSize;
-
-                floor.setPositionX(positionX);
-                floor.setPositionY(positionY);
-
-                spriteController.addFloorSprite(floor);
-                if (tile.hasWall()) {
-                    Sprite wall = tile.getWall().getSprite();
-                    wall.setPositionX(positionX);
-                    wall.setPositionY(positionY);
-                    spriteController.addWallSprite(wall);
-                }
-                for (Furniture f : tile.getFurnitures()) {
-                    Sprite furn = f.getSprite();
-                    furn.setPositionX(positionX);
-                    furn.setPositionY(positionY);
-                    spriteController.addFurnSprite(furn);
-                }
-            }
-        }
+        cameraController.updateSprites();
     }
 
     private void handleInput(double elapsedTime) {
@@ -200,17 +139,18 @@ public class GameCore extends Application {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputListeners.add(player);
-        units.add(player);
         turnController.addTurn(player);
+        level.addUnit(player);
     }
 
     void addMonster(Monster monster) {
-        units.add(monster);
         turnController.addTurn(monster);
+        level.addUnit(monster);
     }
 
     void addLevel(Level level) {
         this.level = level;
+        cameraController.setLevel(level);
     }
 
     static void setResolution(double x, double y) {
