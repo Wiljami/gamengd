@@ -24,7 +24,7 @@ public class Unit extends Entity implements TurnActor {
 
     @Override
     public void doTurn(TurnInfo turnInfo) {
-        System.out.println("Unit::doTurn - turn: " + turnInfo.getTurn());
+        //System.out.println("Unit::doTurn - turn: " + turnInfo.getTurn());
         turnInfo.getTurnController().finishedTurn();
     }
 }

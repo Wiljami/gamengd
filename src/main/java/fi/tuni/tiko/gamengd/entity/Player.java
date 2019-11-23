@@ -34,6 +34,7 @@ public class Player extends Unit implements InputListener {
     private void sortInput(String input) {
         int x = 0;
         int y = 0;
+        boolean move = true;
         if (input.equals("HOME") || input.equals("NUMPAD7")) {
             x = -1;
             y = -1;
@@ -58,11 +59,13 @@ public class Player extends Unit implements InputListener {
         } else if (input.equals("DOWN") || input.equals("NUMPAD2")) {
             x = 0;
             y = 1;
+        } else {
+            move = false;
         }
-        if (level.getTileAt(getX()+x, getY()+y).isPassable()) {
+        if (level.getTileAt(getX()+x, getY()+y).isPassable() && move) {
             move(x, y);
             playerTurn = false;
-            System.out.println("Player finished turn : " + latestTurn.getTurn());
+            //System.out.println("Player finished turn : " + latestTurn.getTurn());
             latestTurn.getTurnController().finishedTurn();
         }
     }
@@ -71,7 +74,7 @@ public class Player extends Unit implements InputListener {
     void move(int x, int y) {
         super.move(x, y);
         camera.setXY(getX() + 0.5, getY() + 0.5);
-        System.out.println("Player at x: " + getX() + " y: " + getY());
+        //System.out.println("Player at x: " + getX() + " y: " + getY());
     }
 
     @Override
