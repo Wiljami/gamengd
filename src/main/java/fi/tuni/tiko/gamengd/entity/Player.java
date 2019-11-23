@@ -1,14 +1,14 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
-import fi.tuni.tiko.gamengd.KeyListener;
+import fi.tuni.tiko.gamengd.InputListener;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 
 import java.util.List;
 
-public class Player extends Unit implements KeyListener {
+public class Player extends Unit implements InputListener {
     private CameraController camera;
     public Player(Sprite sprite, Level level) {
         super(sprite, level);

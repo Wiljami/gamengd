@@ -1,10 +1,10 @@
 package fi.tuni.tiko.gamengd.controller;
 
-import fi.tuni.tiko.gamengd.KeyListener;
+import fi.tuni.tiko.gamengd.InputListener;
 
 import java.util.List;
 
-public class CameraController implements KeyListener {
+public class CameraController implements InputListener {
     private double x;
     private double y;
     boolean cameraChanged;

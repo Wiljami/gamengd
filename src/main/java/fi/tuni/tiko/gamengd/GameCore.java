@@ -25,7 +25,7 @@ public class GameCore extends Application {
     private static String windowTitle = "GamEngD Game Engine";
 
     private GameView gameView;
-    private ArrayList<KeyListener> keyListeners = new ArrayList<>();
+    private ArrayList<InputListener> inputListeners = new ArrayList<>();
     private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
 
@@ -49,7 +49,7 @@ public class GameCore extends Application {
         turnController = new TurnController();
         gameView = new GameView();
         cameraController = new CameraController(0,0);
-        keyListeners.add(cameraController);
+        inputListeners.add(cameraController);
     }
 
     @Override
@@ -169,7 +169,7 @@ public class GameCore extends Application {
     }
 
     private void handleInput(double elapsedTime) {
-        for (KeyListener listener : keyListeners) {
+        for (InputListener listener : inputListeners) {
             listener.receiveInput(input, elapsedTime);
         }
     }
@@ -187,7 +187,7 @@ public class GameCore extends Application {
         scene.setOnKeyReleased(keyEvent -> {
             String key = keyEvent.getCode().toString();
             input.remove(key);
-            for (KeyListener listener : keyListeners) {
+            for (InputListener listener : inputListeners) {
                 listener.receiveInput(key);
             }
         });
@@ -199,7 +199,7 @@ public class GameCore extends Application {
         this.player = player;
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
-        keyListeners.add(player);
+        inputListeners.add(player);
         units.add(player);
         turnController.addTurn(player);
     }
