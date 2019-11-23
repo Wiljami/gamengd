@@ -48,7 +48,7 @@ public class GameCore extends Application {
         spriteController = new SpriteController();
         turnController = new TurnController();
         gameView = new GameView();
-        cameraController = new CameraController(0,0);
+        cameraController = new CameraController(gameView.getCanvas());
         inputListeners.add(cameraController);
     }
 

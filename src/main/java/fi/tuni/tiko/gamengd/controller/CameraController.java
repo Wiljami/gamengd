@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd.controller;
 
 import fi.tuni.tiko.gamengd.InputListener;
+import javafx.scene.canvas.Canvas;
 
 import java.util.List;
 
@@ -9,15 +10,10 @@ public class CameraController implements InputListener {
     private double y;
     boolean cameraChanged;
     private double tileSize = 100;
+    private Canvas canvas;
 
-    public CameraController(double x, double y) {
-        this(x, y, 100);
-    }
-
-    public CameraController(double x, double y, double tileSize) {
-        setX(x);
-        setY(y);
-        setTileSize(tileSize);
+    public CameraController(Canvas canvas) {
+        this.canvas = canvas;
     }
 
     public boolean isCameraChanged() {
