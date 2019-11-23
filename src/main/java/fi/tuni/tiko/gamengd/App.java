@@ -12,6 +12,7 @@ import fi.tuni.tiko.gamengd.entity.Player;
 
 public class App extends GameCore {
     public static void main(String[] args) {
+        System.out.println("Author: Viljami Pietarila");
         //Set windowTitle
         setWindowTitle("Dungeons of Tikonyr");
         //Set resolution for the game
