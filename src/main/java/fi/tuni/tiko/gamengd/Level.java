@@ -18,7 +18,7 @@ public class Level {
         map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                Tile tile =  new Tile(x, y, new Floor());
+                Tile tile =  new Tile(this, x, y, new Floor());
                 tile.setPassable(false);
                 map[x][y] = tile;
             }
@@ -38,7 +38,7 @@ public class Level {
     public void createRoom(int positionX, int positionY, int width, int height) {
         for (int x = positionX; x < width + positionX; x++) {
             for (int y = positionY; y < height + positionY; y++) {
-                Tile tile =  new Tile(x, y, new Floor("floor"));
+                Tile tile =  new Tile(this, x, y, new Floor("floor"));
                 map[x][y] = tile;
                 if (x == positionX || y == positionY ||
                         x == width + positionX-1 || y == height + positionY-1) {
@@ -51,7 +51,7 @@ public class Level {
 
     public Tile getTileAt(int x, int y) {
         if (x < 0 || x >= width || y < 0 || y >= height) {
-            return new Tile();
+            return new Tile(this);
         }
         return map[x][y];
     }

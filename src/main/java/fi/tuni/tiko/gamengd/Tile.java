@@ -22,16 +22,19 @@ public class Tile {
     private Floor floor;
     private Wall wall;
     private List<Furniture> furnitures = new ArrayList<>();
+    private Level level;
     private boolean hasWall = false;
     private boolean passable = true;
 
-    public Tile(int x, int y, Floor floor) {
+    public Tile(Level level, int x, int y, Floor floor) {
         this.x = x;
         this.y = y;
+        this.level = level;
         setFloor(floor);
     }
 
-    public Tile() {
+    public Tile(Level level) {
+        this.level = level;
         setFloor(new Floor());
         passable = false;
     }
@@ -78,5 +81,18 @@ public class Tile {
 
     public void setPassable(boolean passable) {
         this.passable = passable;
+    }
+
+    public Tile[] getNeighbours() {
+        Tile[] tiles = new Tile[8];
+        tiles[0] = level.getTileAt(x-1, y-1);
+        tiles[1] = level.getTileAt(x, y-1);
+        tiles[2] = level.getTileAt(x+1, y-1);
+        tiles[3] = level.getTileAt(x+1, y);
+        tiles[4] = level.getTileAt(x+1, y+1);
+        tiles[5] = level.getTileAt(x, y+1);
+        tiles[6] = level.getTileAt(x-1, y+1);
+        tiles[7] = level.getTileAt(x-1, y);
+        return tiles;
     }
 }
