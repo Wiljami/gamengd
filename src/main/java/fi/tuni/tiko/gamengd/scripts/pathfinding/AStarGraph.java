@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd.scripts.pathfinding;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Tile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AStarGraph {
@@ -30,7 +31,19 @@ public class AStarGraph {
 
         for (Tile tile : nodes.keySet()) {
             PathNode<Tile> node = nodes.get(tile);
-            Tile[] edges = tile.getNeighbours();
+            ArrayList<PathEdge<Tile>> edges = new ArrayList<>();
+
+            Tile[] neighbours = tile.getNeighbours();
+            for (int i = 0; i < neighbours.length; i++) {
+                if (neighbours[i] != null && neighbours[i].isPassable()) {
+                    PathEdge<Tile> e = new PathEdge<>();
+                    e.node = nodes.get(neighbours[i]);
+
+                    edges.add(e);
+
+                    edgeCounter++;
+                }
+            }
         }
 
         System.out.println("AstarGraph: Edgecount " + edgeCounter);
