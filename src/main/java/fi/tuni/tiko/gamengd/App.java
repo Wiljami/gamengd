@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
 
@@ -31,6 +32,12 @@ public class App extends GameCore {
         level.getTileAt(5,16).removeWall();
         level.getTileAt(14,16).removeWall();
         addLevel(level);
+
+
+        AnimatedSprite flameSprite = new AnimatedSprite("fire.png", 10, 6, 5000);
+        Furniture flame = new Furniture(flameSprite, 0 ,0);
+
+        level.getTileAt(1,1).addFurniture(flame);
 
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude, level);

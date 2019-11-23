@@ -158,6 +158,12 @@ public class GameCore extends Application {
                     wall.setPositionY(positionY);
                     spriteController.addWallSprite(wall);
                 }
+                for (Furniture f : tile.getFurnitures()) {
+                    Sprite furn = f.getSprite();
+                    furn.setPositionX(positionX);
+                    furn.setPositionY(positionY);
+                    spriteController.addFurnSprite(furn);
+                }
             }
         }
     }
