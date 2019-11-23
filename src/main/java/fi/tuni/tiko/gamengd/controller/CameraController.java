@@ -131,11 +131,11 @@ public class CameraController implements InputListener {
 
     //TODO: Smooth out the zoom with some sort of algorithm. Currently it zooms too fast once close.
     private void zoomIn() {
-        setTileSize(getTileSize()+1);
+        setTileSize(getTileSize()*1.02);
     }
 
     private void zoomOut() {
-        setTileSize(getTileSize()-1);
+        setTileSize(getTileSize()*0.98);
     }
 
     public void setCameraChanged(boolean cameraChanged) {
