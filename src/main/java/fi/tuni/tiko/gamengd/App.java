@@ -33,11 +33,11 @@ public class App extends GameCore {
         level.getTileAt(14,16).removeWall();
         addLevel(level);
 
-
-        AnimatedSprite flameSprite = new AnimatedSprite("fire.png", 10, 6, 5);
-        Furniture flame = new Furniture(flameSprite, 0 ,0);
-
-        level.getTileAt(1,1).addFurniture(flame);
+        level.getTileAt(1,1).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
+        level.getTileAt(2,1).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
+        level.getTileAt(3,1).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
+        level.getTileAt(4,1).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
+        level.getTileAt(5,1).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
 
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude, level);
