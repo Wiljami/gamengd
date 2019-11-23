@@ -2,6 +2,8 @@ package fi.tuni.tiko.gamengd;
 
 import javafx.scene.image.Image;
 
+import java.util.TreeMap;
+
 /**
  * Util class is colleciton of helpful methods.
  *
@@ -18,6 +20,7 @@ public class Util {
      * file name of the fail picture that is used when picture is not found.
      */
     private static final String failPicture = "fail.png";
+    private static TreeMap<String, Image> images;
 
     /**
      * loadImage method creates an Image from a file.
@@ -29,13 +32,21 @@ public class Util {
      * @return Image created of the picture
      */
     public static Image loadImage(String file) {
+        if (images == null) initiateImages();
+        if (images.containsKey(file)) return images.get(file);
         Image image;
         try {
             image = new Image(file);
+            images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
-            image = new Image(failPicture);
+            image = images.get(failPicture);
         }
         return image;
+    }
+
+    private static void initiateImages() {
+        images = new TreeMap<>();
+        images.put(failPicture, new Image(failPicture));
     }
 }
