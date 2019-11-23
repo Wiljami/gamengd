@@ -34,7 +34,7 @@ public class App extends GameCore {
         addLevel(level);
 
 
-        AnimatedSprite flameSprite = new AnimatedSprite("fire.png", 10, 6, 5000);
+        AnimatedSprite flameSprite = new AnimatedSprite("fire.png", 10, 6, 5);
         Furniture flame = new Furniture(flameSprite, 0 ,0);
 
         level.getTileAt(1,1).addFurniture(flame);

@@ -13,7 +13,7 @@ public class AnimatedSprite extends Sprite {
     public AnimatedSprite(String file, int framesX, int framesY, double duration) {
         super(file);
         frames = new WritableImage[framesX * framesY];
-        this.duration = duration/1000;
+        this.duration = duration;
         PixelReader reader = getImage().getPixelReader();
         int i = 0;
         int width = (int) (getImage().getWidth()/framesX);
