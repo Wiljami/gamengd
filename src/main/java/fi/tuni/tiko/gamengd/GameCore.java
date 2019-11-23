@@ -30,7 +30,6 @@ public class GameCore extends Application {
     private long lastNanoTime;
 
     private ArrayList<Unit> units = new ArrayList<>();
-    private Player player;
     private Level level;
 
     private CameraController cameraController;
@@ -135,7 +134,6 @@ public class GameCore extends Application {
     }
 
     void addPlayer(Player player) {
-        this.player = player;
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputListeners.add(player);
