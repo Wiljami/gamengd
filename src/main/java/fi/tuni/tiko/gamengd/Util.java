@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * errors obvious without crashing the game.
  *
  * @author Viljami Pietarila
- * @version 2019.1118
+ * @version 2019.1123
  */
 public class Util {
 
@@ -20,6 +20,10 @@ public class Util {
      * file name of the fail picture that is used when picture is not found.
      */
     private static final String failPicture = "fail.png";
+
+    /**
+     * TreeMap of the images that have been loaded.
+     */
     private static TreeMap<String, Image> images;
 
     /**
@@ -27,7 +31,9 @@ public class Util {
      *
      * loadImage attempts to open an image file and create an Image object
      * out of it. If it fails to load the file, it will create an Image object
-     * using an obvious error image.
+     * using an obvious error image. It will store the Images in the images
+     * TreeMap. This is to make sure that duplicate images are not loaded
+     * into memory.
      * @param file filename of the picture
      * @return Image created of the picture
      */
@@ -45,6 +51,10 @@ public class Util {
         return image;
     }
 
+    /**
+     * InitiateImages initiates the images TreeMap and loads the failPicture
+     * Image in and adds it to this TreeMap.
+     */
     private static void initiateImages() {
         images = new TreeMap<>();
         images.put(failPicture, new Image(failPicture));
