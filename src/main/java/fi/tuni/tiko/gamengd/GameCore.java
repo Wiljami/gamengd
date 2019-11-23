@@ -29,7 +29,6 @@ public class GameCore extends Application {
     private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
 
-    private ArrayList<Unit> units = new ArrayList<>();
     private Level level;
 
     private CameraController cameraController;
