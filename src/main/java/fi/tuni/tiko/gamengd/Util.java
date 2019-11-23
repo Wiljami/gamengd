@@ -52,6 +52,8 @@ public class Util {
     }
 
     /**
+     * loadImage initiation method.
+     *
      * InitiateImages initiates the images TreeMap and loads the failPicture
      * Image in and adds it to this TreeMap.
      */
