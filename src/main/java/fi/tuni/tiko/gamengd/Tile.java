@@ -16,7 +16,6 @@ import java.util.List;
  * @version 2019.1118
  */
 public class Tile {
-    //TODO: Does Tile need to know where it is?
     private int x;
     private int y;
     private Floor floor;
@@ -94,5 +93,13 @@ public class Tile {
         tiles[6] = level.getTileAt(x-1, y+1);
         tiles[7] = level.getTileAt(x-1, y);
         return tiles;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

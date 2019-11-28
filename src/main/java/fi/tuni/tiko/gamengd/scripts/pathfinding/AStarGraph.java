@@ -50,4 +50,8 @@ public class AStarGraph {
 
         System.out.println("AstarGraph: Edgecount " + edgeCounter);
     }
+
+    public HashMap<Tile, PathNode<Tile>> getNodes() {
+        return nodes;
+    }
 }

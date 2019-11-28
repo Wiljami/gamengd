@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Level {
     private int width;
     private int height;
     private ArrayList<Unit> units = new ArrayList<>();
+    private AStarGraph aStarGraph;
 
     public Level(int width, int height) {
         this.width = width;
@@ -74,5 +76,13 @@ public class Level {
 
     public int getHeight() {
         return height;
+    }
+
+    public AStarGraph getaStarGraph() {
+        return aStarGraph;
+    }
+
+    public void setaStarGraph(AStarGraph aStarGraph) {
+        this.aStarGraph = aStarGraph;
     }
 }
