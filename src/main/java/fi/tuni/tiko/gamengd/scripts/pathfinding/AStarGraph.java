@@ -19,7 +19,7 @@ public class AStarGraph {
                 Tile tile = level.getTileAt(x, y);
                 if (tile.isPassable()) {
                     PathNode<Tile> node = new PathNode<>();
-                    node.data = tile;
+                    node.setData(tile);
                     nodes.put(tile, node);
                 }
             }
@@ -34,16 +34,18 @@ public class AStarGraph {
             ArrayList<PathEdge<Tile>> edges = new ArrayList<>();
 
             Tile[] neighbours = tile.getNeighbours();
-            for (int i = 0; i < neighbours.length; i++) {
-                if (neighbours[i] != null && neighbours[i].isPassable()) {
+            for (Tile neighbour : neighbours) {
+                if (neighbour != null && neighbour.isPassable()) {
                     PathEdge<Tile> e = new PathEdge<>();
-                    e.node = nodes.get(neighbours[i]);
+                    e.node = nodes.get(neighbour);
 
                     edges.add(e);
 
                     edgeCounter++;
                 }
             }
+
+            node.setEdges(edges);
         }
 
         System.out.println("AstarGraph: Edgecount " + edgeCounter);
