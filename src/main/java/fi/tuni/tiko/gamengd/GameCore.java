@@ -74,7 +74,7 @@ public class GameCore extends Application {
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
         startTurnController();
-        AStar test = new AStar(level, level.getTileAt(1,1), level.getTileAt(1, 1));
+        AStar test = new AStar(level, level.getTileAt(1,1), level.getTileAt(15, 15));
     }
 
     private void startTurnController() {

@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.scripts.pathfinding;
 
 import java.util.List;
 
-public class PathNode<T> {
+public class PathNode<T> implements Comparable {
     private T data;
 
     /**
@@ -24,5 +24,10 @@ public class PathNode<T> {
 
     public List<PathEdge<T>> getEdges() {
         return edges;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

@@ -59,6 +59,23 @@ public class AStar {
                 constructPath(cameFrom, currentNode);
                 return;
             }
+            closedSet.add(currentNode);
+
+            for (PathEdge<Tile> edgeNeighbor : currentNode.getEdges()) {
+                PathNode<Tile> neighbor = edgeNeighbor.node;
+                if (closedSet.contains(neighbor)) continue;
+
+                double tentGScore = gScore.get(currentNode) + 1;
+                if (openSet.contains(neighbor) && tentGScore >= gScore.get(neighbor)) continue;
+
+                cameFrom.put(neighbor, currentNode);
+                gScore.put(neighbor, tentGScore);
+                fScore.put(neighbor, gScore.get(neighbor) + heuristicEstimate(neighbor, end));
+
+                if (!openSet.contains(neighbor)) {
+                    openSet.add(neighbor);
+                }
+            }
         }
     }
 
@@ -81,10 +98,14 @@ public class AStar {
 
     private void constructPath(HashMap<PathNode<Tile>, PathNode<Tile>> cameFrom, PathNode<Tile> currentTile) {
         path = new LinkedList<>();
-        path.addLast(currentTile.getData());
+        path.add(currentTile.getData());
         while (cameFrom.containsKey(currentTile)) {
             currentTile = cameFrom.get(currentTile);
-            path.addLast(currentTile.getData());
+            path.add(currentTile.getData());
         }
+    }
+
+    public Tile getStep() {
+        return path.pollLast();
     }
 }

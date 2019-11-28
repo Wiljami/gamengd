@@ -12,6 +12,7 @@ public class AStarGraph {
 
     public AStarGraph(Level level) {
         System.out.println("AStarGraph::AStarGraph");
+        long systemStart = System.nanoTime();
         nodes = new HashMap<>();
 
         for (int x = 0; x < level.getWidth(); x++) {
@@ -49,6 +50,7 @@ public class AStarGraph {
         }
 
         System.out.println("AstarGraph: Edgecount " + edgeCounter);
+        System.out.println("AstarGraph: Time taken: " + (System.nanoTime() - systemStart)/1000000000d);
     }
 
     public HashMap<Tile, PathNode<Tile>> getNodes() {

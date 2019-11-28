@@ -24,7 +24,7 @@ public class App extends GameCore {
     public void init() {
         super.init();
 
-        Level level = new Level(50,50);
+        Level level = new Level(100,100);
         level.createRoom(0,0, 9,9);
         level.createRoom(3,8, 3, 10);
         level.createRoom(5, 15, 10, 3);
