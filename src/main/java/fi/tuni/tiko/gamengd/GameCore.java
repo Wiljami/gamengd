@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.TurnController;
+import fi.tuni.tiko.gamengd.scripts.pathfinding.AStar;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 import fi.tuni.tiko.gamengd.ui.*;
 import fi.tuni.tiko.gamengd.entity.*;
@@ -73,7 +74,7 @@ public class GameCore extends Application {
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
         startTurnController();
-        AStarGraph a = new AStarGraph(level);
+        AStar test = new AStar(level, level.getTileAt(1,1), level.getTileAt(1, 1));
     }
 
     private void startTurnController() {
