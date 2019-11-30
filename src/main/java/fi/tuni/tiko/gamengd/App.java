@@ -45,7 +45,7 @@ public class App extends GameCore {
         addPlayer(player);
 
         Monster monster = new Monster(level);
-        monster.setXY(2,4);
+        monster.setXY(15,15);
         addMonster(monster);
     }
 }

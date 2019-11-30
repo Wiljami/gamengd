@@ -103,9 +103,20 @@ public class AStar {
             currentTile = cameFrom.get(currentTile);
             path.add(currentTile.getData());
         }
+        path.pollLast();
     }
 
     public Tile getStep() {
+        if (path == null) return null;
         return path.pollLast();
+    }
+
+    @Override
+    public String toString() {
+        String tmp = "";
+        for (int n = 0; n < path.size(); n++ ) {
+            tmp += "n: " + n + " x: " + path.get(n).getX() + " y: " + path.get(n).getY() + "\n";
+        }
+        return tmp;
     }
 }

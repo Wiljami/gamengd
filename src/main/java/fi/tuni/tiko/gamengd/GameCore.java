@@ -74,7 +74,6 @@ public class GameCore extends Application {
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
         startTurnController();
-        AStar test = new AStar(level, level.getTileAt(1,1), level.getTileAt(15, 15));
     }
 
     private void startTurnController() {
@@ -139,7 +138,7 @@ public class GameCore extends Application {
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputListeners.add(player);
         turnController.addTurn(player);
-        level.addUnit(player);
+        level.setPlayer(player);
     }
 
     void addMonster(Monster monster) {
