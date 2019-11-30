@@ -6,9 +6,13 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Popup;
+import javafx.stage.Screen;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,8 +65,8 @@ public class CameraController implements InputListener {
 
         HashMap<Rectangle, String> toolTips = new HashMap<>();
 
-        for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
-            for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
+        for (int x = -horizontalTiles / 2; x <= horizontalTiles / 2; x++) {
+            for (int y = -verticalTiles / 2; y <= verticalTiles / 2; y++) {
                 String toolTip = "x: " + (centerTileX + x) + " y: " + (centerTileY + y);
                 Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
                 Sprite floor = tile.getFloor().getSprite();
@@ -88,25 +92,32 @@ public class CameraController implements InputListener {
                 }
                 Rectangle rect = new Rectangle(positionX, positionY, tileSize, tileSize);
                 toolTips.put(rect, toolTip);
-                addToolTips(toolTips);
             }
         }
+        addToolTips(toolTips);
     }
 
     private void addToolTips(HashMap<Rectangle, String> tooltips) {
-        Tooltip tooltip = new Tooltip();
-        Tooltip.install(canvas, tooltip);
-        canvas.setOnMouseMoved( e -> {
-            tooltip.setX(e.getX());
-            tooltip.setY(e.getY());
+        Popup popup = new Popup();
+        Label label = new Label("Text");
+        label.setMinWidth(100);
+        label.setMinHeight(100);
+        popup.getContent().add(label);
+        popup.setAutoHide(true);
+
+        canvas.setOnMouseMoved(e -> {
+            System.out.println(e.getSceneX() + " " + e.getSceneX());
+            System.out.println(e.getSceneY() + " " + e.getSceneY());
+            popup.show(canvas, 50, 50);
+            System.out.println(popup.isShowing());
             tooltips.forEach((bounds, toolTip) -> {
                 if (bounds.contains(e.getX(), e.getY())) {
-                    tooltip.setText(toolTip);
+                    System.out.println("Hellurei");
                 }
             });
         });
         canvas.setOnMouseExited(e -> {
-            tooltip.hide();
+            popup.hide();
         });
     }
 
@@ -158,11 +169,11 @@ public class CameraController implements InputListener {
 
     //TODO: Smooth out the zoom with some sort of algorithm. Currently it zooms too fast once close.
     private void zoomIn() {
-        setTileSize(getTileSize()*1.02);
+        setTileSize(getTileSize() * 1.02);
     }
 
     private void zoomOut() {
-        setTileSize(getTileSize()*0.98);
+        setTileSize(getTileSize() * 0.98);
     }
 
     public void setCameraChanged(boolean cameraChanged) {

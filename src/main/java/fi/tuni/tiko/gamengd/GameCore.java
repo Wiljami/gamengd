@@ -45,7 +45,14 @@ public class GameCore extends Application {
         spriteController = new SpriteController();
         turnController = new TurnController();
         gameView = new GameView();
-        cameraController = new CameraController(gameView.getCanvas(), spriteController);
+        Canvas canvas = gameView.getCanvas();
+
+        ChangeListener<Number> canvasSizeListener = (observable, oldValue, newValue) ->
+                cameraController.setCameraChanged(true);
+
+        canvas.widthProperty().addListener(canvasSizeListener);
+        canvas.heightProperty().addListener(canvasSizeListener);
+        cameraController = new CameraController(canvas, spriteController);
         inputListeners.add(cameraController);
     }
 
@@ -60,11 +67,12 @@ public class GameCore extends Application {
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(createScene());
 
-        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
+        /*        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
             cameraController.setCameraChanged(true);
 
         stage.widthProperty().addListener(stageSizeListener);
         stage.heightProperty().addListener(stageSizeListener);
+        **/
 
         stage.show();
         stage.setMinWidth(minResolutionX);
