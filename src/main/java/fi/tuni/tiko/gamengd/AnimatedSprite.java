@@ -24,6 +24,7 @@ public class AnimatedSprite extends Sprite {
 
     @Override
     public void render(GraphicsContext gc, double size) {
-        gc.drawImage(frames[index], getPositionX(), getPositionY(), size, size);
+        setImage(frames[index]);
+        super.render(gc, size);
     }
 }
