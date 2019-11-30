@@ -67,13 +67,6 @@ public class GameCore extends Application {
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(createScene());
 
-        /*        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
-            cameraController.setCameraChanged(true);
-
-        stage.widthProperty().addListener(stageSizeListener);
-        stage.heightProperty().addListener(stageSizeListener);
-        **/
-
         stage.show();
         stage.setMinWidth(minResolutionX);
         stage.setMinHeight(minResolutionY);
