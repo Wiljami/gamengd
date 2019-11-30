@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.scripts.Util;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 

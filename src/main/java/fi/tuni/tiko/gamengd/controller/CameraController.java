@@ -7,14 +7,17 @@ import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Tooltip;
+import javafx.scene.shape.Rectangle;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CameraController implements InputListener {
     private double x;
     private double y;
     boolean cameraChanged;
-    private double tileSize = 100;
+    private double tileSize = 50;
     private Canvas canvas;
     private SpriteController spriteController;
     private Level level;
@@ -55,8 +58,12 @@ public class CameraController implements InputListener {
 
         int verticalTiles = (int) Math.ceil(canvas.getHeight() / tileSize) + 1;
         if (verticalTiles % 2 == 0) verticalTiles++;
+
+        HashMap<Rectangle, String> toolTips = new HashMap<>();
+
         for (int x = -horizontalTiles/2; x <= horizontalTiles/2; x++) {
             for (int y = -verticalTiles/2; y <= verticalTiles/2; y++) {
+                String toolTip = "x: " + (centerTileX + x) + " y: " + (centerTileY + y);
                 Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
                 Sprite floor = tile.getFloor().getSprite();
 
@@ -79,8 +86,28 @@ public class CameraController implements InputListener {
                     furn.setPositionY(positionY);
                     spriteController.addFurnSprite(furn);
                 }
+                Rectangle rect = new Rectangle(positionX, positionY, tileSize, tileSize);
+                toolTips.put(rect, toolTip);
+                addToolTips(toolTips);
             }
         }
+    }
+
+    private void addToolTips(HashMap<Rectangle, String> tooltips) {
+        Tooltip tooltip = new Tooltip();
+        Tooltip.install(canvas, tooltip);
+        canvas.setOnMouseMoved( e -> {
+            tooltip.setX(e.getX());
+            tooltip.setY(e.getY());
+            tooltips.forEach((bounds, toolTip) -> {
+                if (bounds.contains(e.getX(), e.getY())) {
+                    tooltip.setText(toolTip);
+                }
+            });
+        });
+        canvas.setOnMouseExited(e -> {
+            tooltip.hide();
+        });
     }
 
     public boolean isCameraChanged() {

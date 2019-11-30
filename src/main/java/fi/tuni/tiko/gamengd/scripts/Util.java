@@ -1,4 +1,4 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.scripts;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;

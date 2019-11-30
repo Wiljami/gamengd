@@ -3,7 +3,7 @@ package fi.tuni.tiko.gamengd.entity;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
-import fi.tuni.tiko.gamengd.Util;
+import fi.tuni.tiko.gamengd.scripts.Util;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStar;
 import javafx.scene.image.Image;
