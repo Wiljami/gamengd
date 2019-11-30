@@ -99,20 +99,15 @@ public class CameraController implements InputListener {
 
     private void addToolTips(HashMap<Rectangle, String> tooltips) {
         Popup popup = new Popup();
-        Label label = new Label("Text");
-        label.setMinWidth(100);
-        label.setMinHeight(100);
+        Label label = new Label("");
         popup.getContent().add(label);
         popup.setAutoHide(true);
 
         canvas.setOnMouseMoved(e -> {
-            System.out.println(e.getSceneX() + " " + e.getSceneX());
-            System.out.println(e.getSceneY() + " " + e.getSceneY());
-            popup.show(canvas, 50, 50);
-            System.out.println(popup.isShowing());
+            popup.show(canvas, e.getScreenX(), e.getScreenY());
             tooltips.forEach((bounds, toolTip) -> {
                 if (bounds.contains(e.getX(), e.getY())) {
-                    System.out.println("Hellurei");
+                    label.setText(toolTip);
                 }
             });
         });
