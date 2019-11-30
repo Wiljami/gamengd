@@ -2,10 +2,7 @@ package fi.tuni.tiko.gamengd;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
-
-import javax.tools.Tool;
 
 public class Sprite {
     private Image image;
@@ -49,6 +46,7 @@ public class Sprite {
     public void render(GraphicsContext gc) {
         gc.drawImage(getImage(), getPositionX(), getPositionY(), getWidth(), getHeight());
     }
+
 
     public void render(GraphicsContext gc, double size) {
         gc.drawImage(getImage(), getPositionX(), getPositionY(), size, size);
