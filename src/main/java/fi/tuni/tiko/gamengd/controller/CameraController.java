@@ -6,13 +6,10 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
-import javafx.stage.Screen;
 
 import java.util.HashMap;
 import java.util.List;
