@@ -36,6 +36,11 @@ public class GameCore extends Application {
     private TurnController turnController;
     private InputController inputController;
 
+    public static void main(String[] args) {
+        System.out.println("Author: Viljami Pietarila");
+        System.exit(0);
+    }
+
     @Override
     public void init() {
         System.out.println("This is GameCore::Init");

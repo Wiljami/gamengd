@@ -28,7 +28,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>fi.tuni.tiko.gamengd.App</mainClass>
+              <mainClass>fi.tuni.tiko.gamengd.GameCore</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -38,7 +38,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.5.0</version>
         <configuration>
-          <mainClass>fi.tuni.tiko.gamengd.App</mainClass>
+          <mainClass>fi.tuni.tiko.gamengd.GameCore</mainClass>
         </configuration>
       </plugin>
     </plugins>
