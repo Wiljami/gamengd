@@ -6,8 +6,6 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 
-import java.util.List;
-
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
     public Player(Sprite sprite, Level level) {
@@ -15,20 +13,13 @@ public class Player extends Unit implements CommandTarget {
     }
 
     private TurnInfo latestTurn;
+    private long timeSinceLastMove = 0;
+    private int movementDelay = 150;
 
     private boolean playerTurn = false;
 
     public void setupCamera (CameraController camera) {
         this.camera = camera;
-    }
-
-  //  @Override
-    public void receiveInput(List<String> input, double elapsedTime) {
-    }
-
-//    @Override
-    public void receiveInput(String input) {
-        if (playerTurn) sortInput(input);
     }
 
     private void sortInput(String input) {
@@ -68,15 +59,23 @@ public class Player extends Unit implements CommandTarget {
                 x = 0;
                 y = 1;
                 break;
+            case "NONE":
+                x = 0;
+                y = 0;
+                break;
             default:
                 move = false;
                 break;
         }
-        if (level.getTileAt(getX()+x, getY()+y).isPassable() && move) {
-            move(x, y);
-            playerTurn = false;
-            //System.out.println("Player finished turn : " + latestTurn.getTurn());
-            latestTurn.getTurnController().finishedTurn();
+
+        if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
+            timeSinceLastMove = System.currentTimeMillis();
+            if (level.getTileAt(getX()+x, getY()+y).isPassable() && move) {
+                move(x, y);
+                playerTurn = false;
+                //System.out.println("Player finished turn : " + latestTurn.getTurn());
+                latestTurn.getTurnController().finishedTurn();
+            }
         }
     }
 
