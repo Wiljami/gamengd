@@ -1,9 +1,9 @@
 package fi.tuni.tiko.gamengd.controller;
 
-import fi.tuni.tiko.gamengd.InputListener;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
+import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import javafx.scene.canvas.Canvas;
@@ -14,7 +14,7 @@ import javafx.stage.Popup;
 import java.util.HashMap;
 import java.util.List;
 
-public class CameraController implements InputListener {
+public class CameraController implements CommandTarget {
     private double x;
     private double y;
     boolean cameraChanged;
@@ -173,15 +173,8 @@ public class CameraController implements InputListener {
     }
 
     @Override
-    public void receiveInput(List<String> input, double elapsedTime) {
-        if (input.contains("ADD") || input.contains(("PLUS"))) {
-            zoomIn();
-        } else if (input.contains("SUBTRACT") || input.contains("MINUS")) {
-            zoomOut();
-        }
-    }
-
-    @Override
-    public void receiveInput(String input) {
+    public void receiveCommand(String message) {
+        if(message.equals("ZOOMIN")) zoomIn();
+        else if(message.equals("ZOOMOUT")) zoomOut();
     }
 }

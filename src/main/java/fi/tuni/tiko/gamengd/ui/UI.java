@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd.ui;
 
+import fi.tuni.tiko.gamengd.controller.input.InputController;
+import fi.tuni.tiko.gamengd.controller.input.InputEvent;
 import fi.tuni.tiko.gamengd.scripts.Util;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,8 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class UI extends BorderPane {
+    private InputController inputController;
 
-    public UI(GameView gameView) {
+    public UI(GameView gameView, InputController inputController) {
+        this.inputController = inputController;
         setCenter(gameView);
         setTop(topBar());
         setBottom(bottomBar());
@@ -33,28 +37,42 @@ public class UI extends BorderPane {
         return topBar;
     }
 
+    private Button movementButton(ImageView image) {
+        Button b = new Button("", image);
+        b.setFocusTraversable(false);
+        return b;
+    }
+
     private Pane rightColumn() {
         GridPane pane = new GridPane();
+        Button nw = movementButton(buttonImage(270, false));
+        nw.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NW")));
+        Button n = movementButton(buttonImage(0, true));
+        n.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:N")));
+        Button ne = movementButton(buttonImage(0, false));
+        ne.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NE")));
+        Button w = movementButton(buttonImage(270, true));
+        w.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:W")));
+        Button none = movementButton(new ImageView(Util.loadImage("square.png")));
+        none.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NONE")));
+        Button e = movementButton(buttonImage(90, true));
+        e.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:E")));
+        Button sw = movementButton(buttonImage(180, false));
+        sw.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:SW")));
+        Button s = movementButton(buttonImage(180, true));
+        s.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:S")));
+        Button se = movementButton(buttonImage(90, false));
+        se.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:SE")));
 
-        Button upLeft = new Button("", buttonImage(270, false));
-        Button up = new Button("", buttonImage(0, true));
-        Button upRight = new Button("", buttonImage(0, false));
-        Button left = new Button("", buttonImage(270, true));
-        Button center = new Button("", new ImageView(Util.loadImage("square.png")));
-        Button right = new Button("", buttonImage(90, true));
-        Button bottomLeft = new Button("", buttonImage(180, false));
-        Button down = new Button("", buttonImage(180, true));
-        Button bottomRight = new Button("", buttonImage(90, false));
-
-        pane.add(upLeft, 0,0);
-        pane.add(up, 1,0);
-        pane.add(upRight, 2,0);
-        pane.add(left, 0,1);
-        pane.add(center, 1,1);
-        pane.add(right, 2,1);
-        pane.add(bottomLeft, 0,2);
-        pane.add(down, 1,2);
-        pane.add(bottomRight, 2,2);
+        pane.add(nw, 0,0);
+        pane.add(n, 1,0);
+        pane.add(ne, 2,0);
+        pane.add(w, 0,1);
+        pane.add(none, 1,1);
+        pane.add(e, 2,1);
+        pane.add(sw, 0,2);
+        pane.add(s, 1,2);
+        pane.add(se, 2,2);
 
         pane.setAlignment(Pos.BASELINE_CENTER);
 

@@ -1,14 +1,14 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
-import fi.tuni.tiko.gamengd.InputListener;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
+import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 
 import java.util.List;
 
-public class Player extends Unit implements InputListener {
+public class Player extends Unit implements CommandTarget {
     private CameraController camera;
     public Player(Sprite sprite, Level level) {
         super(sprite, level);
@@ -22,11 +22,11 @@ public class Player extends Unit implements InputListener {
         this.camera = camera;
     }
 
-    @Override
+  //  @Override
     public void receiveInput(List<String> input, double elapsedTime) {
     }
 
-    @Override
+//    @Override
     public void receiveInput(String input) {
         if (playerTurn) sortInput(input);
     }
@@ -35,32 +35,42 @@ public class Player extends Unit implements InputListener {
         int x = 0;
         int y = 0;
         boolean move = true;
-        if (input.equals("HOME") || input.equals("NUMPAD7")) {
-            x = -1;
-            y = -1;
-        } else if (input.equals("END") || input.equals("NUMPAD1")) {
-            x = -1;
-            y = 1;
-        } else if (input.equals("PAGE_UP") || input.equals("NUMPAD9")) {
-            x = 1;
-            y = -1;
-        } else if (input.equals("PAGE_DOWN") || input.equals("NUMPAD3")) {
-            x = 1;
-            y = 1;
-        } else if (input.equals("LEFT") || input.equals("NUMPAD4")) {
-            x = -1;
-            y = 0;
-        } else if (input.equals("RIGHT") || input.equals("NUMPAD6")) {
-            x = 1;
-            y = 0;
-        } else if (input.equals("UP") || input.equals("NUMPAD8")) {
-            x = 0;
-            y = -1;
-        } else if (input.equals("DOWN") || input.equals("NUMPAD2")) {
-            x = 0;
-            y = 1;
-        } else {
-            move = false;
+        switch (input) {
+            case "NW":
+                x = -1;
+                y = -1;
+                break;
+            case "SW":
+                x = -1;
+                y = 1;
+                break;
+            case "NE":
+                x = 1;
+                y = -1;
+                break;
+            case "SE":
+                x = 1;
+                y = 1;
+                break;
+            case "W":
+                x = -1;
+                y = 0;
+                break;
+            case "E":
+                x = 1;
+                y = 0;
+                break;
+            case "N":
+                x = 0;
+                y = -1;
+                break;
+            case "S":
+                x = 0;
+                y = 1;
+                break;
+            default:
+                move = false;
+                break;
         }
         if (level.getTileAt(getX()+x, getY()+y).isPassable() && move) {
             move(x, y);
@@ -68,6 +78,11 @@ public class Player extends Unit implements InputListener {
             //System.out.println("Player finished turn : " + latestTurn.getTurn());
             latestTurn.getTurnController().finishedTurn();
         }
+    }
+
+    @Override
+    public void receiveCommand(String message) {
+        sortInput(message);
     }
 
     @Override

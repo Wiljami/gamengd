@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
+import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.TurnController;
 import fi.tuni.tiko.gamengd.ui.*;
@@ -25,7 +26,6 @@ public class GameCore extends Application {
     private static String windowTitle = "GamEngD Game Engine";
 
     private GameView gameView;
-    private ArrayList<InputListener> inputListeners = new ArrayList<>();
     private ArrayList<String> input = new ArrayList<>();
     private long lastNanoTime;
 
@@ -34,6 +34,7 @@ public class GameCore extends Application {
     private CameraController cameraController;
     private SpriteController spriteController;
     private TurnController turnController;
+    private InputController inputController;
 
     @Override
     public void init() {
@@ -44,6 +45,7 @@ public class GameCore extends Application {
         Monster.setup();
         spriteController = new SpriteController();
         turnController = new TurnController();
+        inputController = new InputController();
         gameView = new GameView();
         Canvas canvas = gameView.getCanvas();
 
@@ -53,7 +55,7 @@ public class GameCore extends Application {
         canvas.widthProperty().addListener(canvasSizeListener);
         canvas.heightProperty().addListener(canvasSizeListener);
         cameraController = new CameraController(canvas, spriteController);
-        inputListeners.add(cameraController);
+        inputController.registerCamera(cameraController);
     }
 
     @Override
@@ -106,13 +108,12 @@ public class GameCore extends Application {
     }
 
     private void handleInput(double elapsedTime) {
-        for (InputListener listener : inputListeners) {
-            listener.receiveInput(input, elapsedTime);
-        }
+        inputController.receiveInput(input, elapsedTime);
     }
 
     private Scene createScene() {
-        Scene scene = new Scene(new UI(gameView), resolutionX, resolutionY);
+        UI ui = new UI(gameView, inputController);
+        Scene scene = new Scene(ui, resolutionX, resolutionY);
 
         scene.setOnKeyPressed(keyEvent -> {
             String key = keyEvent.getCode().toString();
@@ -124,9 +125,7 @@ public class GameCore extends Application {
         scene.setOnKeyReleased(keyEvent -> {
             String key = keyEvent.getCode().toString();
             input.remove(key);
-            for (InputListener listener : inputListeners) {
-                listener.receiveInput(key);
-            }
+            inputController.receiveInput(key);
         });
 
         return scene;
@@ -135,7 +134,7 @@ public class GameCore extends Application {
     void addPlayer(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
-        inputListeners.add(player);
+        inputController.registerPlayer(player);
         turnController.addTurn(player);
         level.setPlayer(player);
     }
