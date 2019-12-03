@@ -5,9 +5,11 @@ import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Level {
     private Tile[][] map;
@@ -18,8 +20,22 @@ public class Level {
     private Player player;
 
     public Level(int width, int height) {
-        this.width = width;
-        this.height = height;
+        generateEmptyMap(width, height);
+    }
+
+    public Level(JSONObject levelObject) {
+        int width = ((Number) levelObject.get("width")).intValue();
+        int height = ((Number) levelObject.get("height")).intValue();
+        generateEmptyMap(width, height);
+        JSONArray levelArray = (JSONArray) levelObject.get("layers");
+        JSONObject levelData = (JSONObject) levelArray.get(0);
+        JSONArray tileData = (JSONArray) levelData.get("data");
+        fillMap(tileData);
+    }
+
+    private void generateEmptyMap(int width, int height) {
+        setWidth(width);
+        setHeight(height);
         map = new Tile[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -30,8 +46,22 @@ public class Level {
         }
     }
 
-    public Level(JSONObject levelObject) {
-        System.out.println(levelObject.keySet());
+    private void fillMap(JSONArray tileData) {
+        int i = 0;
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
+                Tile tile = null;
+                int tileValue = ((Number) tileData.get(i)).intValue();
+                if (tileValue != 0) {
+                    tile = new Tile(this, x, y, new Floor("floor"));
+                    map[x][y] = tile;
+                }
+                if (tileValue == 1) {
+                       tile.addWall(new Wall());
+                }
+                i++;
+            }
+        }
     }
 
     /**
@@ -75,6 +105,14 @@ public class Level {
 
     public ArrayList<Unit> getUnits() {
         return units;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getWidth() {

@@ -26,7 +26,7 @@ public class App extends GameCore {
     public void init() {
         super.init();
 
-        JSONObject levelObject = Util.readJSON("resources\\map2.json");
+        JSONObject levelObject = Util.readJSON("resources\\map.json");
         Level level = new Level(levelObject);
 
 /**
@@ -42,10 +42,17 @@ public class App extends GameCore {
         addLevel(level);
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude, level);
-        player.setXY(3,3);
+        player.setXY(12,12);
 
         addPlayer(player);
-/**
+
+        Monster monster = new Monster(level);
+        monster.setXY(45,60);
+        addMonster(monster);
+
+
+
+        /**
         for (int x = 0; x < 6; x++) {
             level.getTileAt(x,0).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
         }
@@ -57,7 +64,7 @@ public class App extends GameCore {
         addPlayer(player);
 
         Monster monster = new Monster(level);
-        monster.setXY(15,15);
+        monster.setXY(45,16);
         addMonster(monster);*/
     }
 }
