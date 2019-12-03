@@ -21,7 +21,6 @@ public class Unit extends Entity implements TurnActor {
 
     void move(Tile tile) {
         setXY(tile.getX(), tile.getY());
-        System.out.println(tile.getX() + "  " + tile.getY());
     }
 
     public void setLevel(Level level) {
