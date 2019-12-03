@@ -1,5 +1,8 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.dot;
 
+import fi.tuni.tiko.gamengd.GameCore;
+import fi.tuni.tiko.gamengd.Level;
+import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
 

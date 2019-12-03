@@ -136,7 +136,7 @@ public class GameCore extends Application {
         return scene;
     }
 
-    void addPlayer(Player player) {
+    public void addPlayer(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputController.registerPlayer(player);
@@ -144,27 +144,27 @@ public class GameCore extends Application {
         level.setPlayer(player);
     }
 
-    void addMonster(Monster monster) {
+    public void addMonster(Monster monster) {
         turnController.addTurn(monster);
         level.addUnit(monster);
     }
 
-    void addLevel(Level level) {
+    public void addLevel(Level level) {
         this.level = level;
         cameraController.setLevel(level);
     }
 
-    static void setResolution(double x, double y) {
+    public static void setResolution(double x, double y) {
         resolutionX = x;
         resolutionY = y;
     }
 
-    static void setMinResolution(double x, double y) {
+    public static void setMinResolution(double x, double y) {
         minResolutionX = x;
         minResolutionY = y;
     }
 
-    static void setWindowTitle(String title) {
+    public static void setWindowTitle(String title) {
         windowTitle = title;
     }
 }
