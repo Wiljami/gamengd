@@ -4,12 +4,12 @@ import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.scripts.Util;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Level {
     private Tile[][] map;
@@ -23,7 +23,8 @@ public class Level {
         generateEmptyMap(width, height);
     }
 
-    public Level(JSONObject levelObject) {
+    public Level(String file) {
+        JSONObject levelObject = Util.readJSON(file);
         int width = ((Number) levelObject.get("width")).intValue();
         int height = ((Number) levelObject.get("height")).intValue();
         generateEmptyMap(width, height);

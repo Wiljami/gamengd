@@ -1,10 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.scripts.Util;
-import org.json.simple.JSONObject;
 
 /**
  * App is a helper class for development and testing.
@@ -26,8 +23,7 @@ public class App extends GameCore {
     public void init() {
         super.init();
 
-        JSONObject levelObject = Util.readJSON("resources\\map.json");
-        Level level = new Level(levelObject);
+        Level level = new Level("resources\\map.json");
 
 /**
         Level level = new Level(100,100);
