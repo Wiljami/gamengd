@@ -34,11 +34,6 @@ public class InputController {
         commands.add(new Command(camera, "ZOOMOUT","MINUS", "SUBTRACT"));
     }
 
-
-    public void sortPlayerInput() {
-
-    }
-
     public void receiveInput(List<String> input, double elapsedTime) {
         for (String s : input) receiveInput(s);
     }
