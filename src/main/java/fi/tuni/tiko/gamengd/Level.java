@@ -5,6 +5,7 @@ import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,10 @@ public class Level {
                 map[x][y] = tile;
             }
         }
+    }
+
+    public Level(JSONObject levelObject) {
+        System.out.println(levelObject.keySet());
     }
 
     /**
