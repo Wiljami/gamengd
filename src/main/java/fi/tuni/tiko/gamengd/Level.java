@@ -71,6 +71,7 @@ public class Level {
     private void spawnPlayer(JacksonLevel levelData) {
         Sprite dude = new Sprite("dude.png");
         Player player = new Player(dude);
+        player.setLevel(this);
         player.setXY(levelData.getPlayerSpawnX(), levelData.getPlayerSpawnY());
         setPlayer(player);
     }

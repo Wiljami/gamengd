@@ -2,7 +2,6 @@ package fi.tuni.tiko.dot;
 
 import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.Level;
-import fi.tuni.tiko.gamengd.entity.Monster;
 
 /**
  * App is a helper class for development and testing.

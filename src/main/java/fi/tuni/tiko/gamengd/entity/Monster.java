@@ -55,8 +55,8 @@ public class Monster extends Unit {
     public static Monster spawn(String id, int x, int y, Level level) {
         Monster protoMonster = monsterProtoTypes.get(id);
         Monster monster = new Monster(protoMonster);
-        monster.setXY(x, y);
         monster.setLevel(level);
+        monster.setXY(x, y);
         return monster;
     }
 
@@ -88,6 +88,15 @@ public class Monster extends Unit {
     public void createNewPath(Tile endTile) {
         Tile startTile = level.getTileAt(getX(), getY());
         if (pathfind == null) pathfind = new AStar(level, startTile, endTile);
+    }
+
+    @Override
+    void move(Tile tile) {
+        if (!tile.hasUnit()) {
+            super.move(tile);
+        } else {
+            randomMove();
+        }
     }
 
     private void randomMove() {

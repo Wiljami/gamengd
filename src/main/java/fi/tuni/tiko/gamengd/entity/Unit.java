@@ -7,7 +7,6 @@ import fi.tuni.tiko.gamengd.controller.TurnActor;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 
 public class Unit extends Entity implements TurnActor {
-    //TODO: Is there a better way to do this? Do units really need a pointer to level?
     Level level;
 
     public Unit(Sprite sprite) {
@@ -15,7 +14,14 @@ public class Unit extends Entity implements TurnActor {
     }
 
     void move(int x, int y) {
+        level.getTileAt(getX(), getY()).unitLeaves(this);
         setXY(getX() + x, getY() + y);
+    }
+
+    @Override
+    public void setXY(int x, int y) {
+        super.setXY(x, y);
+        level.getTileAt(x, y).unitEnters(this);
     }
 
     void move(Tile tile) {
@@ -28,7 +34,6 @@ public class Unit extends Entity implements TurnActor {
 
     @Override
     public void doTurn(TurnInfo turnInfo) {
-        //System.out.println("Unit::doTurn - turn: " + turnInfo.getTurn());
         turnInfo.getTurnController().finishedTurn();
     }
 

@@ -81,6 +81,10 @@ public class Tile {
         return passable;
     }
 
+    public boolean isEnterable() {
+        return passable && hasUnit;
+    }
+
     public void setPassable(boolean passable) {
         this.passable = passable;
     }
@@ -103,7 +107,8 @@ public class Tile {
         hasUnit = true;
     }
 
-    public void unitLeaves() {
+    //In case there is some event or something that wants to know the unit!
+    public void unitLeaves(Unit unit) {
         this.unit = null;
         hasUnit = false;
     }
