@@ -4,6 +4,7 @@ import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import fi.tuni.tiko.gamengd.util.json.JacksonMap;
 import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
@@ -22,11 +23,13 @@ public class Level {
     }
 
     public Level(String file) {
-        JacksonMap map = Util.loadMap(file);
-        int width = map.getWidth();
-        int height = map.getHeight();
+        JacksonLevel levelData = Util.loadLevel(file);
+        JacksonMap mapData = Util.loadMap(levelData.getMap());
+        int width = mapData.getWidth();
+        int height = mapData.getHeight();
         generateEmptyMap(width, height);
-        fillMap(map.getLayers().get(0).getData());
+        fillMap(mapData.getLayers().get(0).getData());
+        spawnPlayer(levelData);
     }
 
     private void generateEmptyMap(int width, int height) {
@@ -57,6 +60,13 @@ public class Level {
                 i++;
             }
         }
+    }
+
+    private void spawnPlayer(JacksonLevel levelData) {
+        Sprite dude = new Sprite("dude.png");
+        Player player = new Player(dude);
+        player.setXY(levelData.getPlayerSpawnX(), levelData.getPlayerSpawnY());
+        setPlayer(player);
     }
 
     /**

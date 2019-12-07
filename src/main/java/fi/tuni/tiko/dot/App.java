@@ -5,15 +5,6 @@ import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.util.Util;
-
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
-import java.util.stream.Stream;
 
 /**
  * App is a helper class for development and testing.
@@ -35,14 +26,9 @@ public class App extends GameCore {
     public void init() {
         super.init();
 
-        Level level = new Level("map.json");
+        Level level = new Level("level.json");
 
         addLevel(level);
-        Sprite dude = new Sprite("dude.png");
-        Player player = new Player(dude);
-        player.setXY(12,12);
-
-        addPlayer(player);
 
         addMonster(Monster.spawn("monster01", 45, 60, level));
     }

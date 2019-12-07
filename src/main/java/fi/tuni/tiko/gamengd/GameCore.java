@@ -136,12 +136,11 @@ public class GameCore extends Application {
         return scene;
     }
 
-    public void addPlayer(Player player) {
+    private void addPlayer(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputController.registerPlayer(player);
         turnController.addTurn(player);
-        level.setPlayer(player);
         player.setLevel(level);
     }
 
@@ -153,6 +152,7 @@ public class GameCore extends Application {
     public void addLevel(Level level) {
         this.level = level;
         cameraController.setLevel(level);
+        addPlayer(level.getPlayer());
     }
 
     public static void setResolution(double x, double y) {

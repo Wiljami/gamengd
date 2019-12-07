@@ -53,7 +53,6 @@ public class Monster extends Unit {
     }
 
     public static Monster spawn(String id, int x, int y, Level level) {
-        System.out.println(monsterProtoTypes.keySet());
         Monster protoMonster = monsterProtoTypes.get(id);
         Monster monster = new Monster(protoMonster);
         monster.setXY(x, y);
