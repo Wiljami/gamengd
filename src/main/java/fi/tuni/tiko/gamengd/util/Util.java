@@ -1,11 +1,14 @@
-package fi.tuni.tiko.gamengd.scripts;
+package fi.tuni.tiko.gamengd.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fi.tuni.tiko.gamengd.util.json.JacksonMap;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.TreeMap;
 
@@ -101,6 +104,17 @@ public class Util {
             }
         }
         return frames;
+    }
+
+    public static JacksonMap loadMap(String file) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JacksonMap map = new JacksonMap();
+        try {
+            map = objectMapper.readValue(new File(file), JacksonMap.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return map;
     }
 
     public static JSONObject readJSON(String file) {

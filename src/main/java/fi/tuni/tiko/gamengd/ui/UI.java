@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.ui;
 
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.input.InputEvent;
-import fi.tuni.tiko.gamengd.scripts.Util;
+import fi.tuni.tiko.gamengd.util.Util;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

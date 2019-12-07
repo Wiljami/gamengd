@@ -1,7 +1,7 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.Sprite;
-import fi.tuni.tiko.gamengd.scripts.Util;
+import fi.tuni.tiko.gamengd.util.Util;
 import javafx.scene.image.Image;
 
 public class Wall extends Entity {

@@ -4,11 +4,9 @@ import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
-import fi.tuni.tiko.gamengd.scripts.Util;
+import fi.tuni.tiko.gamengd.util.json.JacksonMap;
+import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
 public class Level {
@@ -24,14 +22,11 @@ public class Level {
     }
 
     public Level(String file) {
-        JSONObject levelObject = Util.readJSON(file);
-        int width = ((Number) levelObject.get("width")).intValue();
-        int height = ((Number) levelObject.get("height")).intValue();
+        JacksonMap map = Util.loadMap(file);
+        int width = map.getWidth();
+        int height = map.getHeight();
         generateEmptyMap(width, height);
-        JSONArray levelArray = (JSONArray) levelObject.get("layers");
-        JSONObject levelData = (JSONObject) levelArray.get(0);
-        JSONArray tileData = (JSONArray) levelData.get("data");
-        fillMap(tileData);
+        fillMap(map.getLayers().get(0).getData());
     }
 
     private void generateEmptyMap(int width, int height) {
@@ -47,17 +42,16 @@ public class Level {
         }
     }
 
-    private void fillMap(JSONArray tileData) {
+    private void fillMap(int[] tileData) {
         int i = 0;
         for (int x = 0; x < getWidth(); x++) {
             for (int y = 0; y < getHeight(); y++) {
                 Tile tile = null;
-                int tileValue = ((Number) tileData.get(i)).intValue();
-                if (tileValue != 0) {
+                if (tileData[i] != 0) {
                     tile = new Tile(this, x, y, new Floor("floor"));
                     map[x][y] = tile;
                 }
-                if (tileValue == 1) {
+                if (tileData[i] == 1) {
                        tile.addWall(new Wall());
                 }
                 i++;
