@@ -38,6 +38,7 @@ public class Util {
 
     private static final String MONSTERSFOLDER = "monsters/";
     private static final String MAPSFOLDER = "maps/";
+    private static final String GRAPHICSFOLDER = "graphics/";
 
     /**
      * loadImage method creates an Image from a file.
@@ -55,7 +56,7 @@ public class Util {
         if (images.containsKey(file)) return images.get(file);
         Image image;
         try {
-            image = new Image(file);
+            image = new Image(GRAPHICSFOLDER + file);
             images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
@@ -72,7 +73,7 @@ public class Util {
      */
     private static void initiateImages() {
         images = new TreeMap<>();
-        images.put(failPicture, new Image(failPicture));
+        images.put(failPicture, new Image(GRAPHICSFOLDER + failPicture));
     }
 
     /**
