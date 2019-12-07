@@ -26,7 +26,7 @@ public class App extends GameCore {
     public void init() {
         super.init();
 
-        Level level = new Level("resources\\map.json");
+        Level level = new Level("map.json");
 
 /**
         Level level = new Level(100,100);
