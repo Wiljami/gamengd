@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.util.Util;
+import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 
@@ -12,7 +12,7 @@ public class AnimatedSprite extends Sprite {
 
     public AnimatedSprite(String file, int framesX, int framesY, double duration) {
         super(file);
-        frames = Util.createAnimatedArray(getImage(), framesX, framesY);
+        frames = ImageLoader.createAnimatedArray(getImage(), framesX, framesY);
         this.duration = duration;
     }
 

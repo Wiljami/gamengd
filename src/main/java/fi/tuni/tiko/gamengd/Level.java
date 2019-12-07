@@ -1,9 +1,9 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.entity.*;
+import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import fi.tuni.tiko.gamengd.util.json.JacksonMap;
-import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 import fi.tuni.tiko.gamengd.util.json.MonsterSpawn;
 
@@ -22,8 +22,8 @@ public class Level {
     }
 
     public Level(String file) {
-        JacksonLevel levelData = Util.loadLevel(file);
-        JacksonMap mapData = Util.loadMap(levelData.getMap());
+        JacksonLevel levelData = JSONLoader.loadLevel(file);
+        JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
         int width = mapData.getWidth();
         int height = mapData.getHeight();
         generateEmptyMap(width, height);

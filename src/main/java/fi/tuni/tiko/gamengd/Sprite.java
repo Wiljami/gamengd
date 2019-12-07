@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.util.Util;
+import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -19,7 +19,7 @@ public class Sprite {
     }
 
     public Sprite(String file, double positionX, double positionY) {
-        setImage(Util.loadImage(file));
+        setImage(ImageLoader.loadImage(file));
         setupPosition(positionX, positionY);
     }
 
