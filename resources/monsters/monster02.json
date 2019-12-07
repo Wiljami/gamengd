@@ -1,5 +1,5 @@
-{ "id": "monster01",
- "name": "Morko",
+{ "id": "monster02",
+ "name": "Mörökölli",
  "graphic": "monster.png",
  "attack": 5,
  "defense": 2,

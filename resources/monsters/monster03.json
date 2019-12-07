@@ -1,5 +1,5 @@
-{ "id": "monster01",
- "name": "Morko",
+{ "id": "monster03",
+ "name": "Master Monster",
  "graphic": "monster.png",
  "attack": 5,
  "defense": 2,

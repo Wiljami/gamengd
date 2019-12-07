@@ -7,6 +7,14 @@ import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.util.Util;
 
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 /**
  * App is a helper class for development and testing.
  *
@@ -41,5 +49,6 @@ public class App extends GameCore {
         monster.setXY(45,60);
         addMonster(monster);
 
+        String filename = "monsters/";
     }
 }

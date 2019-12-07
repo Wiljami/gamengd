@@ -6,27 +6,35 @@ import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStar;
 import fi.tuni.tiko.gamengd.util.json.JacksonMonster;
-import javafx.scene.image.Image;
+
+import java.io.File;
+import java.util.HashMap;
 
 public class Monster extends Unit {
+    private static HashMap<String, Monster> monsterProtoTypes;
+    private static final String MONSTERFOLDER = "monsters/";
+
     private String id;
     private String name;
     private int attack;
     private int defense;
     private int hitPoints;
-    private static Image image;
     private AStar pathfind;
 
     public static void setup() {
-        image = Util.loadImage("monster.png");
-    }
-
-    public Monster() {
-        super(new Sprite(image));
+        monsterProtoTypes = new HashMap<>();
+        File[] monsterFiles = Util.walkFolder(MONSTERFOLDER);
+        for (File f : monsterFiles) {
+            Monster monster = Util.loadMonster(f);
+            if (monsterProtoTypes.containsKey(monster.getId())) {
+                System.out.println("Monster.setup()::Duplicate MonsterID: + " + monster.getId());
+            }
+            monsterProtoTypes.put(monster.getId(), monster);
+        }
     }
 
     public Monster(JacksonMonster jm) {
-        super(new Sprite(image));
+        super(new Sprite(Util.loadImage(jm.getGraphic())));
         setId(jm.getId());
         setName(jm.getName());
         setAttack(jm.getAttack());

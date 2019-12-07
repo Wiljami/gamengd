@@ -9,6 +9,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Objects;
 import java.util.TreeMap;
 
@@ -109,14 +110,19 @@ public class Util {
         return frames;
     }
 
+    public static File[] walkFolder(String folder) {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        URL url = loader.getResource(folder);
+        String path = url.getPath();
+        return new File(path).listFiles();
+    }
+
     private static File loadFile(String fileName) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         return new File(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
     }
 
-    public static Monster loadMonster(String fileName) {
-        File file = loadFile(MONSTERSFOLDER + fileName);
-
+    public static Monster loadMonster(File file) {
         JacksonMonster jm = new JacksonMonster();
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -127,6 +133,12 @@ public class Util {
         }
 
         return new Monster(jm);
+    }
+
+    public static Monster loadMonster(String fileName) {
+        File file = loadFile(MONSTERSFOLDER + fileName);
+
+        return loadMonster(file);
     }
 
     public static JacksonMap loadMap(String fileName) {
