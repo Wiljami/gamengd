@@ -1,0 +1,7 @@
+{
+  "id": "monster01",
+  "name": "Mörkö",
+  "attack": 5,
+  "defense": 2,
+  "hitPoints": 10
+}

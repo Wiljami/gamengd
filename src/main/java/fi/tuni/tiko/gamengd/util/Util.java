@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -106,9 +107,13 @@ public class Util {
         return frames;
     }
 
-    public static JacksonMap loadMap(String fileName) {
+    private static File loadFile(String fileName) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        return new File(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
+    }
+
+    public static JacksonMap loadMap(String fileName) {
+        File file = loadFile(fileName);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JacksonMap map = new JacksonMap();
