@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd.util.json;
 public class JacksonMonster {
     String id;
     String name;
+    String graphic;
     int attack;
     int defense;
     int hitPoints;
@@ -48,5 +49,13 @@ public class JacksonMonster {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public String getGraphic() {
+        return graphic;
+    }
+
+    public void setGraphic(String graphic) {
+        this.graphic = graphic;
     }
 }
