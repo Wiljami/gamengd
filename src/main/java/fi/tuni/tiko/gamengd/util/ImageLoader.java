@@ -3,14 +3,28 @@ package fi.tuni.tiko.gamengd.util;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
-
 import java.util.TreeMap;
 
+/**
+ * ImageLoader is a class responsible for loading and storing images.
+ *
+ * ImageLoader is a collection of methods that are responsible for images and
+ * animations. It also has a TreeMap images for storing the images that have
+ * been loaded. When an image is requested to be loaded, the images TreeMap is
+ * first checked if the image already exists. If it does, the existing image is
+ * returned to avoid creating duplicates.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1207
+ */
 public class ImageLoader {
     /**
      * file name of the fail picture that is used when picture is not found.
      */
     private static final String failPicture = "fail.png";
+    /**
+     * Default folder where the ImageLoader looks for the image files.
+     */
     private static final String GRAPHICSFOLDER = "graphics/";
     /**
      * TreeMap of the images that have been loaded.
