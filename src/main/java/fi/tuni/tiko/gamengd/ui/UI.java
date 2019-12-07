@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.ui;
 
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.input.InputEvent;
-import fi.tuni.tiko.gamengd.util.Util;
+import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -53,7 +53,7 @@ public class UI extends BorderPane {
         ne.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NE")));
         Button w = movementButton(buttonImage(270, true));
         w.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:W")));
-        Button none = movementButton(new ImageView(Util.loadImage("square.png")));
+        Button none = movementButton(new ImageView(ImageLoader.loadImage("square.png")));
         none.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NONE")));
         Button e = movementButton(buttonImage(90, true));
         e.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:E")));
@@ -83,9 +83,9 @@ public class UI extends BorderPane {
     private ImageView buttonImage (double rotation, boolean isStraight) {
         Image image;
         if (isStraight) {
-            image = Util.loadImage("arrowStraight.png");
+            image = ImageLoader.loadImage("arrowStraight.png");
         } else {
-            image = Util.loadImage("arrowCorner.png");
+            image = ImageLoader.loadImage("arrowCorner.png");
         }
 
         ImageView imageView = new ImageView(image);

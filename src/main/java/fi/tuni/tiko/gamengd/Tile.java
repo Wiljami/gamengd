@@ -2,6 +2,7 @@ package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Furniture;
+import fi.tuni.tiko.gamengd.entity.Unit;
 import fi.tuni.tiko.gamengd.entity.Wall;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class Tile {
     private Level level;
     private boolean hasWall = false;
     private boolean passable = true;
+    private boolean hasUnit = false;
+    private Unit unit;
 
     public Tile(Level level, int x, int y, Floor floor) {
         this.x = x;
@@ -78,6 +81,10 @@ public class Tile {
         return passable;
     }
 
+    public boolean isEnterable() {
+        return passable && hasUnit;
+    }
+
     public void setPassable(boolean passable) {
         this.passable = passable;
     }
@@ -93,6 +100,25 @@ public class Tile {
         tiles[6] = level.getTileAt(x-1, y+1);
         tiles[7] = level.getTileAt(x-1, y);
         return tiles;
+    }
+
+    public void unitEnters(Unit unit) {
+        this.unit = unit;
+        hasUnit = true;
+    }
+
+    //In case there is some event or something that wants to know the unit!
+    public void unitLeaves(Unit unit) {
+        this.unit = null;
+        hasUnit = false;
+    }
+
+    public boolean hasUnit() {
+        return hasUnit;
+    }
+
+    public Unit getUnit() {
+        return unit;
     }
 
     public int getX() {

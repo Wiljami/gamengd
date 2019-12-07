@@ -13,7 +13,7 @@ public abstract class Entity {
     }
 
     public Entity (Sprite sprite) {
-        this(sprite, 0, 0);
+        setSprite(sprite);
     }
 
     public void setSprite(Sprite sprite) {

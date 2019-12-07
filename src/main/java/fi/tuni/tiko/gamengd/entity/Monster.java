@@ -3,6 +3,8 @@ package fi.tuni.tiko.gamengd.entity;
 import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
+import fi.tuni.tiko.gamengd.util.ImageLoader;
+import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStar;
@@ -26,7 +28,7 @@ public class Monster extends Unit {
         monsterProtoTypes = new HashMap<>();
         File[] monsterFiles = Util.walkFolder(MONSTERFOLDER);
         for (File f : monsterFiles) {
-            Monster monster = Util.loadMonster(f);
+            Monster monster = JSONLoader.loadMonster(f);
             if (monsterProtoTypes.containsKey(monster.getId())) {
                 System.out.println("Monster.setup()::Duplicate MonsterID: + " + monster.getId());
             }
@@ -35,7 +37,7 @@ public class Monster extends Unit {
     }
 
     public Monster(JacksonMonster jm) {
-        super(new Sprite(Util.loadImage(jm.getGraphic())));
+        super(new Sprite(ImageLoader.loadImage(jm.getGraphic())));
         setId(jm.getId());
         setName(jm.getName());
         setAttack(jm.getAttack());
@@ -55,8 +57,8 @@ public class Monster extends Unit {
     public static Monster spawn(String id, int x, int y, Level level) {
         Monster protoMonster = monsterProtoTypes.get(id);
         Monster monster = new Monster(protoMonster);
-        monster.setXY(x, y);
         monster.setLevel(level);
+        monster.setXY(x, y);
         return monster;
     }
 
@@ -88,6 +90,15 @@ public class Monster extends Unit {
     public void createNewPath(Tile endTile) {
         Tile startTile = level.getTileAt(getX(), getY());
         if (pathfind == null) pathfind = new AStar(level, startTile, endTile);
+    }
+
+    @Override
+    void move(Tile tile) {
+        if (!tile.hasUnit()) {
+            super.move(tile);
+        } else {
+            randomMove();
+        }
     }
 
     private void randomMove() {
