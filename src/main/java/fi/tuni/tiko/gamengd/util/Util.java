@@ -106,11 +106,14 @@ public class Util {
         return frames;
     }
 
-    public static JacksonMap loadMap(String file) {
+    public static JacksonMap loadMap(String fileName) {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
         ObjectMapper objectMapper = new ObjectMapper();
         JacksonMap map = new JacksonMap();
         try {
-            map = objectMapper.readValue(new File(file), JacksonMap.class);
+            map = objectMapper.readValue(file, JacksonMap.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
