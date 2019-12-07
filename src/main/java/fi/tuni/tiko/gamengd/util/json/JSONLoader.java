@@ -25,6 +25,21 @@ public class JSONLoader {
         return jl;
     }
 
+    public static JacksonConfig loadConfig(String fileName) {
+        JacksonConfig config = new JacksonConfig();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        File file = Util.loadFile(fileName);
+
+        try {
+            config = objectMapper.readValue(file, JacksonConfig.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return config;
+    }
+
     public static Monster loadMonster(File file) {
         JacksonMonster jm = new JacksonMonster();
         ObjectMapper objectMapper = new ObjectMapper();

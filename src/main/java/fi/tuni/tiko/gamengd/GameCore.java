@@ -6,6 +6,8 @@ import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.TurnController;
 import fi.tuni.tiko.gamengd.ui.*;
 import fi.tuni.tiko.gamengd.entity.*;
+import fi.tuni.tiko.gamengd.util.json.JSONLoader;
+import fi.tuni.tiko.gamengd.util.json.JacksonConfig;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -24,6 +26,7 @@ public class GameCore extends Application {
     private static double minResolutionY = 400;
     private static boolean fullScreen = false;
     private static String windowTitle = "GamEngD Game Engine";
+    private static String defaultConfig = "config.json";
 
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
@@ -61,6 +64,13 @@ public class GameCore extends Application {
         canvas.heightProperty().addListener(canvasSizeListener);
         cameraController = new CameraController(canvas, spriteController);
         inputController.registerCamera(cameraController);
+        sortConfigFile(JSONLoader.loadConfig(defaultConfig));
+    }
+
+    private void sortConfigFile(JacksonConfig config) {
+        addLevel(new Level(config.getLevelFile()));
+        setWindowTitle(config.getWindowTitle());
+        setResolution(config.getResolutionX(), config.getResolutionY());
     }
 
     @Override
@@ -164,5 +174,9 @@ public class GameCore extends Application {
 
     public static void setWindowTitle(String title) {
         windowTitle = title;
+    }
+
+    public static void setDefaultConfig(String defaultConfig) {
+        GameCore.defaultConfig = defaultConfig;
     }
 }
