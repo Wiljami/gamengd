@@ -1,7 +1,9 @@
 package fi.tuni.tiko.gamengd.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.util.json.JacksonMap;
+import fi.tuni.tiko.gamengd.util.json.JacksonMonster;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -112,6 +114,21 @@ public class Util {
         return new File(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
     }
 
+    public static Monster loadMonster(String fileName) {
+        File file = loadFile(fileName);
+
+        JacksonMonster jm = new JacksonMonster();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            jm = objectMapper.readValue(file, JacksonMonster.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return new Monster(jm);
+    }
+
     public static JacksonMap loadMap(String fileName) {
         File file = loadFile(fileName);
 
@@ -124,6 +141,8 @@ public class Util {
         }
         return map;
     }
+
+
 
     public static JSONObject readJSON(String file) {
         JSONParser parser = new JSONParser();

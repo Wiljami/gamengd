@@ -142,9 +142,11 @@ public class GameCore extends Application {
         inputController.registerPlayer(player);
         turnController.addTurn(player);
         level.setPlayer(player);
+        player.setLevel(level);
     }
 
     public void addMonster(Monster monster) {
+        monster.setLevel(level);
         turnController.addTurn(monster);
         level.addUnit(monster);
     }

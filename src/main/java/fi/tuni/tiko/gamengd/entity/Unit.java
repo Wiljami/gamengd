@@ -10,9 +10,8 @@ public class Unit extends Entity implements TurnActor {
     //TODO: Is there a better way to do this? Do units really need a pointer to level?
     Level level;
 
-    public Unit(Sprite sprite, Level level) {
+    public Unit(Sprite sprite) {
         super(sprite);
-        setLevel(level);
     }
 
     void move(int x, int y) {

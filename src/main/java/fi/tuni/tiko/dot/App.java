@@ -5,6 +5,7 @@ import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
+import fi.tuni.tiko.gamengd.util.Util;
 
 /**
  * App is a helper class for development and testing.
@@ -28,42 +29,17 @@ public class App extends GameCore {
 
         Level level = new Level("map.json");
 
-/**
-        Level level = new Level(100,100);
-        level.createRoom(0,0, 9,9);
-        level.createRoom(3,8, 3, 10);
-        level.createRoom(5, 15, 10, 3);
-        level.createRoom(14, 12, 9, 9);
-        level.getTileAt(4,8).removeWall();
-        level.getTileAt(5,16).removeWall();
-        level.getTileAt(14,16).removeWall();
-*/
         addLevel(level);
         Sprite dude = new Sprite("dude.png");
-        Player player = new Player(dude, level);
+        Player player = new Player(dude);
         player.setXY(12,12);
 
         addPlayer(player);
 
-        Monster monster = new Monster(level);
+        Monster monster = Util.loadMonster("monster01.json");
+
         monster.setXY(45,60);
         addMonster(monster);
 
-
-
-        /**
-        for (int x = 0; x < 6; x++) {
-            level.getTileAt(x,0).addFurniture(new Furniture(new AnimatedSprite("fire.png", 10, 6, 5), 0 ,0));
-        }
-
-        Sprite dude = new Sprite("dude.png");
-        Player player = new Player(dude, level);
-        player.setXY(3,3);
-
-        addPlayer(player);
-
-        Monster monster = new Monster(level);
-        monster.setXY(45,16);
-        addMonster(monster);*/
     }
 }

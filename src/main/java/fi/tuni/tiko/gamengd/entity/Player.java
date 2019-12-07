@@ -1,15 +1,14 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
-import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
-    public Player(Sprite sprite, Level level) {
-        super(sprite, level);
+    public Player(Sprite sprite) {
+        super(sprite);
     }
 
     private TurnInfo latestTurn;
