@@ -140,19 +140,16 @@ public class GameCore extends Application {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputController.registerPlayer(player);
-        turnController.addTurn(player);
         player.setLevel(level);
-    }
-
-    public void addMonster(Monster monster) {
-        turnController.addTurn(monster);
-        level.addUnit(monster);
     }
 
     public void addLevel(Level level) {
         this.level = level;
         cameraController.setLevel(level);
         addPlayer(level.getPlayer());
+        for (Unit unit : level.getUnits()) {
+            turnController.addTurn(unit);
+        }
     }
 
     public static void setResolution(double x, double y) {

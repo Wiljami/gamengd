@@ -1,13 +1,12 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.entity.Floor;
-import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.entity.Unit;
-import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import fi.tuni.tiko.gamengd.util.json.JacksonMap;
 import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
+import fi.tuni.tiko.gamengd.util.json.MonsterSpawn;
+
 import java.util.ArrayList;
 
 public class Level {
@@ -30,6 +29,7 @@ public class Level {
         generateEmptyMap(width, height);
         fillMap(mapData.getLayers().get(0).getData());
         spawnPlayer(levelData);
+        spawnMonsters(levelData);
     }
 
     private void generateEmptyMap(int width, int height) {
@@ -59,6 +59,12 @@ public class Level {
                 }
                 i++;
             }
+        }
+    }
+
+    private void spawnMonsters(JacksonLevel levelData) {
+        for (MonsterSpawn s : levelData.getMonsterSpawns()) {
+            addUnit(Monster.spawn(s.getType(), s.getSpawnPointX(), s.getSpawnPointY(), this));
         }
     }
 

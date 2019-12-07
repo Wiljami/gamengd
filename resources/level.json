@@ -1,4 +1,32 @@
-{ "map": "map01.json",
- "playerSpawnX": 12,
- "playerSpawnY": 12
+{
+  "map": "map01.json",
+  "playerSpawnX": 12,
+  "playerSpawnY": 12,
+  "monsterSpawns": [
+    {
+      "type": "monster01",
+      "spawnPointX": "45",
+      "spawnPointY": "60"
+    },
+    {
+      "type": "monster01",
+      "spawnPointX": "53",
+      "spawnPointY": "39"
+    },
+    {
+      "type": "monster01",
+      "spawnPointX": "45",
+      "spawnPointY": "60"
+    },
+    {
+      "type": "monster01",
+      "spawnPointX": "12",
+      "spawnPointY": "36"
+    },
+    {
+      "type": "monster01",
+      "spawnPointX": "37",
+      "spawnPointY": "16"
+    }
+  ]
 }

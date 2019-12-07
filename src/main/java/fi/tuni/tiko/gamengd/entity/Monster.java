@@ -44,7 +44,7 @@ public class Monster extends Unit {
     }
 
     public Monster(Monster protoMonster) {
-        super(protoMonster.getSprite());
+        super(new Sprite(protoMonster.getSprite().getImage()));
         setId(protoMonster.getId());
         setName(protoMonster.getName());
         setAttack(protoMonster.getAttack());

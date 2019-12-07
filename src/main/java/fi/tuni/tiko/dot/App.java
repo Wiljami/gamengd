@@ -2,9 +2,7 @@ package fi.tuni.tiko.dot;
 
 import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.Level;
-import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.entity.Monster;
-import fi.tuni.tiko.gamengd.entity.Player;
 
 /**
  * App is a helper class for development and testing.
@@ -29,7 +27,5 @@ public class App extends GameCore {
         Level level = new Level("level.json");
 
         addLevel(level);
-
-        addMonster(Monster.spawn("monster01", 45, 60, level));
     }
 }
