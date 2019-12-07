@@ -26,7 +26,6 @@ import java.util.TreeMap;
  * @version 2019.1123
  */
 public class Util {
-
     /**
      * file name of the fail picture that is used when picture is not found.
      */
@@ -36,6 +35,9 @@ public class Util {
      * TreeMap of the images that have been loaded.
      */
     private static TreeMap<String, Image> images;
+
+    private static final String MONSTERSFOLDER = "monsters/";
+    private static final String MAPSFOLDER = "maps/";
 
     /**
      * loadImage method creates an Image from a file.
@@ -115,7 +117,7 @@ public class Util {
     }
 
     public static Monster loadMonster(String fileName) {
-        File file = loadFile(fileName);
+        File file = loadFile(MONSTERSFOLDER + fileName);
 
         JacksonMonster jm = new JacksonMonster();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -130,7 +132,7 @@ public class Util {
     }
 
     public static JacksonMap loadMap(String fileName) {
-        File file = loadFile(fileName);
+        File file = loadFile(MAPSFOLDER + fileName);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JacksonMap map = new JacksonMap();
