@@ -44,11 +44,6 @@ public class App extends GameCore {
 
         addPlayer(player);
 
-        Monster monster = Util.loadMonster("monster01.json");
-
-        monster.setXY(45,60);
-        addMonster(monster);
-
-        String filename = "monsters/";
+        addMonster(Monster.spawn("monster01", 45, 60, level));
     }
 }

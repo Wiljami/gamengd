@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.util.Util;
@@ -19,7 +20,7 @@ public class Monster extends Unit {
     private int attack;
     private int defense;
     private int hitPoints;
-    private AStar pathfind;
+    private transient AStar pathfind;
 
     public static void setup() {
         monsterProtoTypes = new HashMap<>();
@@ -40,6 +41,24 @@ public class Monster extends Unit {
         setAttack(jm.getAttack());
         setDefense(jm.getDefense());
         setHitPoints(jm.getHitPoints());
+    }
+
+    public Monster(Monster protoMonster) {
+        super(protoMonster.getSprite());
+        setId(protoMonster.getId());
+        setName(protoMonster.getName());
+        setAttack(protoMonster.getAttack());
+        setDefense(protoMonster.getDefense());
+        setHitPoints(protoMonster.getHitPoints());
+    }
+
+    public static Monster spawn(String id, int x, int y, Level level) {
+        System.out.println(monsterProtoTypes.keySet());
+        Monster protoMonster = monsterProtoTypes.get(id);
+        Monster monster = new Monster(protoMonster);
+        monster.setXY(x, y);
+        monster.setLevel(level);
+        return monster;
     }
 
     @Override

@@ -146,7 +146,6 @@ public class GameCore extends Application {
     }
 
     public void addMonster(Monster monster) {
-        monster.setLevel(level);
         turnController.addTurn(monster);
         level.addUnit(monster);
     }
