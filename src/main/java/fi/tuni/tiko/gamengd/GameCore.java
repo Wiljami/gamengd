@@ -1,12 +1,19 @@
 package fi.tuni.tiko.gamengd;
 
-import fi.tuni.tiko.gamengd.controller.*;
-import fi.tuni.tiko.gamengd.controller.crisis.*;
-import fi.tuni.tiko.gamengd.controller.input.*;
-import fi.tuni.tiko.gamengd.controller.turn.*;
-import fi.tuni.tiko.gamengd.ui.*;
-import fi.tuni.tiko.gamengd.entity.*;
-import fi.tuni.tiko.gamengd.util.json.*;
+
+import fi.tuni.tiko.gamengd.controller.CameraController;
+import fi.tuni.tiko.gamengd.controller.SpriteController;
+import fi.tuni.tiko.gamengd.controller.crisis.CrisisController;
+import fi.tuni.tiko.gamengd.controller.input.InputController;
+import fi.tuni.tiko.gamengd.controller.turn.TurnController;
+import fi.tuni.tiko.gamengd.entity.Floor;
+import fi.tuni.tiko.gamengd.entity.Monster;
+import fi.tuni.tiko.gamengd.entity.Player;
+import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.ui.GameView;
+import fi.tuni.tiko.gamengd.ui.UI;
+import fi.tuni.tiko.gamengd.util.json.JSONLoader;
+import fi.tuni.tiko.gamengd.util.json.JacksonConfig;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
