@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class CameraController implements CommandTarget {
     private double x;
     private double y;
-    boolean cameraChanged;
+    private boolean cameraChanged;
     private double tileSize = 50;
     private Canvas canvas;
     private SpriteController spriteController;
