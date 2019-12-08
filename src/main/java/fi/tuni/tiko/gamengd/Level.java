@@ -185,11 +185,11 @@ public class Level implements CrisisSource {
     }
 
     private void registerCrisis(CrisisController crisisController) {
-        crisisController.addCrisis(new Crisis(0.3, 0, "Hellurei", this));
+        crisisController.addCrisis(new Crisis(0.1, 0, "Hellurei", this));
     }
 
     @Override
     public void runCrisis(Crisis crisis) {
-        System.out.println(crisis.getId());
+        randomSpawn();
     }
 }

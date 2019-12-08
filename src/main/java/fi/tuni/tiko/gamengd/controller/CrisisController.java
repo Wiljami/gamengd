@@ -12,7 +12,6 @@ public class CrisisController {
     public void run(int turn) {
         for (Crisis c : crisisList) {
             double random = Math.random();
-            System.out.println(c.getChance());
             if (random < c.getChance()) {
                 c.trigger();
             }
