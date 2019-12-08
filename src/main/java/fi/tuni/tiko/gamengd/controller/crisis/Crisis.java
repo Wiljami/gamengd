@@ -122,7 +122,7 @@ public class Crisis {
      * cooldown then the crisis does not trigger.
      */
     public void trigger(int turn) {
-        if (turn < lastOccurance + coolDown) {
+        if (turn > lastOccurance + coolDown) {
             lastOccurance = turn;
             source.runCrisis(this);
         }
