@@ -161,9 +161,6 @@ public class GameCore extends Application {
         this.level = level;
         cameraController.setLevel(level);
         addPlayer(level.getPlayer());
-        for (Unit unit : level.getUnits()) {
-            turnController.addTurn(unit);
-        }
     }
 
     public static void setResolution(double x, double y) {
@@ -186,5 +183,9 @@ public class GameCore extends Application {
 
     public CrisisController getCrisisController() {
         return crisisController;
+    }
+
+    public TurnController getTurnController() {
+        return turnController;
     }
 }

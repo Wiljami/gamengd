@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.controller.Crisis;
 import fi.tuni.tiko.gamengd.controller.CrisisController;
 import fi.tuni.tiko.gamengd.controller.CrisisSource;
+import fi.tuni.tiko.gamengd.controller.TurnController;
 import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
@@ -20,12 +21,14 @@ public class Level implements CrisisSource {
     private ArrayList<Unit> units = new ArrayList<>();
     private AStarGraph aStarGraph;
     private Player player;
+    private TurnController turnController;
 
     public Level(int width, int height) {
         generateEmptyMap(width, height);
     }
 
     public Level(String file, GameCore core) {
+        turnController = core.getTurnController();
         JacksonLevel levelData = JSONLoader.loadLevel(file);
         JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
         int width = mapData.getWidth();
@@ -70,7 +73,8 @@ public class Level implements CrisisSource {
 
     private void spawnMonsters(JacksonLevel levelData) {
         for (MonsterSpawn s : levelData.getMonsterSpawns()) {
-            addUnit(Monster.spawn(s.getType(), s.getSpawnPointX(), s.getSpawnPointY(), this));
+            Monster m = Monster.spawn(s.getType(), s.getSpawnPointX(), s.getSpawnPointY(), this);
+            addUnit(m);
         }
     }
 
@@ -80,6 +84,7 @@ public class Level implements CrisisSource {
         player.setLevel(this);
         player.setXY(levelData.getPlayerSpawnX(), levelData.getPlayerSpawnY());
         setPlayer(player);
+        addUnit(player);
     }
 
     /**
@@ -115,6 +120,7 @@ public class Level implements CrisisSource {
 
     public void addUnit(Unit unit) {
         units.add(unit);
+        turnController.addTurn(unit);
     }
 
     public void removeUnit(Unit unit) {
@@ -185,7 +191,7 @@ public class Level implements CrisisSource {
     }
 
     private void registerCrisis(CrisisController crisisController) {
-        crisisController.addCrisis(new Crisis(0.1, 0, "Hellurei", this));
+        crisisController.addCrisis(new Crisis(1, 0, "Hellurei", this));
     }
 
     @Override
