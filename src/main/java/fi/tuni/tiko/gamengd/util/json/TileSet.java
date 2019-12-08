@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * TileSet is json data read to an object.
  *
  * MonsterSpawn contains information for TileSet within a level. Its
- * data is read from a json file using Jackson.
+ * data is read from a json file using Jackson. It contains all the Tiled
+ * Map information from the json.
  *
  * @author Viljami Pietarila
  * @version 2019.1208
