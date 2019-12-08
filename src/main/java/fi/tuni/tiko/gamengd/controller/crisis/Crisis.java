@@ -72,7 +72,7 @@ public class Crisis {
      * coolDown setter
      *
      * Sets coolDown to 0 if it's negative.
-     * @param coolDown
+     * @param coolDown coolDown
      */
     public void setCoolDown(int coolDown) {
         if (coolDown < 0) coolDown = 0;

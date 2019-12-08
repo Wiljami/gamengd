@@ -160,7 +160,7 @@ public class Tile {
      * isEnterable returns boolean wether a new Unit can enter the Tile or not.
      *
      * Checks if the Tile is passable and if there is some Unit on the tile.
-     * @return boolean passable && !hasUnit
+     * @return boolean of passable and !hasUnit
      */
     public boolean isEnterable() {
         return passable && !hasUnit;
