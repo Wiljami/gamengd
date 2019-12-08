@@ -97,4 +97,12 @@ public class Player extends Unit implements CommandTarget {
         playerTurn = true;
         latestTurn = turnInfo;
     }
+
+    public int getMovementDelay() {
+        return movementDelay;
+    }
+
+    public void setMovementDelay(int movementDelay) {
+        this.movementDelay = movementDelay;
+    }
 }
