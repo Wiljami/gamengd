@@ -3,10 +3,15 @@ package fi.tuni.tiko.gamengd.util.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * TileSet is a json object for tiled maps.
+ * TileSet is json data read to an object.
+ *
+ * MonsterSpawn contains information for TileSet within a level. Its
+ * data is read from a json file using Jackson.
+ *
  * @author Viljami Pietarila
  * @version 2019.1208
  */
+
 public class TileSet {
     /**
      * columns within the json file.

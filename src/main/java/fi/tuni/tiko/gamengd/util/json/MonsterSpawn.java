@@ -1,5 +1,14 @@
 package fi.tuni.tiko.gamengd.util.json;
 
+/**
+ * MonsterSpawn is json data read to an object.
+ *
+ * MonsterSpawn contains information for monster spawns within a level. Its
+ * data is read from a json file using Jackson.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1208
+ */
 public class MonsterSpawn {
     private String type;
     private int spawnPointX;
