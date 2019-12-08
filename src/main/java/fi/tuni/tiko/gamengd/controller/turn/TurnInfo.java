@@ -1,4 +1,4 @@
-package fi.tuni.tiko.gamengd.controller;
+package fi.tuni.tiko.gamengd.controller.turn;
 
 /**
  * TurnInfo is an information class holding info of the current turn.

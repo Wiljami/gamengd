@@ -1,4 +1,6 @@
-package fi.tuni.tiko.gamengd.controller;
+package fi.tuni.tiko.gamengd.controller.turn;
+
+import fi.tuni.tiko.gamengd.controller.crisis.CrisisController;
 
 import java.util.ArrayList;
 

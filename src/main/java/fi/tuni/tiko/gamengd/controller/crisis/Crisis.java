@@ -1,4 +1,4 @@
-package fi.tuni.tiko.gamengd.controller;
+package fi.tuni.tiko.gamengd.controller.crisis;
 
 public class Crisis {
     private double chance;

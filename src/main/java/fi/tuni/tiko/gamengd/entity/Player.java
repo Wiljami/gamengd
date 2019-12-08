@@ -2,7 +2,7 @@ package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.Sprite;
-import fi.tuni.tiko.gamengd.controller.TurnInfo;
+import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 
 public class Player extends Unit implements CommandTarget {
