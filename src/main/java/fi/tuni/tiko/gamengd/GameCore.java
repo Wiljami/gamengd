@@ -197,4 +197,12 @@ public class GameCore extends Application {
     public TurnController getTurnController() {
         return turnController;
     }
+
+    public static boolean isFullScreen() {
+        return fullScreen;
+    }
+
+    public static void setFullScreen(boolean fullScreen) {
+        GameCore.fullScreen = fullScreen;
+    }
 }
