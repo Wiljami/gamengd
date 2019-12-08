@@ -13,7 +13,7 @@ public class CrisisController {
         for (Crisis c : crisisList) {
             double random = Math.random();
             if (random < c.getChance()) {
-                c.trigger();
+                c.trigger(turn);
             }
         }
     }

@@ -115,7 +115,7 @@ public class Crisis {
      * Trigger runs the the source's runCrisis method which it has implemented
      * from CrisisSource interface.
      */
-    public void trigger() {
+    public void trigger(int turn) {
         source.runCrisis(this);
     }
 }
