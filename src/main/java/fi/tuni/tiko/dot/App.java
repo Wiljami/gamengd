@@ -13,9 +13,4 @@ public class App extends GameCore {
         System.out.println("Author: Viljami Pietarila");
         launch();
     }
-
-    @Override
-    public void init() {
-        super.init();
-    }
 }

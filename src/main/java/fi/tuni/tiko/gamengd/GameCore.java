@@ -181,6 +181,10 @@ public class GameCore extends Application {
         GameCore.defaultConfig = defaultConfig;
     }
 
+    public static String getDefaultConfig() {
+        return defaultConfig;
+    }
+
     public CrisisController getCrisisController() {
         return crisisController;
     }
