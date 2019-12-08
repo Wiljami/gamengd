@@ -62,6 +62,10 @@ public class Monster extends Unit {
         return monster;
     }
 
+    public static Monster spawn(String id, Tile tile, Level level) {
+        return spawn(id, tile.getX(), tile.getY(), level);
+    }
+
     @Override
     public void doTurn(TurnInfo turnInfo) {
         if (pathfind != null) {

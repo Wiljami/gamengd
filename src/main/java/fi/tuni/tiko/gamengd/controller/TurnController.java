@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 public class TurnController {
     private int turn;
+    private CrisisController crisisController;
+
 
     private ArrayList<TurnActor> turnActors;
     private ArrayList<TurnActor> currentTurnActors;
 
-    public TurnController() {
+    public TurnController(CrisisController crisisController) {
+        this.crisisController = crisisController;
         setTurn(0);
         turnActors = new ArrayList<>();
         currentTurnActors = new ArrayList<>();
@@ -37,6 +40,7 @@ public class TurnController {
     }
 
     private void newTurn() {
+        crisisController.run(turn);
         turn++;
         currentTurnActors = (ArrayList<TurnActor>)turnActors.clone();
         doTurn();

@@ -1,5 +1,8 @@
 package fi.tuni.tiko.gamengd;
 
+import fi.tuni.tiko.gamengd.controller.Crisis;
+import fi.tuni.tiko.gamengd.controller.CrisisController;
+import fi.tuni.tiko.gamengd.controller.CrisisSource;
 import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
@@ -8,8 +11,9 @@ import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 import fi.tuni.tiko.gamengd.util.json.MonsterSpawn;
 
 import java.util.ArrayList;
+import java.util.Set;
 
-public class Level {
+public class Level implements CrisisSource {
     private Tile[][] map;
     private int width;
     private int height;
@@ -21,7 +25,7 @@ public class Level {
         generateEmptyMap(width, height);
     }
 
-    public Level(String file) {
+    public Level(String file, GameCore core) {
         JacksonLevel levelData = JSONLoader.loadLevel(file);
         JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
         int width = mapData.getWidth();
@@ -30,6 +34,8 @@ public class Level {
         fillMap(mapData.getLayers().get(0).getData());
         spawnPlayer(levelData);
         spawnMonsters(levelData);
+        registerCrisis(core.getCrisisController());
+        setaStarGraph(new AStarGraph(this));
     }
 
     private void generateEmptyMap(int width, int height) {
@@ -141,6 +147,7 @@ public class Level {
 
     public void setaStarGraph(AStarGraph aStarGraph) {
         this.aStarGraph = aStarGraph;
+        parseOpenTiles(getaStarGraph().getNodes().keySet());
     }
 
     public Player getPlayer() {
@@ -150,5 +157,39 @@ public class Level {
     public void setPlayer(Player player) {
         this.player = player;
         addUnit(player);
+    }
+
+    private Tile[] openTiles;
+
+    private void parseOpenTiles(Set<Tile> data) {
+        openTiles = new Tile[data.size()];
+        int i = 0;
+        for (Tile t : data) {
+            openTiles[i] = t;
+            i++;
+        }
+    }
+
+    public void randomSpawn() {
+        Tile tile = new Tile(this);
+        boolean okSpawn = false;
+        while (!okSpawn) {
+            int randomLocation = (int)(Math.random() * openTiles.length);
+            tile = openTiles[randomLocation];
+            if (tile.isPassable() && tile.isEnterable()) {
+                okSpawn = true;
+            }
+        }
+
+        addUnit(Monster.spawn("monster01", tile, this));
+    }
+
+    private void registerCrisis(CrisisController crisisController) {
+        crisisController.addCrisis(new Crisis(0.3, 0, "Hellurei", this));
+    }
+
+    @Override
+    public void runCrisis(Crisis crisis) {
+        System.out.println(crisis.getId());
     }
 }

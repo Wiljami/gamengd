@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
 import fi.tuni.tiko.gamengd.controller.CameraController;
+import fi.tuni.tiko.gamengd.controller.CrisisController;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.TurnController;
@@ -38,6 +39,7 @@ public class GameCore extends Application {
     private SpriteController spriteController;
     private TurnController turnController;
     private InputController inputController;
+    private CrisisController crisisController;
 
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
@@ -52,7 +54,8 @@ public class GameCore extends Application {
         Wall.setup();
         Monster.setup();
         spriteController = new SpriteController();
-        turnController = new TurnController();
+        crisisController = new CrisisController();
+        turnController = new TurnController(crisisController);
         inputController = new InputController();
         gameView = new GameView();
         Canvas canvas = gameView.getCanvas();
@@ -68,7 +71,7 @@ public class GameCore extends Application {
     }
 
     private void sortConfigFile(JacksonConfig config) {
-        addLevel(new Level(config.getLevelFile()));
+        addLevel(new Level(config.getLevelFile(), this));
         setWindowTitle(config.getWindowTitle());
         setResolution(config.getResolutionX(), config.getResolutionY());
     }
@@ -90,6 +93,7 @@ public class GameCore extends Application {
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
         startTurnController();
+        level.randomSpawn();
     }
 
     private void startTurnController() {
@@ -178,5 +182,9 @@ public class GameCore extends Application {
 
     public static void setDefaultConfig(String defaultConfig) {
         GameCore.defaultConfig = defaultConfig;
+    }
+
+    public CrisisController getCrisisController() {
+        return crisisController;
     }
 }

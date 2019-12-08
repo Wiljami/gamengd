@@ -12,7 +12,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class CameraController implements CommandTarget {
     private double x;

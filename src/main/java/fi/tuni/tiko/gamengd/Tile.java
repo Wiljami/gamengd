@@ -82,7 +82,7 @@ public class Tile {
     }
 
     public boolean isEnterable() {
-        return passable && hasUnit;
+        return passable && !hasUnit;
     }
 
     public void setPassable(boolean passable) {
