@@ -11,10 +11,14 @@ import java.net.URL;
  * errors obvious without crashing the game.
  *
  * @author Viljami Pietarila
- * @version 2019.1123
+ * @version 2019.1208
  */
 public class Util {
-
+    /**
+     * walkFolder examines a folder and lists the files in it.
+     * @param folder folder to examine
+     * @return array of Files in the folder
+     */
     public static File[] walkFolder(String folder) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         URL url = loader.getResource(folder);
@@ -22,6 +26,11 @@ public class Util {
         return new File(path).listFiles();
     }
 
+    /**
+     * loadFile loads a File by the name fileName
+     * @param fileName name of the file in the system
+     * @return loaded File
+     */
     public static File loadFile(String fileName) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         return new File(classLoader.getResource(fileName).getFile());
