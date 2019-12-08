@@ -14,17 +14,22 @@ public class Crisis {
      */
     private double chance;
     /**
-     * Cooldown in turns. 0 means no cooldown
+     * Cooldown in turns. 0 means no cooldown.
      */
     private int coolDown;
     /**
-     * For identification by the crisisSource
+     * For identification by the crisisSource.
      */
     private String id;
     /**
-     * Source of this crisis
+     * Source of this crisis.
      */
     private CrisisSource source;
+
+    /**
+     * lastOccurance is number of the turn the crisis last triggered.
+     */
+    private int lastOccurance = Integer.MIN_VALUE;
 
     /**
      * Crisis constructor
@@ -113,9 +118,13 @@ public class Crisis {
 
     /**
      * Trigger runs the the source's runCrisis method which it has implemented
-     * from CrisisSource interface.
+     * from CrisisSource interface. If the turn is less than lastOccurance +
+     * cooldown then the crisis does not trigger.
      */
     public void trigger(int turn) {
-        source.runCrisis(this);
+        if (turn < lastOccurance + coolDown) {
+            lastOccurance = turn;
+            source.runCrisis(this);
+        }
     }
 }
