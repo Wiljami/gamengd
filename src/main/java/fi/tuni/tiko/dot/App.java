@@ -10,10 +10,10 @@ import fi.tuni.tiko.gamengd.GameCore;
 
 public class App extends GameCore {
     /**
-     * main method
+     * main method.
      * @param args console arguements.
      */
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
         launch();
     }

@@ -15,33 +15,33 @@ import javafx.scene.image.WritableImage;
  */
 public class AnimatedSprite extends Sprite {
     /**
-     * Overall duration of the animation
+     * Overall duration of the animation.
      */
     private double duration;
     /**
-     * Array of the Images
+     * Array of the Images.
      */
     private WritableImage[] frames;
     /**
-     * Current image in the frames being displayed
+     * Current image in the frames being displayed.
      */
     private int index;
     /**
-     * TimeKey for timing the animation
+     * TimeKey for timing the animation.
      */
     private double timeKey;
 
     /**
-     * AnimatedSprite Constructor
+     * AnimatedSprite Constructor.
      * @param file filename of the image frames
      * @param framesX number of frames horizontally
      * @param framesY number of frames vertically
-     * @param duration duration of the animation
+     * @param dur dur of the animation
      */
-    public AnimatedSprite(String file, int framesX, int framesY, double duration) {
+    public AnimatedSprite(String file, int framesX, int framesY, double dur) {
         super(file);
         frames = ImageLoader.createAnimatedArray(getImage(), framesX, framesY);
-        this.duration = duration;
+        this.duration = dur;
     }
 
     /**
@@ -55,7 +55,7 @@ public class AnimatedSprite extends Sprite {
     public void update(double time) {
         super.update(time);
         timeKey += time;
-        index = (int)((timeKey % duration)/duration * frames.length);
+        index = (int) ((timeKey % duration) / duration * frames.length);
     }
 
     /**
