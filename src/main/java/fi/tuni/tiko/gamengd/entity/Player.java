@@ -22,58 +22,60 @@ public class Player extends Unit implements CommandTarget {
     }
 
     private void sortInput(String input) {
-        int x = 0;
-        int y = 0;
-        boolean move = true;
-        switch (input) {
-            case "NW":
-                x = -1;
-                y = -1;
-                break;
-            case "SW":
-                x = -1;
-                y = 1;
-                break;
-            case "NE":
-                x = 1;
-                y = -1;
-                break;
-            case "SE":
-                x = 1;
-                y = 1;
-                break;
-            case "W":
-                x = -1;
-                y = 0;
-                break;
-            case "E":
-                x = 1;
-                y = 0;
-                break;
-            case "N":
-                x = 0;
-                y = -1;
-                break;
-            case "S":
-                x = 0;
-                y = 1;
-                break;
-            case "NONE":
-                x = 0;
-                y = 0;
-                break;
-            default:
-                move = false;
-                break;
-        }
+        if (playerTurn) {
+            int x = 0;
+            int y = 0;
+            boolean move = true;
+            switch (input) {
+                case "NW":
+                    x = -1;
+                    y = -1;
+                    break;
+                case "SW":
+                    x = -1;
+                    y = 1;
+                    break;
+                case "NE":
+                    x = 1;
+                    y = -1;
+                    break;
+                case "SE":
+                    x = 1;
+                    y = 1;
+                    break;
+                case "W":
+                    x = -1;
+                    y = 0;
+                    break;
+                case "E":
+                    x = 1;
+                    y = 0;
+                    break;
+                case "N":
+                    x = 0;
+                    y = -1;
+                    break;
+                case "S":
+                    x = 0;
+                    y = 1;
+                    break;
+                case "NONE":
+                    x = 0;
+                    y = 0;
+                    break;
+                default:
+                    move = false;
+                    break;
+            }
 
-        if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
-            timeSinceLastMove = System.currentTimeMillis();
-            if (level.getTileAt(getX()+x, getY()+y).isPassable() && move) {
-                move(x, y);
-                playerTurn = false;
-                //System.out.println("Player finished turn : " + latestTurn.getTurn());
-                latestTurn.getTurnController().finishedTurn();
+            if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
+                timeSinceLastMove = System.currentTimeMillis();
+                if (level.getTileAt(getX() + x, getY() + y).isPassable() && move) {
+                    move(x, y);
+                    playerTurn = false;
+                    //System.out.println("Player finished turn : " + latestTurn.getTurn());
+                    latestTurn.getTurnController().finishedTurn();
+                }
             }
         }
     }
