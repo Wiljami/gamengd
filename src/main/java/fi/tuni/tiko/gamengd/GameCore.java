@@ -54,7 +54,6 @@ public class GameCore extends Application {
     @Override
     public void init() {
         System.out.println("This is GameCore::Init");
-        //TODO: Change these to a check in Entity or something like that.
         Floor.setup();
         Wall.setup();
         Monster.setup();
