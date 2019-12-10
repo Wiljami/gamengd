@@ -8,7 +8,6 @@ public class TurnController {
     private int turn;
     private CrisisController crisisController;
 
-
     private ArrayList<TurnActor> turnActors;
     private ArrayList<TurnActor> currentTurnActors;
 

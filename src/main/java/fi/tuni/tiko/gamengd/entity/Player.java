@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
@@ -23,45 +24,45 @@ public class Player extends Unit implements CommandTarget {
 
     private void sortInput(String input) {
         if (playerTurn) {
-            int x = 0;
-            int y = 0;
+            int moveX = 0;
+            int moveY = 0;
             boolean move = true;
             switch (input) {
                 case "NW":
-                    x = -1;
-                    y = -1;
+                    moveX = -1;
+                    moveY = -1;
                     break;
                 case "SW":
-                    x = -1;
-                    y = 1;
+                    moveX = -1;
+                    moveY = 1;
                     break;
                 case "NE":
-                    x = 1;
-                    y = -1;
+                    moveX = 1;
+                    moveY = -1;
                     break;
                 case "SE":
-                    x = 1;
-                    y = 1;
+                    moveX = 1;
+                    moveY = 1;
                     break;
                 case "W":
-                    x = -1;
-                    y = 0;
+                    moveX = -1;
+                    moveY = 0;
                     break;
                 case "E":
-                    x = 1;
-                    y = 0;
+                    moveX = 1;
+                    moveY = 0;
                     break;
                 case "N":
-                    x = 0;
-                    y = -1;
+                    moveX = 0;
+                    moveY = -1;
                     break;
                 case "S":
-                    x = 0;
-                    y = 1;
+                    moveX = 0;
+                    moveY = 1;
                     break;
                 case "NONE":
-                    x = 0;
-                    y = 0;
+                    moveX = 0;
+                    moveY = 0;
                     break;
                 default:
                     move = false;
@@ -70,14 +71,25 @@ public class Player extends Unit implements CommandTarget {
 
             if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
                 timeSinceLastMove = System.currentTimeMillis();
-                if (level.getTileAt(getX() + x, getY() + y).isPassable() && move) {
-                    move(x, y);
-                    playerTurn = false;
-                    //System.out.println("Player finished turn : " + latestTurn.getTurn());
-                    latestTurn.getTurnController().finishedTurn();
-                }
+
+                Tile targetTile = level.getTileAt(getX() + moveX, getY() + moveY);
+                if (move && targetTile.isPassable()) sortMove(targetTile);
             }
         }
+    }
+
+    private void sortMove(Tile targetTile) {
+        if (targetTile.hasUnit()) {
+            attack(targetTile.getUnit());
+        } else if (targetTile.isPassable()) {
+            move(targetTile);
+        }
+        playerTurn = false;
+        latestTurn.getTurnController().finishedTurn();
+    }
+
+    private void attack(Unit unit) {
+        System.out.println("PUNCH MONSTER");
     }
 
     @Override
@@ -86,11 +98,12 @@ public class Player extends Unit implements CommandTarget {
     }
 
     @Override
-    void move(int x, int y) {
-        super.move(x, y);
+    void move(Tile tile) {
+        super.move(tile);
         camera.setXY(getX() + 0.5, getY() + 0.5);
-        //System.out.println("Player at x: " + getX() + " y: " + getY());
     }
+
+
 
     @Override
     public void doTurn(TurnInfo turnInfo) {

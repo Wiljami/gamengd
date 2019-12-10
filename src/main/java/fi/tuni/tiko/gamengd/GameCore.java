@@ -65,11 +65,6 @@ public class GameCore extends Application {
         gameView = new GameView();
         Canvas canvas = gameView.getCanvas();
 
-        ChangeListener<Number> canvasSizeListener = (observable, oldValue, newValue) ->
-                cameraController.setCameraChanged(true);
-
-        canvas.widthProperty().addListener(canvasSizeListener);
-        canvas.heightProperty().addListener(canvasSizeListener);
         cameraController = new CameraController(canvas, spriteController);
         inputController.registerCamera(cameraController);
         sortConfigFile(JSONLoader.loadConfig(defaultConfig));

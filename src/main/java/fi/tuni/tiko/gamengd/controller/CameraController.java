@@ -6,6 +6,7 @@ import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +26,11 @@ public class CameraController implements CommandTarget {
     public CameraController(Canvas canvas, SpriteController spriteController) {
         this.canvas = canvas;
         this.spriteController = spriteController;
+        ChangeListener<Number> canvasSizeListener = (observable, oldValue, newValue) ->
+                this.setCameraChanged(true);
+
+        this.canvas.widthProperty().addListener(canvasSizeListener);
+        this.canvas.heightProperty().addListener(canvasSizeListener);
     }
 
     public void updateSprites() {
