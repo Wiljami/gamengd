@@ -16,7 +16,6 @@ import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonConfig;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
