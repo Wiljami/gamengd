@@ -50,7 +50,7 @@ public class Unit extends Entity implements TurnActor {
 
     void receiveAttack (int attackValue) {
         int defenseValue = getDefense() + GameMechanic.randomRoll();
-        System.out.println(defenseValue + " vs. " + attackValue + " = " + (defenseValue - attackValue));
+        //System.out.println(defenseValue + " vs. " + attackValue + " = " + (defenseValue - attackValue));
         int damage = defenseValue - attackValue;
         takeDamage(damage);
     }
