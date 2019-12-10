@@ -4,6 +4,8 @@ import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
+import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
+import fi.tuni.tiko.gamengd.controller.turn.TurnListener;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import javafx.beans.value.ChangeListener;
@@ -14,7 +16,7 @@ import javafx.stage.Popup;
 
 import java.util.HashMap;
 
-public class CameraController implements CommandTarget {
+public class CameraController implements CommandTarget, TurnListener {
     private double x;
     private double y;
     private boolean cameraChanged;
@@ -181,5 +183,10 @@ public class CameraController implements CommandTarget {
     public void receiveCommand(String message) {
         if(message.equals("ZOOMIN")) zoomIn();
         else if(message.equals("ZOOMOUT")) zoomOut();
+    }
+
+    @Override
+    public void inform(TurnInfo turnInfo) {
+        setCameraChanged(true);
     }
 }
