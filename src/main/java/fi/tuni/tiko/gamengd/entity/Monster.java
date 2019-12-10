@@ -4,6 +4,7 @@ import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
+import fi.tuni.tiko.gamengd.util.GameMechanic;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
@@ -70,6 +71,7 @@ public class Monster extends Unit {
     public void doTurn(TurnInfo turnInfo) {
         if (checkForPlayerAdjacency()) {
             System.out.println("PUNCH PLAYER");
+            System.out.println(GameMechanic.randomRoll());
         } else if (pathfind != null) {
             movePathFinding();
         } else {
