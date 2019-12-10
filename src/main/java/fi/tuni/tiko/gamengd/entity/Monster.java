@@ -68,12 +68,22 @@ public class Monster extends Unit {
 
     @Override
     public void doTurn(TurnInfo turnInfo) {
-        if (pathfind != null) {
+        if (checkForPlayerAdjacency()) {
+            System.out.println("PUNCH PLAYER");
+        } else if (pathfind != null) {
             movePathFinding();
         } else {
             chasePlayer();
         }
         super.doTurn(turnInfo);
+    }
+
+    private boolean checkForPlayerAdjacency () {
+        Tile[] neighbours = level.getTileAt(getX(), getY()).getNeighbours();
+        for (Tile t : neighbours) {
+            if (t == level.getPlayer().getTile()) return true;
+        }
+        return false;
     }
 
     private void movePathFinding() {
