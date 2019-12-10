@@ -19,10 +19,6 @@ public class Monster extends Unit {
     private static final String MONSTERFOLDER = "monsters/";
 
     private String id;
-    private String name;
-    private int attack;
-    private int defense;
-    private int hitPoints;
     private transient AStar pathfind;
 
     public static void setup() {
@@ -146,35 +142,5 @@ public class Monster extends Unit {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public void setAttack(int attack) {
-        this.attack = attack;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
-    public int getHitPoints() {
-        return hitPoints;
-    }
-
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
-    }
 }

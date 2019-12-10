@@ -9,6 +9,11 @@ import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 public class Unit extends Entity implements TurnActor {
     Level level;
 
+    private String name;
+    private int attack;
+    private int defense;
+    private int hitPoints;
+
     public Unit(Sprite sprite) {
         super(sprite);
     }
@@ -39,5 +44,37 @@ public class Unit extends Entity implements TurnActor {
 
     public Tile getTile() {
         return level.getTileAt(getX(), getY());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
     }
 }
