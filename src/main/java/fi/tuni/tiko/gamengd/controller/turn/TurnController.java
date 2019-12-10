@@ -10,12 +10,14 @@ public class TurnController {
 
     private ArrayList<TurnActor> turnActors;
     private ArrayList<TurnActor> currentTurnActors;
+    private ArrayList<TurnListener> turnListeners;
 
     public TurnController(CrisisController crisisController) {
         this.crisisController = crisisController;
         setTurn(0);
         turnActors = new ArrayList<>();
         currentTurnActors = new ArrayList<>();
+        turnListeners = new ArrayList<>();
     }
 
     public void addTurn(TurnActor turnActor) {
@@ -32,6 +34,9 @@ public class TurnController {
             newTurn();
         } else {
             TurnInfo turnInfo = new TurnInfo(getTurn(), this);
+            for(TurnListener turnListener : turnListeners) {
+                turnListener.inform(turnInfo);
+            }
             currentTurnActors.remove(0).doTurn(turnInfo);
         }
     }
@@ -45,6 +50,13 @@ public class TurnController {
         turn++;
         currentTurnActors = (ArrayList<TurnActor>)turnActors.clone();
         doTurn();
+    }
+
+    public void registerTurnListener(TurnListener turnListener) {
+        turnListeners.add(turnListener);
+    }
+    public boolean unRegisterTurnListener(TurnListener turnListener) {
+        return turnListeners.remove(turnListener);
     }
 
     public void setTurn(int turn) {
