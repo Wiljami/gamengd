@@ -101,8 +101,19 @@ public class Monster extends Unit {
         if (!tile.hasUnit()) {
             super.move(tile);
         } else {
-            randomMove();
+            if (randomMoveCheck()) randomMove();
         }
+    }
+
+    private boolean randomMoveCheck() {
+        Tile[] neighbours = level.getTileAt(getX(), getY()).getNeighbours();
+        boolean turnDoable = false;
+        for(Tile t : neighbours) {
+            if (t.isEnterable()) {
+                turnDoable = true;
+            }
+        }
+        return  turnDoable;
     }
 
     private void randomMove() {

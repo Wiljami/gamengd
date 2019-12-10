@@ -13,11 +13,6 @@ public class Unit extends Entity implements TurnActor {
         super(sprite);
     }
 
-    void move(int x, int y) {
-        level.getTileAt(getX(), getY()).unitLeaves(this);
-        setXY(getX() + x, getY() + y);
-    }
-
     @Override
     public void setXY(int x, int y) {
         super.setXY(x, y);
@@ -25,7 +20,12 @@ public class Unit extends Entity implements TurnActor {
     }
 
     void move(Tile tile) {
+        level.getTileAt(getX(), getY()).unitLeaves(this);
         setXY(tile.getX(), tile.getY());
+    }
+
+    void move(int x, int y) {
+        move(level.getTileAt(getX() + x, getY() + y));
     }
 
     public void setLevel(Level level) {
