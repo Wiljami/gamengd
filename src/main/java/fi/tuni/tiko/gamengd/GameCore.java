@@ -63,9 +63,7 @@ public class GameCore extends Application {
         turnController = new TurnController(crisisController);
         inputController = new InputController();
         gameView = new GameView();
-        Canvas canvas = gameView.getCanvas();
-
-        cameraController = new CameraController(canvas, spriteController);
+        cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         sortConfigFile(JSONLoader.loadConfig(defaultConfig));
     }
