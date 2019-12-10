@@ -5,6 +5,7 @@ import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.controller.turn.TurnActor;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
+import fi.tuni.tiko.gamengd.util.GameMechanic;
 
 public class Unit extends Entity implements TurnActor {
     Level level;
@@ -40,6 +41,22 @@ public class Unit extends Entity implements TurnActor {
     @Override
     public void doTurn(TurnInfo turnInfo) {
         turnInfo.getTurnController().finishedTurn();
+    }
+
+    void deliverAttack (Unit target) {
+        int attackValue = getAttack() + GameMechanic.randomRoll();
+        target.receiveAttack(attackValue);
+    }
+
+    void receiveAttack (int attackValue) {
+        int defenseValue = getDefense() + GameMechanic.randomRoll();
+        System.out.println(defenseValue + " vs. " + attackValue + " = " + (defenseValue - attackValue));
+        int damage = defenseValue - attackValue;
+        takeDamage(damage);
+    }
+
+    private void takeDamage(int amount) {
+        setHitPoints(getHitPoints()-amount);
     }
 
     public Tile getTile() {

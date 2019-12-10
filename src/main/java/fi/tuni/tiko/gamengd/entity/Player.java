@@ -89,7 +89,7 @@ public class Player extends Unit implements CommandTarget {
     }
 
     private void attack(Unit unit) {
-        System.out.println("PUNCH MONSTER");
+        deliverAttack(unit);
     }
 
     @Override

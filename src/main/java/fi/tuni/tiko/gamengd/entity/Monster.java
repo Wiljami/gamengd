@@ -66,8 +66,7 @@ public class Monster extends Unit {
     @Override
     public void doTurn(TurnInfo turnInfo) {
         if (checkForPlayerAdjacency()) {
-            System.out.println("PUNCH PLAYER");
-            System.out.println(GameMechanic.randomRoll());
+            deliverAttack(level.getPlayer());
         } else if (pathfind != null) {
             movePathFinding();
         } else {
