@@ -1,15 +1,23 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Level;
 import fi.tuni.tiko.gamengd.Tile;
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
+import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
-    public Player(Sprite sprite) {
-        super(sprite);
+
+    public Player(JacksonPlayer playerData, Level level) {
+        super(new Sprite(playerData.getPlayerGraphicFile()));
+        setLevel(level);
+        setXY(playerData.getPlayerSpawnX(), playerData.getPlayerSpawnY());
+        setAttack(playerData.getPlayerAttack());
+        setDefense(playerData.getPlayerDefense());
+        setHitPoints(playerData.getPlayerHitPoints());
     }
 
     private TurnInfo latestTurn;

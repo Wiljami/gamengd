@@ -150,10 +150,7 @@ public class Level implements CrisisSource {
      * @param levelData JacksonLevel data
      */
     private void spawnPlayer(JacksonLevel levelData) {
-        Sprite dude = new Sprite("dude.png");
-        Player player = new Player(dude);
-        player.setLevel(this);
-        player.setXY(levelData.getPlayerSpawnX(), levelData.getPlayerSpawnY());
+        Player player = new Player(levelData.getPlayer(), this);
         setPlayer(player);
         addUnit(player);
     }

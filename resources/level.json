@@ -1,11 +1,13 @@
 {
   "map": "map01.json",
-  "playerSpawnX": 12,
-  "playerSpawnY": 12,
-  "playerHitPoints": 50,
-  "playerAttack": 10,
-  "playerDefense" : 10,
-  
+  "player": {
+    "playerGraphicFile": "dude.png",
+    "playerSpawnX": "12",
+    "playerSpawnY": "12",
+    "playerHitPoints": "50",
+    "playerAttack": "10",
+    "playerDefense": "10"
+  },
   "monsterSpawns": [
     {
       "type": "monster01",
