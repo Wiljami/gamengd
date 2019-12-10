@@ -141,6 +141,4 @@ public class Monster extends Unit {
     public void setId(String id) {
         this.id = id;
     }
-
-
 }
