@@ -120,7 +120,8 @@ public class Level implements CrisisSource {
     private void fillMap(JacksonMap mapData) {
         int[] tileData = {};
         int[] wallData = {};
-        WritableImage[] tileSet = ImageLoader.getTileSet("tileset01");
+        String tileSetKey = mapData.getTileSets().get(0).getName();
+        WritableImage[] tileSet = ImageLoader.getTileSet(tileSetKey);
         for (MapLayer l : mapData.getLayers()) {
             if (l.getName().equals("Floor")) tileData = l.getData();
             if (l.getName().equals("Wall")) wallData = l.getData();
