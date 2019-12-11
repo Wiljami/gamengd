@@ -342,7 +342,7 @@ public class Level implements CrisisSource {
      * @param crisisController crisisController.
      */
     private void registerCrisis(CrisisController crisisController) {
-        crisisController.addCrisis(new Crisis(1, 0, "Hellurei", this));
+        crisisController.addCrisis(new Crisis(1, 0, "spawn01", this));
     }
 
     /**
@@ -352,6 +352,6 @@ public class Level implements CrisisSource {
      */
     @Override
     public void runCrisis(Crisis crisis) {
-        randomSpawn();
+        if (crisis.getId().equals("spawn01")) randomSpawn();
     }
 }
