@@ -1,9 +1,11 @@
 package fi.tuni.tiko.gamengd.util.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JacksonMap {
     @JsonProperty("compressionlevel")
     private int compressionLevel;
