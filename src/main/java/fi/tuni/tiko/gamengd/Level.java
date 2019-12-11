@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd;
 import fi.tuni.tiko.gamengd.controller.crisis.*;
 import fi.tuni.tiko.gamengd.controller.turn.TurnController;
 import fi.tuni.tiko.gamengd.entity.*;
+import fi.tuni.tiko.gamengd.util.ImageLoader;
 import fi.tuni.tiko.gamengd.util.json.*;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
 
@@ -83,6 +84,7 @@ public class Level implements CrisisSource {
         int height = mapData.getHeight();
         generateEmptyMap(width, height);
         fillMap(mapData);
+        ImageLoader.readTileSet(mapData.getTileSets());
         spawnPlayer(levelData);
         spawnMonsters(levelData);
         registerCrisis(core.getCrisisController());

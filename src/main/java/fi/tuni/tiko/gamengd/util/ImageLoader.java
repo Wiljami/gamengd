@@ -1,8 +1,12 @@
 package fi.tuni.tiko.gamengd.util;
 
+import fi.tuni.tiko.gamengd.util.json.TileSet;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -30,6 +34,11 @@ public class ImageLoader {
      * TreeMap of the images that have been loaded.
      */
     private static TreeMap<String, Image> images;
+
+    /**
+     * HashMap containing different map tilesets;
+     */
+    private static HashMap<String, WritableImage[]> tileSets;
 
     /**
      * loadImage method creates an Image from a file.
@@ -64,6 +73,7 @@ public class ImageLoader {
      */
     private static void initiateImages() {
         images = new TreeMap<>();
+        tileSets = new HashMap<>();
         images.put(failPicture, new Image(GRAPHICSFOLDER + failPicture));
     }
 
@@ -101,5 +111,25 @@ public class ImageLoader {
             }
         }
         return frames;
+    }
+
+
+    public static void readTileSet(ArrayList<TileSet> data) {
+        for (TileSet ts : data) {
+            Image tiles = loadImage(ts.getImage());
+            WritableImage[] writableImages = new WritableImage[ts.getColumns()];
+            PixelReader reader = tiles.getPixelReader();
+            String key = ts.getName();
+            if (!tileSets.containsKey(key)) {
+                for (int x = 0; x < ts.getColumns(); x++) {
+                    int width = ts.getTileWidth();
+                    int height = ts.getTileHeight();
+                    WritableImage wi = new WritableImage(reader, x * width, 0,
+                            width, height);
+                    writableImages[x] = wi;
+                }
+            }
+            tileSets.put(key, writableImages);
+        }
     }
 }
