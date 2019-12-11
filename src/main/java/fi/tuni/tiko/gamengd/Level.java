@@ -112,7 +112,7 @@ public class Level implements CrisisSource {
      *
      * fillMap reads the tileData array and begins to fill the level's map
      * with Tiles depending on the data.
-     * @param JacksonMap mapData
+     * @param mapData JacksonMap data
      */
     private void fillMap(JacksonMap mapData) {
         int[] tileData = {};
