@@ -82,7 +82,7 @@ public class Level implements CrisisSource {
         int width = mapData.getWidth();
         int height = mapData.getHeight();
         generateEmptyMap(width, height);
-        fillMap(mapData.getLayers().get(0).getData());
+        fillMap(mapData);
         spawnPlayer(levelData);
         spawnMonsters(levelData);
         registerCrisis(core.getCrisisController());
@@ -112,9 +112,15 @@ public class Level implements CrisisSource {
      *
      * fillMap reads the tileData array and begins to fill the level's map
      * with Tiles depending on the data.
-     * @param tileData int array of data
+     * @param JacksonMap mapData
      */
-    private void fillMap(int[] tileData) {
+    private void fillMap(JacksonMap mapData) {
+        int[] tileData = {};
+        int[] wallData = {};
+        for (MapLayer l : mapData.getLayers()) {
+            if (l.getName().equals("Floor")) tileData = l.getData();
+            if (l.getName().equals("Wall")) wallData = l.getData();
+        }
         int i = 0;
         for (int x = 0; x < getWidth(); x++) {
             for (int y = 0; y < getHeight(); y++) {
@@ -123,8 +129,9 @@ public class Level implements CrisisSource {
                     tile = new Tile(this, x, y, new Floor("floor"));
                     map[x][y] = tile;
                 }
-                if (tileData[i] == 1) {
-                       tile.addWall(new Wall());
+                if (wallData[i] != 0) {
+                   if (tile == null)  tile = new Tile(this, x, y, new Floor("floor"));
+                   tile.addWall(new Wall());
                 }
                 i++;
             }
