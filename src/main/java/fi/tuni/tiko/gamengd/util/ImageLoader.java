@@ -132,4 +132,8 @@ public class ImageLoader {
             tileSets.put(key, writableImages);
         }
     }
+
+    public static WritableImage[] getTileSet(String key) {
+        return tileSets.get(key);
+    }
 }

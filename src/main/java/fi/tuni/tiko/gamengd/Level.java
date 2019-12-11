@@ -6,6 +6,7 @@ import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import fi.tuni.tiko.gamengd.util.json.*;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStarGraph;
+import javafx.scene.image.WritableImage;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -82,9 +83,9 @@ public class Level implements CrisisSource {
         JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
         int width = mapData.getWidth();
         int height = mapData.getHeight();
+        ImageLoader.readTileSet(mapData.getTileSets());
         generateEmptyMap(width, height);
         fillMap(mapData);
-        ImageLoader.readTileSet(mapData.getTileSets());
         spawnPlayer(levelData);
         spawnMonsters(levelData);
         registerCrisis(core.getCrisisController());
@@ -119,6 +120,7 @@ public class Level implements CrisisSource {
     private void fillMap(JacksonMap mapData) {
         int[] tileData = {};
         int[] wallData = {};
+        WritableImage[] tileSet = ImageLoader.getTileSet("tileset01");
         for (MapLayer l : mapData.getLayers()) {
             if (l.getName().equals("Floor")) tileData = l.getData();
             if (l.getName().equals("Wall")) wallData = l.getData();
@@ -128,12 +130,12 @@ public class Level implements CrisisSource {
             for (int y = 0; y < getHeight(); y++) {
                 Tile tile = null;
                 if (tileData[i] != 0) {
-                    tile = new Tile(this, x, y, new Floor("floor"));
+                    tile = new Tile(this, x, y, new Floor(tileSet[tileData[i] - 1]));
                     map[x][y] = tile;
                 }
                 if (wallData[i] != 0) {
                    if (tile == null)  tile = new Tile(this, x, y, new Floor("floor"));
-                   tile.addWall(new Wall());
+                   tile.addWall(new Wall(tileSet[wallData[i] - 1]));
                 }
                 i++;
             }
