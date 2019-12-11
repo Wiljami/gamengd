@@ -10,7 +10,6 @@ public class Floor extends Entity {
     private static Image emptyFloor;
 
     public static void setup() {
-        floor = ImageLoader.loadImage("tile.png");
         emptyFloor = ImageLoader.loadImage("voidtile.png");
     }
 

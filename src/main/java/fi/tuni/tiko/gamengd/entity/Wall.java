@@ -9,7 +9,6 @@ public class Wall extends Entity {
     private static Image wall;
 
     public static void setup() {
-        wall = ImageLoader.loadImage("wall.png");
     }
 
     public Wall() {
