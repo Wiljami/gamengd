@@ -134,7 +134,7 @@ public class Level implements CrisisSource {
                     map[x][y] = tile;
                 }
                 if (wallData[i] != 0) {
-                   if (tile == null)  tile = new Tile(this, x, y, new Floor("floor"));
+                   if (tile == null)  tile = new Tile(this, x, y, new Floor());
                    tile.addWall(new Wall(tileSet[wallData[i] - 1]));
                 }
                 i++;
@@ -164,30 +164,6 @@ public class Level implements CrisisSource {
         Player player = new Player(levelData.getPlayer(), this);
         setPlayer(player);
         addUnit(player);
-    }
-
-    /**
-     * createRoom method creates a room with floors and walls surrounding it.
-     *
-     * Creates a room with walls and floors. Currently there is no check to see if
-     * the room is within the level.
-     * @param positionX x-coordinate of the top left corner
-     * @param positionY y-coordinate of the top left corner
-     * @param width width of the room
-     * @param height height of the room
-     */
-    public void createRoom(int positionX, int positionY, int width, int height) {
-        for (int x = positionX; x < width + positionX; x++) {
-            for (int y = positionY; y < height + positionY; y++) {
-                Tile tile =  new Tile(this, x, y, new Floor("floor"));
-                map[x][y] = tile;
-                if (x == positionX || y == positionY ||
-                        x == width + positionX-1 || y == height + positionY-1) {
-                    tile.addWall(new Wall());
-                }
-            }
-        }
-
     }
 
     /**
