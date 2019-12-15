@@ -85,6 +85,15 @@ public class GameCore extends Application {
     public void changeLevel(String id, Player player) {
         currentLevel.removeUnit(player);
         currentLevel = levels.get(id);
+        updatePlayerOnLevel(player);
+    }
+
+    private void addPlayer(Player player) {
+        updatePlayerOnLevel(player);
+        inputController.registerPlayer(player);
+    }
+
+    private void updatePlayerOnLevel(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         cameraController.setLevel(currentLevel);
@@ -163,15 +172,6 @@ public class GameCore extends Application {
         });
 
         return scene;
-    }
-
-    private void addPlayer(Player player) {
-        player.setupCamera(cameraController);
-        cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
-        cameraController.setLevel(currentLevel);
-        inputController.registerPlayer(player);
-        currentLevel.addUnit(player);
-        currentLevel.setPlayer(player);
     }
 
     public static void setResolution(double x, double y) {
