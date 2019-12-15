@@ -157,7 +157,7 @@ public class Level implements CrisisSource {
      * @param levelData JacksonLevel data
      */
     private void spawnMonsters(JacksonLevel levelData) {
-        for (MonsterSpawn s : levelData.getMonsterSpawns()) {
+        for (JacksonLevel.MonsterSpawn s : levelData.getMonsterSpawns()) {
             Monster m = Monster.spawn(s.getType(), s.getSpawnPointX(), s.getSpawnPointY(), this);
             addUnit(m);
         }
