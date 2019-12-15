@@ -30,7 +30,7 @@ public class GameCore extends Application {
     private static double minResolutionY = 400;
     private static boolean fullScreen = false;
     private static String windowTitle = "GamEngD Game Engine";
-    private static String defaultConfig = "config.json";
+    private static String defaultGame = "game.json";
 
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
@@ -66,13 +66,13 @@ public class GameCore extends Application {
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         turnController.registerTurnListener(cameraController);
-        sortConfigFile(JSONLoader.loadConfig(defaultConfig));
+        sortGameFile(JSONLoader.loadGameFile(defaultGame));
     }
 
-    private void sortConfigFile(JacksonConfig config) {
-        addLevel(new Level(config.getLevelFile(), this));
-        setWindowTitle(config.getWindowTitle());
-        setResolution(config.getResolutionX(), config.getResolutionY());
+    private void sortGameFile(JacksonConfig game) {
+        addLevel(new Level(game.getLevelFile(), this));
+        setWindowTitle(game.getWindowTitle());
+        setResolution(game.getResolutionX(), game.getResolutionY());
     }
 
     @Override
@@ -175,12 +175,12 @@ public class GameCore extends Application {
         windowTitle = title;
     }
 
-    public static void setDefaultConfig(String defaultConfig) {
-        GameCore.defaultConfig = defaultConfig;
+    public static void setDefaultGame(String defaultGame) {
+        GameCore.defaultGame = defaultGame;
     }
 
-    public static String getDefaultConfig() {
-        return defaultConfig;
+    public static String getDefaultGame() {
+        return defaultGame;
     }
 
     public CrisisController getCrisisController() {

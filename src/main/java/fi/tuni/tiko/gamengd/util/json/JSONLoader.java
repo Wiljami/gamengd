@@ -53,7 +53,7 @@ public class JSONLoader {
      * @param fileName name of the file to load
      * @return JacksonConfig object
      */
-    public static JacksonConfig loadConfig(String fileName) {
+    public static JacksonConfig loadGameFile(String fileName) {
         JacksonConfig config = new JacksonConfig();
         ObjectMapper objectMapper = new ObjectMapper();
 
