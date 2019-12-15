@@ -141,7 +141,7 @@ public class Level implements CrisisSource {
                     map[x][y] = tile;
                 }
                 if (wallData[i] != 0) {
-                   if (tile == null)  tile = new Tile(this, x, y, new Floor());
+                   if (tile == null) tile = new Tile(this, x, y, new Floor());
                    tile.addWall(new Wall(tileSet[wallData[i] - 1]));
                 }
                 i++;
