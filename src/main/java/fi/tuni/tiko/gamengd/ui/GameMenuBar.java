@@ -5,6 +5,10 @@ import javafx.scene.control.*;
 
 public class GameMenuBar extends MenuBar {
     public GameMenuBar() {
+        getMenus().addAll(menuFile(), gameMenu(), menuAbout());
+    }
+
+    private Menu menuFile() {
         Menu menuFile = new javafx.scene.control.Menu("File");
 
         MenuItem separator = new SeparatorMenuItem();
@@ -13,8 +17,23 @@ public class GameMenuBar extends MenuBar {
         itemExit.setOnAction(actionEvent -> Platform.exit());
 
         menuFile.getItems().addAll(separator, itemExit);
+        return menuFile;
+    }
 
-        getMenus().addAll(menuFile, menuAbout());
+    private Menu gameMenu() {
+        Menu gameMenu = new Menu("Game");
+        MenuItem rename = new MenuItem("Rename Player");
+        rename.setOnAction(actionEvent -> new TextInputDialog().showAndWait());
+        gameMenu.getItems().addAll(rename);
+        return gameMenu;
+    }
+
+    private Menu menuAbout() {
+        Menu menuAbout =  new Menu("About");
+        MenuItem itemAbout = new MenuItem("About Gamengd");
+        itemAbout.setOnAction(actionEvent -> aboutDialog().showAndWait());
+        menuAbout.getItems().addAll(itemAbout);
+        return menuAbout;
     }
 
     private Alert aboutDialog() {
@@ -23,14 +42,5 @@ public class GameMenuBar extends MenuBar {
         alert.setHeaderText("Gamengd");
         alert.setContentText("Gamengd");
         return alert;
-    }
-
-
-    private Menu menuAbout() {
-        Menu menuAbout =  new Menu("About");
-        MenuItem itemAbout = new MenuItem("About Gamengd");
-        itemAbout.setOnAction(actionEvent -> aboutDialog().showAndWait());
-        menuAbout.getItems().addAll(itemAbout);
-        return menuAbout;
     }
 }
