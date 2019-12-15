@@ -1,16 +1,9 @@
 package fi.tuni.tiko.gamengd.ui;
 
 import fi.tuni.tiko.gamengd.controller.input.InputController;
-import fi.tuni.tiko.gamengd.controller.input.InputEvent;
-import fi.tuni.tiko.gamengd.util.ImageLoader;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Arc;
 
 public class UI extends BorderPane {
     private InputController inputController;
