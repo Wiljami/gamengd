@@ -13,6 +13,7 @@ import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonGame;
+import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -34,9 +35,10 @@ public class GameCore extends Application {
 
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
+    private ArrayList<Level> levels = new ArrayList<>();
     private long lastNanoTime;
 
-    private Level level;
+    private Level currentLevel;
 
     private CameraController cameraController;
     private SpriteController spriteController;
@@ -70,7 +72,17 @@ public class GameCore extends Application {
     }
 
     private void sortGameFile(JacksonGame game) {
-        addLevel(new Level(game.getLevels()[0], this));
+        for (JacksonLevel levelData: game.getLevels()) {
+            levels.add(new Level(levelData, this));
+        }
+
+
+        for (Level l : levels) {
+            if (l.getId().equals(game.getPlayer().getLevelId())) currentLevel = l;
+        }
+
+        addPlayer(new Player(game.getPlayer(), currentLevel));
+
         setWindowTitle(game.getWindowTitle());
         setResolution(game.getResolutionX(), game.getResolutionY());
     }
@@ -151,14 +163,10 @@ public class GameCore extends Application {
     private void addPlayer(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
+        cameraController.setLevel(currentLevel);
         inputController.registerPlayer(player);
-        player.setLevel(level);
-    }
-
-    public void addLevel(Level level) {
-        this.level = level;
-        cameraController.setLevel(level);
-        addPlayer(level.getPlayer());
+        currentLevel.addUnit(player);
+        currentLevel.setPlayer(player);
     }
 
     public static void setResolution(double x, double y) {
@@ -211,7 +219,7 @@ public class GameCore extends Application {
         return inputController;
     }
 
-    public Level getLevel() {
-        return level;
+    public Level getCurrentLevel() {
+        return currentLevel;
     }
 }

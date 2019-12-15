@@ -7,6 +7,7 @@ public class JacksonPlayer {
     private int playerHitPoints;
     private int playerAttack;
     private int playerDefense;
+    private String levelId;
 
     public JacksonPlayer() {
     }
@@ -57,5 +58,13 @@ public class JacksonPlayer {
 
     public void setPlayerGraphicFile(String playerGraphicFile) {
         this.playerGraphicFile = playerGraphicFile;
+    }
+
+    public String getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(String levelId) {
+        this.levelId = levelId;
     }
 }

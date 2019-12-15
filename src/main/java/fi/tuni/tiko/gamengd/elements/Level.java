@@ -58,6 +58,8 @@ public class Level implements CrisisSource {
      */
     private Tile[] openTiles;
 
+    private String id;
+
     /**
      * Constructor for creating empty level.
      *
@@ -75,18 +77,18 @@ public class Level implements CrisisSource {
      * This constructor uses the file given to read a JacksonLevel object.
      * The JacksonLevel object holds the data the level needs to construct
      * itself.
-     * @param file file name of the json file
+     * @param levelData object with the levelData
      * @param core reference to the gameCore
      */
     public Level(JacksonLevel levelData, GameCore core) {
         JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
+        this.id = levelData.getId();
         this.turnController = core.getTurnController();
         int width = mapData.getWidth();
         int height = mapData.getHeight();
         ImageLoader.readTileSet(mapData.getTileSets());
         generateEmptyMap(width, height);
         fillMap(mapData);
-        spawnPlayer(levelData);
         spawnMonsters(levelData);
         registerCrisis(core.getCrisisController());
         setaStarGraph(new AStarGraph(this));
@@ -161,8 +163,8 @@ public class Level implements CrisisSource {
      * spawnMonsters spawns the player defined in the JacksonLevel data.
      * @param levelData JacksonLevel data
      */
-    private void spawnPlayer(JacksonLevel levelData) {
-        Player player = new Player(levelData.getPlayer(), this);
+    private void spawnPlayer(Player player) {
+        player.setLevel(this);
         setPlayer(player);
         addUnit(player);
     }
@@ -334,5 +336,9 @@ public class Level implements CrisisSource {
     @Override
     public void runCrisis(Crisis crisis) {
         if (crisis.getId().equals("spawn01")) randomSpawn();
+    }
+
+    public String getId() {
+        return id;
     }
 }

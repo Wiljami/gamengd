@@ -5,6 +5,7 @@ public class JacksonGame {
     private int resolutionX;
     private int resolutionY;
     private JacksonLevel[] levels;
+    private JacksonPlayer player;
 
     public JacksonGame() {
     }
@@ -39,5 +40,13 @@ public class JacksonGame {
 
     public void setLevels(JacksonLevel[] levels) {
         this.levels = levels;
+    }
+
+    public JacksonPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(JacksonPlayer player) {
+        this.player = player;
     }
 }

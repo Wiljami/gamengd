@@ -15,7 +15,7 @@ public class UI extends BorderPane {
     public UI(GameCore gameCore) {
         this.inputController = gameCore.getInputController();
         this.uiController = gameCore.getUiController();
-        this.player = gameCore.getLevel().getPlayer();
+        this.player = gameCore.getCurrentLevel().getPlayer();
         setCenter(gameCore.getGameView());
         setTop(topBar());
         setBottom(bottomBar());

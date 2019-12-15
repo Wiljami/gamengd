@@ -3,15 +3,6 @@
   "levels": [
     {
       "map": "map01.json",
-      "level": "1",
-      "player": {
-        "playerGraphicFile": "dude.png",
-        "playerSpawnX": "12",
-        "playerSpawnY": "12",
-        "playerHitPoints": "50",
-        "playerAttack": "10",
-        "playerDefense": "10"
-      },
       "monsterSpawns": [
         {
           "type": "monster01",
@@ -38,9 +29,20 @@
           "spawnPointX": "37",
           "spawnPointY": "16"
         }
-      ]
+      ],
+      "level": "1",
+      "id": "01"
     }
   ],
   "resolutionX": 800,
-  "resolutionY": 600
+  "resolutionY": 600,
+  "player": {
+    "playerGraphicFile": "dude.png",
+    "playerSpawnX": "12",
+    "playerSpawnY": "12",
+    "playerHitPoints": "50",
+    "playerAttack": "10",
+    "playerDefense": "10",
+    "levelId": "01"
+  }
 }
