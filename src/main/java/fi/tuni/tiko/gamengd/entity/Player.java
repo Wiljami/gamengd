@@ -69,8 +69,8 @@ public class Player extends Unit implements CommandTarget {
                     moveY = 1;
                     break;
                 case "NONE":
-                    moveX = 0;
-                    moveY = 0;
+                    move = false;
+                    finishTurn();
                     break;
                 default:
                     move = false;
@@ -86,14 +86,18 @@ public class Player extends Unit implements CommandTarget {
         }
     }
 
+    private void finishTurn() {
+        playerTurn = false;
+        latestTurn.getTurnController().finishedTurn();
+    }
+
     private void sortMove(Tile targetTile) {
         if (targetTile.hasUnit()) {
             attack(targetTile.getUnit());
         } else if (targetTile.isPassable()) {
             move(targetTile);
         }
-        playerTurn = false;
-        latestTurn.getTurnController().finishedTurn();
+        finishTurn();
     }
 
     private void attack(Unit unit) {
