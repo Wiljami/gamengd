@@ -31,8 +31,7 @@ public class UI extends BorderPane {
     }
 
     private VBox bottomBar() {
-        Label label = new Label("Hi, I am the bottomBar");
-        VBox topBar = new VBox(label);
+        VBox topBar = new VBox(new GameLog());
         return topBar;
     }
 
