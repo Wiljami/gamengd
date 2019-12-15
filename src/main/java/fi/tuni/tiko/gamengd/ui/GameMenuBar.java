@@ -3,8 +3,8 @@ package fi.tuni.tiko.gamengd.ui;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 
-public class GamengdMenuBar extends MenuBar {
-    public GamengdMenuBar() {
+public class GameMenuBar extends MenuBar {
+    public GameMenuBar() {
         Menu menuFile = new javafx.scene.control.Menu("File");
 
         MenuItem separator = new SeparatorMenuItem();
