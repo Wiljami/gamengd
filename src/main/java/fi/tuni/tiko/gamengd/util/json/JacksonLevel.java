@@ -48,6 +48,8 @@ public class JacksonLevel {
         private boolean up;
         private int x;
         private int y;
+        private int conX;
+        private int conY;
         private String connection;
         public StairData() {}
 
@@ -81,6 +83,22 @@ public class JacksonLevel {
 
         public void setConnection(String connection) {
             this.connection = connection;
+        }
+
+        public int getConX() {
+            return conX;
+        }
+
+        public void setConX(int conX) {
+            this.conX = conX;
+        }
+
+        public int getConY() {
+            return conY;
+        }
+
+        public void setConY(int conY) {
+            this.conY = conY;
         }
     }
 

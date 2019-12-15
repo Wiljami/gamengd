@@ -35,7 +35,9 @@
         "up": "false",
         "x": "10",
         "y": "10",
-        "connection": "02"
+        "connection": "02",
+        "conX": "10",
+        "conY": "10"
       }]
     },
     {
