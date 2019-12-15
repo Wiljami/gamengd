@@ -1,7 +1,5 @@
 package fi.tuni.tiko.gamengd.controller.ui;
 
-import fi.tuni.tiko.gamengd.entity.Player;
-
 import java.util.ArrayList;
 
 public class UIController {
@@ -14,9 +12,9 @@ public class UIController {
         uiListeners.add(listener);
     }
 
-    public void trigger (Player player) {
+    public void trigger () {
         for (UIListener uiListener : uiListeners) {
-            uiListener.receivePlayerData(player);
+            uiListener.triggerUIListener();
         }
     }
 }

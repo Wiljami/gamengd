@@ -31,12 +31,16 @@ public class UI extends BorderPane {
     }
 
     private VBox bottomBar() {
-        VBox topBar = new VBox(new GameLog());
+        GameLog gameLog = new GameLog();
+        uiController.addUIListener(gameLog);
+        VBox topBar = new VBox(gameLog);
         return topBar;
     }
 
     private Pane rightColumn() {
-        VBox rightColumn = new VBox(new PlayerDisplay(uiController, player), new ArrowPad(inputController));
+        PlayerDisplay playerDisplay = new PlayerDisplay(player);
+        uiController.addUIListener(playerDisplay);
+        VBox rightColumn = new VBox(playerDisplay, new ArrowPad(inputController));
         return rightColumn;
     }
 
@@ -45,5 +49,4 @@ public class UI extends BorderPane {
         VBox topBar = new VBox(label);
         return topBar;
     }
-
 }

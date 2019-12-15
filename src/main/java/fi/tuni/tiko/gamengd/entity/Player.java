@@ -119,7 +119,7 @@ public class Player extends Unit implements CommandTarget {
 
     private void registerChange() {
         if (uiController != null) {
-            uiController.trigger(this);
+            uiController.trigger();
         }
     }
 

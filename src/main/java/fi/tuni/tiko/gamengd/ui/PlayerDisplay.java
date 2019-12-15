@@ -14,15 +14,17 @@ public class PlayerDisplay extends GridPane implements UIListener {
     private Text hitPoints;
     private Text attack;
     private Text defence;
-    public PlayerDisplay(UIController uiController, Player player) {
+    private Player player;
+    public PlayerDisplay(Player player) {
+        this.player = player;
+
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(10, 10, 10, 10));
         setupLabels();
         setupChangingTexts();
 
-        uiController.addUIListener(this);
-        receivePlayerData(player);
+        triggerUIListener();
     }
 
     private void setupChangingTexts() {
@@ -62,7 +64,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
     }
 
     @Override
-    public void receivePlayerData(Player player) {
+    public void triggerUIListener() {
         name.setText(player.getName());
         hitPoints.setText(Integer.toString(player.getHitPoints()));
         attack.setText(Integer.toString(player.getAttack()));
