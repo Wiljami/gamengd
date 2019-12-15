@@ -11,7 +11,6 @@ import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
-    private UIController uiController;
 
     public Player(JacksonPlayer playerData, Level level) {
         super(new Sprite(playerData.getPlayerGraphicFile()));
@@ -30,10 +29,6 @@ public class Player extends Unit implements CommandTarget {
 
     public void setupCamera (CameraController camera) {
         this.camera = camera;
-    }
-
-    public void setupUIController (UIController uiController) {
-        this.uiController = uiController;
     }
 
     private void sortInput(String input) {

@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
@@ -14,9 +15,14 @@ public class Unit extends Entity implements TurnActor {
     private int attack;
     private int defense;
     private int hitPoints;
+    static UIController uiController;
 
     public Unit(Sprite sprite) {
         super(sprite);
+    }
+
+    public static void registerUIController(UIController controller) {
+        uiController = controller;
     }
 
     @Override
@@ -44,19 +50,25 @@ public class Unit extends Entity implements TurnActor {
     }
 
     void deliverAttack (Unit target) {
-        int attackValue = getAttack() + GameMechanic.randomRoll();
-        target.receiveAttack(this, attackValue);
+        int randomRoll = GameMechanic.randomRoll();
+        int attackValue = getAttack() + randomRoll;
+        String message = this.name + " rolls " + randomRoll + " for attack for total " + attackValue + ".";
+        target.receiveAttack(this, attackValue, message);
     }
 
-    void receiveAttack (Unit attacker, int attackValue) {
+    void receiveAttack (Unit attacker, int attackValue, String message) {
+        int randomRoll = GameMechanic.randomRoll();
         int defenseValue = getDefense() + GameMechanic.randomRoll();
-        //System.out.println(defenseValue + " vs. " + attackValue + " = " + (defenseValue - attackValue));
-        int damage = defenseValue - attackValue;
-        takeDamage(damage);
+
+        message += " " + this.name + " rolls " + randomRoll + " for defence for total " + defenseValue + ".";
+        uiController.trigger(message);
+
+        takeDamage(attackValue, defenseValue);
     }
 
-    private void takeDamage(int amount) {
-        setHitPoints(getHitPoints()-amount);
+    private void takeDamage(int attackValue, int defenseValue) {
+        int damage = defenseValue - attackValue;
+        setHitPoints(getHitPoints() - damage);
     }
 
     public Tile getTile() {

@@ -24,6 +24,8 @@ public class GameLog extends ScrollPane implements UIListener {
             text += s + "\n";
         }
         textArea.setText(text);
+        textArea.setScrollTop(0);
+        textArea.setScrollLeft(0);
     }
 
     private TextArea createTextArea() {
@@ -36,6 +38,7 @@ public class GameLog extends ScrollPane implements UIListener {
 
     @Override
     public void triggerUIListener(String message) {
-
+        textLog.add(message);
+        updateTextArea();
     }
 }

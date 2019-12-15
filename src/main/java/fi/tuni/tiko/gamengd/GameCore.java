@@ -8,10 +8,7 @@ import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.turn.TurnController;
 import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.elements.Level;
-import fi.tuni.tiko.gamengd.entity.Floor;
-import fi.tuni.tiko.gamengd.entity.Monster;
-import fi.tuni.tiko.gamengd.entity.Player;
-import fi.tuni.tiko.gamengd.entity.Wall;
+import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
@@ -64,6 +61,7 @@ public class GameCore extends Application {
         turnController = new TurnController(crisisController);
         inputController = new InputController();
         uiController = new UIController();
+        Unit.registerUIController(uiController);
         gameView = new GameView();
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
@@ -152,7 +150,6 @@ public class GameCore extends Application {
 
     private void addPlayer(Player player) {
         player.setupCamera(cameraController);
-        player.setupUIController(uiController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputController.registerPlayer(player);
         player.setLevel(level);
