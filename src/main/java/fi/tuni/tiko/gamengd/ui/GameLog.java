@@ -2,6 +2,7 @@ package fi.tuni.tiko.gamengd.ui;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.LinkedList;
 
@@ -25,6 +26,9 @@ public class GameLog extends ScrollPane {
         for (String s : textLog) {
             text += s + "\n";
         }
+
+        text = StringUtils.chomp(text);
+
         textArea.setText(text);
         textArea.setScrollTop(Double.MAX_VALUE);
     }
