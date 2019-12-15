@@ -26,20 +26,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameCore extends Application {
-    private static double resolutionX = 1200;
-    private static double resolutionY = 800;
-    private static double minResolutionX = 600;
-    private static double minResolutionY = 400;
-    private static boolean fullScreen = false;
-    private static String windowTitle = "GamEngD Game Engine";
-    private static String defaultGame = "game.json";
-
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
     private HashMap<String, Level> levels = new HashMap<>();
     private long lastNanoTime;
 
     private Level currentLevel;
+    private static String windowTitle;
 
     private CameraController cameraController;
     private SpriteController spriteController;
@@ -67,7 +60,7 @@ public class GameCore extends Application {
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         turnController.registerTurnListener(cameraController);
-        sortGameFile(JSONLoader.loadGameFile(defaultGame));
+        sortGameFile(JSONLoader.loadGameFile(Config.defaultGame));
     }
 
     private void sortGameFile(JacksonGame game) {
@@ -113,9 +106,9 @@ public class GameCore extends Application {
         stage.setScene(createScene());
 
         stage.show();
-        stage.setMinWidth(minResolutionX);
-        stage.setMinHeight(minResolutionY);
-        stage.setFullScreen(fullScreen);
+        stage.setMinWidth(Config.minResolutionX);
+        stage.setMinHeight(Config.minResolutionY);
+        stage.setFullScreen(Config.fullScreen);
 
         startAnimationTimer();
         startTurnController();
@@ -157,7 +150,7 @@ public class GameCore extends Application {
 
     private Scene createScene() {
         UI ui = new UI(this);
-        Scene scene = new Scene(ui, resolutionX, resolutionY);
+        Scene scene = new Scene(ui, Config.resolutionX, Config.resolutionY);
 
         scene.setOnKeyPressed(keyEvent -> {
             String key = keyEvent.getCode().toString();
@@ -175,26 +168,8 @@ public class GameCore extends Application {
         return scene;
     }
 
-    public static void setResolution(double x, double y) {
-        resolutionX = x;
-        resolutionY = y;
-    }
-
-    public static void setMinResolution(double x, double y) {
-        minResolutionX = x;
-        minResolutionY = y;
-    }
-
     public static void setWindowTitle(String title) {
         windowTitle = title;
-    }
-
-    public static void setDefaultGame(String defaultGame) {
-        GameCore.defaultGame = defaultGame;
-    }
-
-    public static String getDefaultGame() {
-        return defaultGame;
     }
 
     public CrisisController getCrisisController() {
@@ -203,14 +178,6 @@ public class GameCore extends Application {
 
     public TurnController getTurnController() {
         return turnController;
-    }
-
-    public static boolean isFullScreen() {
-        return fullScreen;
-    }
-
-    public static void setFullScreen(boolean fullScreen) {
-        GameCore.fullScreen = fullScreen;
     }
 
     public UIController getUiController() {
