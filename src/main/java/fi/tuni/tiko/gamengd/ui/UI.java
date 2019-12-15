@@ -26,7 +26,7 @@ public class UI extends BorderPane {
 
     private VBox topBar() {
         Label label = new Label("Hi, I am the topBar");
-        VBox topBar = new VBox(new GameMenuBar(), label);
+        VBox topBar = new VBox(new GameMenuBar(player), label);
         return topBar;
     }
 

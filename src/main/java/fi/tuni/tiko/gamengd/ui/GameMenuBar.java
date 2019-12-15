@@ -1,10 +1,13 @@
 package fi.tuni.tiko.gamengd.ui;
 
+import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 
 public class GameMenuBar extends MenuBar {
-    public GameMenuBar() {
+    private Player player;
+    public GameMenuBar(Player player) {
+        this.player = player;
         getMenus().addAll(menuFile(), gameMenu(), menuAbout());
     }
 
@@ -23,9 +26,19 @@ public class GameMenuBar extends MenuBar {
     private Menu gameMenu() {
         Menu gameMenu = new Menu("Game");
         MenuItem rename = new MenuItem("Rename Player");
-        rename.setOnAction(actionEvent -> new TextInputDialog().showAndWait());
+        rename.setOnAction(actionEvent -> {
+            TextInputDialog renameItem = renameCharacter();
+            renameItem.showAndWait();
+            player.setName(renameItem.getResult());
+        });
         gameMenu.getItems().addAll(rename);
         return gameMenu;
+    }
+
+    private TextInputDialog renameCharacter() {
+        TextInputDialog dialog = new TextInputDialog("test");
+        dialog.setHeaderText("Rename your character");
+        return dialog;
     }
 
     private Menu menuAbout() {
