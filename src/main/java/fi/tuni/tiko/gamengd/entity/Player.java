@@ -6,7 +6,6 @@ import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
-import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
 
 public class Player extends Unit implements CommandTarget {
