@@ -128,6 +128,7 @@ public class Level implements CrisisSource {
             if (l.getName().equals("Floor")) tileData = l.getData();
             if (l.getName().equals("Wall")) wallData = l.getData();
         }
+
         int i = 0;
         for (int x = 0; x < getWidth(); x++) {
             for (int y = 0; y < getHeight(); y++) {
@@ -159,10 +160,6 @@ public class Level implements CrisisSource {
         }
     }
 
-    /**
-     * spawnMonsters spawns the player defined in the JacksonLevel data.
-     * @param levelData JacksonLevel data
-     */
     private void spawnPlayer(Player player) {
         player.setLevel(this);
         setPlayer(player);

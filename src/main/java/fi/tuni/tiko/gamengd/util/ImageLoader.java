@@ -116,20 +116,22 @@ public class ImageLoader {
 
     public static void readTileSet(ArrayList<TileSet> data) {
         for (TileSet ts : data) {
-            Image tiles = loadImage(ts.getImage());
-            WritableImage[] writableImages = new WritableImage[ts.getColumns()];
-            PixelReader reader = tiles.getPixelReader();
             String key = ts.getName();
             if (!tileSets.containsKey(key)) {
-                for (int x = 0; x < ts.getColumns(); x++) {
-                    int width = ts.getTileWidth();
-                    int height = ts.getTileHeight();
-                    WritableImage wi = new WritableImage(reader, x * width, 0,
-                            width, height);
-                    writableImages[x] = wi;
+                Image tiles = loadImage(ts.getImage());
+                WritableImage[] writableImages = new WritableImage[ts.getColumns()];
+                PixelReader reader = tiles.getPixelReader();
+                if (!tileSets.containsKey(key)) {
+                    for (int x = 0; x < ts.getColumns(); x++) {
+                        int width = ts.getTileWidth();
+                        int height = ts.getTileHeight();
+                        WritableImage wi = new WritableImage(reader, x * width, 0,
+                                width, height);
+                        writableImages[x] = wi;
+                    }
                 }
+                tileSets.put(key, writableImages);
             }
-            tileSets.put(key, writableImages);
         }
     }
 
