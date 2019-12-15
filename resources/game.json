@@ -1,5 +1,5 @@
 {
-  "windowTitle": "Dungeons of Tikonyr",
+  "gameTitle": "Dungeons of Tikonyr",
   "levels": [
     {
       "map": "map01.json",

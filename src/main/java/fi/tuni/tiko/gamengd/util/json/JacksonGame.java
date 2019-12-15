@@ -1,19 +1,19 @@
 package fi.tuni.tiko.gamengd.util.json;
 
 public class JacksonGame {
-    private String windowTitle;
+    private String gameTitle;
     private JacksonLevel[] levels;
     private JacksonPlayer player;
 
     public JacksonGame() {
     }
 
-    public String getWindowTitle() {
-        return windowTitle;
+    public String getGameTitle() {
+        return gameTitle;
     }
 
-    public void setWindowTitle(String windowTitle) {
-        this.windowTitle = windowTitle;
+    public void setGameTitle(String gameTitle) {
+        this.gameTitle = gameTitle;
     }
 
     public JacksonLevel[] getLevels() {
