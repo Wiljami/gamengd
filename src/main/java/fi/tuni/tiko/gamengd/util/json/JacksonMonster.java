@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd.util.json;
 
+import fi.tuni.tiko.gamengd.entity.Monster;
+
 /**
  * JacksonMonster is json data read to an object.
  *
@@ -34,6 +36,8 @@ public class JacksonMonster {
      * JacksonMonster hitPoints.
      */
     private int hitPoints;
+
+    private Monster.Behavior behavior;
 
     /**
      * JacksonMonster constructor.
@@ -135,5 +139,13 @@ public class JacksonMonster {
      */
     public void setGraphic(String graphic) {
         this.graphic = graphic;
+    }
+
+    public Monster.Behavior getBehavior() {
+        return behavior;
+    }
+
+    public void setBehavior(Monster.Behavior behavior) {
+        this.behavior = behavior;
     }
 }

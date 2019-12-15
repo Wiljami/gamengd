@@ -14,11 +14,17 @@ import java.io.File;
 import java.util.HashMap;
 
 public class Monster extends Unit {
+    public enum Behavior {
+        DEFAULT,
+        AGGRESSIVE
+    }
+
     private static HashMap<String, Monster> monsterProtoTypes;
     private static final String MONSTERFOLDER = "monsters/";
 
     private String id;
     private transient AStar pathfind;
+    private Behavior behavior = Behavior.DEFAULT;
 
     public static void setup() {
         monsterProtoTypes = new HashMap<>();
@@ -40,6 +46,7 @@ public class Monster extends Unit {
         setDefense(jm.getDefense());
         setHitPoints(jm.getHitPoints());
         setMaxHitPoints(getHitPoints());
+        setBehavior(jm.getBehavior());
     }
 
     public Monster(Monster protoMonster) {
@@ -139,5 +146,13 @@ public class Monster extends Unit {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Behavior getBehavior() {
+        return behavior;
+    }
+
+    public void setBehavior(Behavior behavior) {
+        this.behavior = behavior;
     }
 }
