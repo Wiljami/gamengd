@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 
 public abstract class Entity {
@@ -7,9 +8,18 @@ public abstract class Entity {
     private int x;
     private int y;
 
+    static GameCore gameCore;
+
     public Entity (Sprite sprite, int x, int y) {
         setSprite(sprite);
         setXY(x, y);
+    }
+
+    public static void setup(GameCore c) {
+        gameCore = c;
+        Floor.setup();
+        Wall.setup();
+        Monster.setup();
     }
 
     public Entity (Sprite sprite) {
@@ -45,5 +55,9 @@ public abstract class Entity {
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static void setGameCore(GameCore gameCore) {
+        Entity.gameCore = gameCore;
     }
 }

@@ -56,9 +56,7 @@ public class GameCore extends Application {
     @Override
     public void init() {
         System.out.println("This is GameCore::Init");
-        Floor.setup();
-        Wall.setup();
-        Monster.setup();
+        Entity.setup(this);
         spriteController = new SpriteController();
         crisisController = new CrisisController();
         turnController = new TurnController(crisisController);
