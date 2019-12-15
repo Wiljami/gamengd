@@ -65,7 +65,8 @@ public class PlayerDisplay extends GridPane implements UIListener {
     @Override
     public void triggerUIListener() {
         name.setText(player.getName());
-        hitPoints.setText(Integer.toString(player.getHitPoints()));
+        String hitPointsText = player.getHitPoints() + "/" + player.getMaxHitPoints();
+        hitPoints.setText(hitPointsText);
         attack.setText(Integer.toString(player.getAttack()));
         defence.setText(Integer.toString(player.getDefense()));
     }
