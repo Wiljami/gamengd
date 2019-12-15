@@ -37,6 +37,7 @@ public class Player extends Unit implements CommandTarget {
             int moveX = 0;
             int moveY = 0;
             boolean move = true;
+            boolean wait = false;
             switch (input) {
                 case "NW":
                     moveX = -1;
@@ -71,8 +72,7 @@ public class Player extends Unit implements CommandTarget {
                     moveY = 1;
                     break;
                 case "NONE":
-                    move = false;
-                    finishTurn();
+                    wait = true;
                     break;
                 default:
                     move = false;
@@ -82,8 +82,11 @@ public class Player extends Unit implements CommandTarget {
             if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
                 timeSinceLastMove = System.currentTimeMillis();
 
-                Tile targetTile = level.getTileAt(getX() + moveX, getY() + moveY);
+                if (!wait) {
+                    Tile targetTile = level.getTileAt(getX() + moveX, getY() + moveY);
                 if (move && targetTile.isPassable()) sortMove(targetTile);
+                }
+                finishTurn();
             }
         }
     }
@@ -99,7 +102,6 @@ public class Player extends Unit implements CommandTarget {
         } else if (targetTile.isPassable()) {
             move(targetTile);
         }
-        finishTurn();
     }
 
     private void attack(Unit unit) {
