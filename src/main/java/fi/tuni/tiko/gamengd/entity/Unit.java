@@ -71,9 +71,9 @@ public class Unit extends Entity implements TurnActor {
     private void takeDamage(int attackValue, int defenseValue) {
         int damage = attackValue - defenseValue;
         if (damage < 0) damage = 0;
-        setHitPoints(getHitPoints() - damage);
         String message = this.name + " takes " + damage + " points of damage";
         uiController.updateGameLog(message);
+        setHitPoints(getHitPoints() - damage);
     }
 
     public Tile getTile() {

@@ -190,4 +190,13 @@ public class Monster extends Unit {
     public void setBehavior(Behavior behavior) {
         this.behavior = behavior;
     }
+
+    @Override
+    public void setHitPoints(int hitPoints) {
+        super.setHitPoints(hitPoints);
+        if (getHitPoints() <= 0) {
+            String msg = getName() + " dies!";
+            uiController.updateGameLog(msg);
+        }
+    }
 }
