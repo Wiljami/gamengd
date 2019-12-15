@@ -18,30 +18,47 @@ public class PlayerDisplay extends GridPane implements UIListener {
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(10, 10, 10, 10));
+        setupLabels();
+        setupChangingTexts();
+
         uiController.addUIListener(this);
-        name = new Text("");
-        hitPoints = new Text("0");
-        attack = new Text("0");
-        defence = new Text("0");
         receivePlayerData(player);
+    }
+
+    private void setupChangingTexts() {
+        Font font = Font.font("Arial", 12);
+
+        name = new Text("");
+        name.setFont(font);
+        hitPoints = new Text("0");
+        hitPoints.setFont(font);
+        attack = new Text("0");
+        attack.setFont(font);
+        defence = new Text("0");
+        defence.setFont(font);
+
+        add(name, 1, 0);
+        add(hitPoints, 1, 1);
+        add(attack, 1, 2);
+        add(defence, 1, 3);
+    }
+
+    private void setupLabels() {
+        Font font = Font.font("Arial", FontWeight.BOLD, 12);
 
         Text nameText = new Text("Name:");
-        nameText.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        nameText.setFont(font);
         Text hitPointsText = new Text("Hit points:");
-        hitPointsText.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        hitPointsText.setFont(font);
         Text attackText = new Text("Attack:");
-        attackText.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        attackText.setFont(font);
         Text defenceText = new Text("Defence:");
-        defenceText.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        defenceText.setFont(font);
 
         add(nameText, 0, 0);
         add(hitPointsText, 0, 1);
         add(attackText, 0, 2);
         add(defenceText, 0, 3);
-        add(name, 1, 0);
-        add(hitPoints, 1, 1);
-        add(attack, 1, 2);
-        add(defence, 1, 3);
     }
 
     @Override
