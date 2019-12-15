@@ -78,10 +78,9 @@ public class Level implements CrisisSource {
      * @param file file name of the json file
      * @param core reference to the gameCore
      */
-    public Level(String file, GameCore core) {
-        turnController = core.getTurnController();
-        JacksonLevel levelData = JSONLoader.loadLevel(file);
+    public Level(JacksonLevel levelData, GameCore core) {
         JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
+        this.turnController = core.getTurnController();
         int width = mapData.getWidth();
         int height = mapData.getHeight();
         ImageLoader.readTileSet(mapData.getTileSets());

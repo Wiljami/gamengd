@@ -4,7 +4,7 @@ public class JacksonGame {
     private String windowTitle;
     private int resolutionX;
     private int resolutionY;
-    private String levelFile;
+    private JacksonLevel[] levels;
 
     public JacksonGame() {
     }
@@ -33,11 +33,11 @@ public class JacksonGame {
         this.resolutionY = resolutionY;
     }
 
-    public String getLevelFile() {
-        return levelFile;
+    public JacksonLevel[] getLevels() {
+        return levels;
     }
 
-    public void setLevelFile(String levelFile) {
-        this.levelFile = levelFile;
+    public void setLevels(JacksonLevel[] levels) {
+        this.levels = levels;
     }
 }

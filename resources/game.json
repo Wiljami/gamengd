@@ -1,6 +1,45 @@
 {
   "windowTitle": "Dungeons of Tikonyr",
-  "levelFile": "level.json",
+  "levels": [
+    {
+      "map": "map01.json",
+      "player": {
+        "playerGraphicFile": "dude.png",
+        "playerSpawnX": "12",
+        "playerSpawnY": "12",
+        "playerHitPoints": "50",
+        "playerAttack": "10",
+        "playerDefense": "10"
+      },
+      "monsterSpawns": [
+        {
+          "type": "monster01",
+          "spawnPointX": "45",
+          "spawnPointY": "60"
+        },
+        {
+          "type": "monster01",
+          "spawnPointX": "53",
+          "spawnPointY": "39"
+        },
+        {
+          "type": "monster01",
+          "spawnPointX": "45",
+          "spawnPointY": "60"
+        },
+        {
+          "type": "monster01",
+          "spawnPointX": "12",
+          "spawnPointY": "36"
+        },
+        {
+          "type": "monster01",
+          "spawnPointX": "37",
+          "spawnPointY": "16"
+        }
+      ]
+    }
+  ],
   "resolutionX": 800,
   "resolutionY": 600
 }

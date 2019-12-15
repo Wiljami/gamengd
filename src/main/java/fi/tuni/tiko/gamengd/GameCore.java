@@ -70,7 +70,7 @@ public class GameCore extends Application {
     }
 
     private void sortGameFile(JacksonGame game) {
-        addLevel(new Level(game.getLevelFile(), this));
+        addLevel(new Level(game.getLevels()[0], this));
         setWindowTitle(game.getWindowTitle());
         setResolution(game.getResolutionX(), game.getResolutionY());
     }
