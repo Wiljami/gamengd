@@ -19,8 +19,8 @@ public class Stair extends Furniture {
         setSprite(new Sprite(image));
         setXY(stairData.getX(), stairData.getY());
         setTargetLevelId(stairData.getConnection());
-        setTargetX(stairData.getX());
-        setTargetY(stairData.getY());
+        setTargetX(stairData.getConX());
+        setTargetY(stairData.getConY());
     }
 
     public String getTargetLevelId() {

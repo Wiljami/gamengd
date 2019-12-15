@@ -160,4 +160,11 @@ public class Player extends Unit implements CommandTarget {
         super.setHitPoints(hitPoints);
         registerChange();
     }
+
+    @Override
+    public void changeLevel(String id, int x, int y) {
+        setLevel(gameCore.getLevel(id));
+        setXY(x, y);
+        gameCore.changeLevel(id, this);
+    }
 }

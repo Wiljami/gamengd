@@ -82,9 +82,14 @@ public class GameCore extends Application {
         setWindowTitle(game.getGameTitle());
     }
 
-    public void changeLevel(String id) {
-        System.out.println(id);
-        System.out.println(levels.get(id));
+    public void changeLevel(String id, Player player) {
+        currentLevel.removeUnit(player);
+        currentLevel = levels.get(id);
+        player.setupCamera(cameraController);
+        cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
+        cameraController.setLevel(currentLevel);
+        currentLevel.addUnit(player);
+        currentLevel.setPlayer(player);
     }
 
     @Override
@@ -221,5 +226,9 @@ public class GameCore extends Application {
 
     public Level getCurrentLevel() {
         return currentLevel;
+    }
+
+    public Level getLevel(String id) {
+        return levels.get(id);
     }
 }

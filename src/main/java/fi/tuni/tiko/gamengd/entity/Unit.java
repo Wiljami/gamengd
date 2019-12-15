@@ -125,6 +125,5 @@ public class Unit extends Entity implements TurnActor {
     }
 
     public void changeLevel(String id, int x, int y) {
-        System.out.println(id);
     }
 }
