@@ -83,8 +83,10 @@ public class Monster extends Unit {
     }
 
     private  void randomBehavior() {
-        if (GameMechanic.randomRoll() == 12) {
-            setBehavior(Behavior.AGGRESSIVE);
+        if (level.getPlayer() != null) {
+            if (GameMechanic.randomRoll() == 12) {
+                setBehavior(Behavior.AGGRESSIVE);
+            }
         }
         randomMove();
     }
