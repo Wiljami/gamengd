@@ -16,6 +16,8 @@ public abstract class Entity {
         setSprite(sprite);
     }
 
+    public Entity() {}
+
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }

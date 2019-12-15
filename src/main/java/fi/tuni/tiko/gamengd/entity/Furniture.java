@@ -20,4 +20,8 @@ public class Furniture extends Entity {
     public Furniture(Sprite sprite) {
         super(sprite);
     }
+
+    public Furniture() {
+        super();
+    }
 }

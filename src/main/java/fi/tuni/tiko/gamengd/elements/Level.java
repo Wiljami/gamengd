@@ -334,7 +334,7 @@ public class Level implements CrisisSource {
      * @param crisisController crisisController.
      */
     private void registerCrisis(CrisisController crisisController) {
-        crisisController.addCrisis(new Crisis(1, 0, "spawn01", this));
+        crisisController.addCrisis(new Crisis(0.25, 0, "spawn01", this));
     }
 
     /**
