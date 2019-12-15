@@ -136,14 +136,14 @@ public class Level implements CrisisSource {
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {
 
-                    Tile tile = null;
+                Tile tile = null;
                 if (tileData[i] != 0) {
                     tile = new Tile(this, x, y, new Floor(tileSet[tileData[i] - 1]));
                     map[x][y] = tile;
                 }
                 if (wallData[i] != 0) {
-                   if (tile == null) tile = new Tile(this, x, y, new Floor());
-                   tile.addWall(new Wall(tileSet[wallData[i] - 1]));
+                    if (tile == null) tile = new Tile(this, x, y, new Floor());
+                    tile.addWall(new Wall(tileSet[wallData[i] - 1]));
                 }
                 i++;
             }
