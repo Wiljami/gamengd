@@ -196,7 +196,10 @@ public class Monster extends Unit {
         super.setHitPoints(hitPoints);
         if (getHitPoints() <= 0) {
             String msg = getName() + " dies!";
+            level.getPlayer().addKill();
             uiController.updateGameLog(msg);
+            getTile().removeUnit();
+            level.removeUnit(this);
         }
     }
 }

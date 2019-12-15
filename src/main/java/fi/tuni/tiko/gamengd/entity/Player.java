@@ -25,6 +25,7 @@ public class Player extends Unit implements CommandTarget {
     private TurnInfo latestTurn;
     private long timeSinceLastMove = 0;
     private int movementDelay = 150;
+    private int killCount = 0;
 
     private boolean playerTurn = false;
 
@@ -168,5 +169,18 @@ public class Player extends Unit implements CommandTarget {
         setLevel(gameCore.getLevel(id));
         setXY(x, y);
         gameCore.changeLevel(id, this);
+    }
+
+    public int getKillCount() {
+        return killCount;
+    }
+
+    public void setKillCount(int killCount) {
+        this.killCount = killCount;
+        registerChange();
+    }
+
+    public void addKill() {
+        setKillCount(getKillCount() + 1);
     }
 }

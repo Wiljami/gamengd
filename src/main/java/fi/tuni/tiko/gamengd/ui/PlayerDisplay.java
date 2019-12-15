@@ -13,6 +13,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
     private Text hitPoints;
     private Text attack;
     private Text defence;
+    private Text killCount;
     private Player player;
     public PlayerDisplay(Player player) {
         this.player = player;
@@ -37,11 +38,14 @@ public class PlayerDisplay extends GridPane implements UIListener {
         attack.setFont(font);
         defence = new Text("0");
         defence.setFont(font);
+        killCount = new Text("0");
+        killCount.setFont(font);
 
         add(name, 1, 0);
         add(hitPoints, 1, 1);
         add(attack, 1, 2);
         add(defence, 1, 3);
+        add(killCount, 1, 4);
     }
 
     private void setupLabels() {
@@ -55,11 +59,14 @@ public class PlayerDisplay extends GridPane implements UIListener {
         attackText.setFont(font);
         Text defenceText = new Text("Defence:");
         defenceText.setFont(font);
+        Text killCountText = new Text("Kill count:");
+        killCountText.setFont(font);
 
         add(nameText, 0, 0);
         add(hitPointsText, 0, 1);
         add(attackText, 0, 2);
         add(defenceText, 0, 3);
+        add(killCountText, 0, 4);
     }
 
     @Override
@@ -69,5 +76,6 @@ public class PlayerDisplay extends GridPane implements UIListener {
         hitPoints.setText(hitPointsText);
         attack.setText(Integer.toString(player.getAttack()));
         defence.setText(Integer.toString(player.getDefense()));
+        killCount.setText(Integer.toString(player.getKillCount()));
     }
 }
