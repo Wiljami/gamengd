@@ -32,7 +32,7 @@ public class UI extends BorderPane {
 
     private VBox bottomBar() {
         GameLog gameLog = new GameLog();
-        uiController.addUIListener(gameLog);
+        uiController.addGameLog(gameLog);
         VBox topBar = new VBox(gameLog);
         return topBar;
     }

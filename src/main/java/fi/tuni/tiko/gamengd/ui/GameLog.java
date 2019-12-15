@@ -1,12 +1,11 @@
 package fi.tuni.tiko.gamengd.ui;
 
-import fi.tuni.tiko.gamengd.controller.ui.UIListener;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 
 import java.util.LinkedList;
 
-public class GameLog extends ScrollPane implements UIListener {
+public class GameLog extends ScrollPane {
     private final int MAXLOGSIZE = 100;
     private final int LOGSIZE = 6;
 
@@ -38,8 +37,7 @@ public class GameLog extends ScrollPane implements UIListener {
         return textArea;
     }
 
-    @Override
-    public void triggerUIListener(String message) {
+    public void updateGameLog(String message) {
         updateLog(message);
         updateTextArea();
     }

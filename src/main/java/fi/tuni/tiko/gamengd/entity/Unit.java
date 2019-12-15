@@ -53,22 +53,26 @@ public class Unit extends Entity implements TurnActor {
         int randomRoll = GameMechanic.randomRoll();
         int attackValue = getAttack() + randomRoll;
         String message = this.name + " rolls " + randomRoll + " for attack for total " + attackValue + ".";
-        target.receiveAttack(this, attackValue, message);
+        uiController.updateGameLog(message);
+        target.receiveAttack(this, attackValue);
     }
 
-    void receiveAttack (Unit attacker, int attackValue, String message) {
+    void receiveAttack (Unit attacker, int attackValue) {
         int randomRoll = GameMechanic.randomRoll();
         int defenseValue = getDefense() + GameMechanic.randomRoll();
 
-        message += " " + this.name + " rolls " + randomRoll + " for defence for total " + defenseValue + ".";
-        uiController.trigger(message);
+        String message = this.name + " rolls " + randomRoll + " for defence for total " + defenseValue + ".";
+        uiController.updateGameLog(message);
 
         takeDamage(attackValue, defenseValue);
     }
 
     private void takeDamage(int attackValue, int defenseValue) {
         int damage = defenseValue - attackValue;
+        if (damage < 0) damage = 0;
         setHitPoints(getHitPoints() - damage);
+        String message = this.name + " takes " + damage + " points of damage";
+        uiController.updateGameLog(message);
     }
 
     public Tile getTile() {

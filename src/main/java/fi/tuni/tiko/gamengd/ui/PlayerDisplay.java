@@ -23,7 +23,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
         setupLabels();
         setupChangingTexts();
 
-        triggerUIListener("");
+        triggerUIListener();
     }
 
     private void setupChangingTexts() {
@@ -63,7 +63,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
     }
 
     @Override
-    public void triggerUIListener(String message) {
+    public void triggerUIListener() {
         name.setText(player.getName());
         hitPoints.setText(Integer.toString(player.getHitPoints()));
         attack.setText(Integer.toString(player.getAttack()));
