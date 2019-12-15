@@ -4,8 +4,9 @@ import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.entity.Player;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class UI extends BorderPane {
     private InputController inputController;
@@ -25,8 +26,7 @@ public class UI extends BorderPane {
 
 
     private VBox topBar() {
-        Label label = new Label("Hi, I am the topBar");
-        VBox topBar = new VBox(new GameMenuBar(player), label);
+        VBox topBar = new VBox(new GameMenuBar(player));
         return topBar;
     }
 
@@ -45,8 +45,7 @@ public class UI extends BorderPane {
     }
 
     private VBox leftColumn() {
-        Label label = new Label("Hi, I am the leftColumn");
-        VBox topBar = new VBox(label);
+        VBox topBar = new VBox();
         return topBar;
     }
 }
