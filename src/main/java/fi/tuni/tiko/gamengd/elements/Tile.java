@@ -199,6 +199,9 @@ public class Tile {
      */
     public void unitEnters(Unit unit) {
         this.unit = unit;
+        for (Furniture furniture : furnitures) {
+            furniture.unitEntered(unit);
+        }
         hasUnit = true;
     }
 

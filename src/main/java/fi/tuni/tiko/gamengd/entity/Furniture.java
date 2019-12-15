@@ -24,4 +24,7 @@ public class Furniture extends Entity {
     public Furniture() {
         super();
     }
+
+    public void unitEntered(Unit unit) {
+    }
 }
