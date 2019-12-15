@@ -12,7 +12,7 @@ import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
-import fi.tuni.tiko.gamengd.util.json.JacksonConfig;
+import fi.tuni.tiko.gamengd.util.json.JacksonGame;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -69,7 +69,7 @@ public class GameCore extends Application {
         sortGameFile(JSONLoader.loadGameFile(defaultGame));
     }
 
-    private void sortGameFile(JacksonConfig game) {
+    private void sortGameFile(JacksonGame game) {
         addLevel(new Level(game.getLevelFile(), this));
         setWindowTitle(game.getWindowTitle());
         setResolution(game.getResolutionX(), game.getResolutionY());

@@ -53,14 +53,14 @@ public class JSONLoader {
      * @param fileName name of the file to load
      * @return JacksonConfig object
      */
-    public static JacksonConfig loadGameFile(String fileName) {
-        JacksonConfig config = new JacksonConfig();
+    public static JacksonGame loadGameFile(String fileName) {
+        JacksonGame config = new JacksonGame();
         ObjectMapper objectMapper = new ObjectMapper();
 
         File file = Util.loadFile(fileName);
 
         try {
-            config = objectMapper.readValue(file, JacksonConfig.class);
+            config = objectMapper.readValue(file, JacksonGame.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

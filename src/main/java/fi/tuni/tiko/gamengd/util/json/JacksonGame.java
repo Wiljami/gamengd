@@ -1,12 +1,12 @@
 package fi.tuni.tiko.gamengd.util.json;
 
-public class JacksonConfig {
+public class JacksonGame {
     private String windowTitle;
     private int resolutionX;
     private int resolutionY;
     private String levelFile;
 
-    public JacksonConfig() {
+    public JacksonGame() {
     }
 
     public String getWindowTitle() {
