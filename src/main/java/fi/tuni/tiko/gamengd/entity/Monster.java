@@ -3,6 +3,7 @@ package fi.tuni.tiko.gamengd.entity;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
+import fi.tuni.tiko.gamengd.util.GameMechanic;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import fi.tuni.tiko.gamengd.util.json.JSONLoader;
 import fi.tuni.tiko.gamengd.util.Util;
@@ -73,6 +74,22 @@ public class Monster extends Unit {
 
     @Override
     public void doTurn(TurnInfo turnInfo) {
+        switch (getBehavior()) {
+            case DEFAULT: randomBehavior(); break;
+            case AGGRESSIVE: aggressiveBehavior(); break;
+            default: randomMove(); break;
+        }
+        super.doTurn(turnInfo);
+    }
+
+    private  void randomBehavior() {
+        if (GameMechanic.randomRoll() == 12) {
+            setBehavior(Behavior.AGGRESSIVE);
+        }
+        randomMove();
+    }
+
+    private void aggressiveBehavior() {
         if (checkForPlayerAdjacency()) {
             deliverAttack(level.getPlayer());
         } else if (pathfind != null) {
@@ -80,7 +97,6 @@ public class Monster extends Unit {
         } else {
             chasePlayer();
         }
-        super.doTurn(turnInfo);
     }
 
     private boolean checkForPlayerAdjacency () {
