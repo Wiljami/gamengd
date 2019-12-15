@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameCore extends Application {
     private static double resolutionX = 1200;
@@ -35,7 +36,7 @@ public class GameCore extends Application {
 
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
-    private ArrayList<Level> levels = new ArrayList<>();
+    private HashMap<String, Level> levels = new HashMap<>();
     private long lastNanoTime;
 
     private Level currentLevel;
@@ -73,17 +74,19 @@ public class GameCore extends Application {
 
     private void sortGameFile(JacksonGame game) {
         for (JacksonLevel levelData: game.getLevels()) {
-            levels.add(new Level(levelData, this));
+            levels.put(levelData.getId(), new Level(levelData, this));
         }
 
-
-        for (Level l : levels) {
-            if (l.getId().equals(game.getPlayer().getLevelId())) currentLevel = l;
-        }
+        currentLevel = levels.get(game.getPlayer().getLevelId());
 
         addPlayer(new Player(game.getPlayer(), currentLevel));
 
         setWindowTitle(game.getGameTitle());
+    }
+
+    public void changeLevel(String id) {
+        System.out.println(id);
+        System.out.println(levels.get(id));
     }
 
     @Override
