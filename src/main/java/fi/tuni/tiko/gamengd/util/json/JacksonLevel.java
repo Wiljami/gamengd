@@ -7,6 +7,7 @@ public class JacksonLevel {
     private String id;
 
     private ArrayList<MonsterSpawn> monsterSpawns;
+    private ArrayList<Stair> stairs;
 
     public JacksonLevel() {
     }
@@ -27,12 +28,59 @@ public class JacksonLevel {
         this.monsterSpawns = monsterSpawns;
     }
 
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public ArrayList<Stair> getStairs() {
+        return stairs;
+    }
+
+    public void setStairs(ArrayList<Stair> stairs) {
+        this.stairs = stairs;
+    }
+
+    class Stair {
+        private boolean up;
+        private int x;
+        private int y;
+        private String connection;
+        public Stair() {}
+
+        public boolean isUp() {
+            return up;
+        }
+
+        public void setUp(boolean up) {
+            this.up = up;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
+
+        public String getConnection() {
+            return connection;
+        }
+
+        public void setConnection(String connection) {
+            this.connection = connection;
+        }
     }
 }

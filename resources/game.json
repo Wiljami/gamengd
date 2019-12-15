@@ -30,7 +30,13 @@
           "spawnPointY": "16"
         }
       ],
-      "id": "01"
+      "id": "01",
+      "stairs": [{
+        "up": "false",
+        "x": "10",
+        "y": "10",
+        "connection": "02"
+      }]
     },
     {
       "map": "map02.json",
