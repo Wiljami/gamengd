@@ -43,7 +43,15 @@
     {
       "map": "map02.json",
       "monsterSpawns": [],
-      "id": "02"
+      "id": "02",
+        "stairs": [{
+        "up": "true",
+        "x": "24",
+        "y": "15",
+        "connection": "01",
+        "conX": "11",
+        "conY": "10"
+      }]
     }
   ],
   "player": {
