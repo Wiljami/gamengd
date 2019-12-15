@@ -166,7 +166,6 @@ public class CameraController implements CommandTarget, TurnListener {
         return level;
     }
 
-    //TODO: Smooth out the zoom with some sort of algorithm. Currently it zooms too fast once close.
     private void zoomIn() {
         setTileSize(getTileSize() * 1.02);
     }

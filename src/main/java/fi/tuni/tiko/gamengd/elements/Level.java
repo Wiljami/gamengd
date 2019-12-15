@@ -40,6 +40,8 @@ public class Level implements CrisisSource {
      * ArrayList of Units on the level.
      */
     private ArrayList<Unit> units = new ArrayList<>();
+
+    private ArrayList<Furniture> furnitures = new ArrayList<>();
     /**
      * Pathfinding data of the level.
      */
@@ -89,6 +91,7 @@ public class Level implements CrisisSource {
         ImageLoader.readTileSet(mapData.getTileSets());
         generateEmptyMap(width, height);
         fillMap(mapData);
+        addStairs(levelData);
         spawnMonsters(levelData);
         registerCrisis(core.getCrisisController());
         setaStarGraph(new AStarGraph(this));
@@ -157,6 +160,15 @@ public class Level implements CrisisSource {
         for (MonsterSpawn s : levelData.getMonsterSpawns()) {
             Monster m = Monster.spawn(s.getType(), s.getSpawnPointX(), s.getSpawnPointY(), this);
             addUnit(m);
+        }
+    }
+
+    private void addStairs(JacksonLevel levelData) {
+        if (levelData.getStairs() != null) {
+            for (JacksonLevel.StairData s : levelData.getStairs()) {
+                Stair stair = new Stair(s);
+                getTileAt(s.getX(), s.getY()).addFurniture(stair);
+            }
         }
     }
 
