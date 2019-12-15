@@ -8,7 +8,7 @@ import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.util.GameMechanic;
 
 public class Unit extends Entity implements TurnActor {
-    Level level;
+    private Level level;
 
     private String name;
     private int attack;
@@ -45,10 +45,10 @@ public class Unit extends Entity implements TurnActor {
 
     void deliverAttack (Unit target) {
         int attackValue = getAttack() + GameMechanic.randomRoll();
-        target.receiveAttack(attackValue);
+        target.receiveAttack(this, attackValue);
     }
 
-    void receiveAttack (int attackValue) {
+    void receiveAttack (Unit attacker, int attackValue) {
         int defenseValue = getDefense() + GameMechanic.randomRoll();
         //System.out.println(defenseValue + " vs. " + attackValue + " = " + (defenseValue - attackValue));
         int damage = defenseValue - attackValue;
