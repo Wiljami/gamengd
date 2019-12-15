@@ -102,9 +102,11 @@ public class Monster extends Unit {
     }
 
     private boolean checkForPlayerAdjacency () {
-        Tile[] neighbours = level.getTileAt(getX(), getY()).getNeighbours();
-        for (Tile t : neighbours) {
-            if (t == level.getPlayer().getTile()) return true;
+        if (level.getPlayer() != null) {
+            Tile[] neighbours = level.getTileAt(getX(), getY()).getNeighbours();
+            for (Tile t : neighbours) {
+                if (t == level.getPlayer().getTile()) return true;
+            }
         }
         return false;
     }
