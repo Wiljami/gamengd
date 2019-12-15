@@ -12,9 +12,9 @@ public class UIController {
         uiListeners.add(listener);
     }
 
-    public void trigger () {
+    public void trigger (String message) {
         for (UIListener uiListener : uiListeners) {
-            uiListener.triggerUIListener();
+            uiListener.triggerUIListener(message);
         }
     }
 }

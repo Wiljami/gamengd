@@ -35,7 +35,7 @@ public class GameLog extends ScrollPane implements UIListener {
     }
 
     @Override
-    public void triggerUIListener() {
+    public void triggerUIListener(String message) {
 
     }
 }

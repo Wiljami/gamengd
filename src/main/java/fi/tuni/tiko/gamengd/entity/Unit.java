@@ -8,7 +8,7 @@ import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.util.GameMechanic;
 
 public class Unit extends Entity implements TurnActor {
-    private Level level;
+    Level level;
 
     private String name;
     private int attack;

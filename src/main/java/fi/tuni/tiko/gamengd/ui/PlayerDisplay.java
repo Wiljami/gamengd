@@ -1,6 +1,5 @@
 package fi.tuni.tiko.gamengd.ui;
 
-import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.controller.ui.UIListener;
 import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.geometry.Insets;
@@ -24,7 +23,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
         setupLabels();
         setupChangingTexts();
 
-        triggerUIListener();
+        triggerUIListener("");
     }
 
     private void setupChangingTexts() {
@@ -64,7 +63,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
     }
 
     @Override
-    public void triggerUIListener() {
+    public void triggerUIListener(String message) {
         name.setText(player.getName());
         hitPoints.setText(Integer.toString(player.getHitPoints()));
         attack.setText(Integer.toString(player.getAttack()));
