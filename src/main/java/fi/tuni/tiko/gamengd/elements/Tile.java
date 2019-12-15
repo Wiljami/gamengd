@@ -200,7 +200,7 @@ public class Tile {
     public void unitEnters(Unit unit) {
         this.unit = unit;
         for (Furniture furniture : furnitures) {
-            furniture.unitEntered(unit);
+            furniture.unitEntered(unit, this);
         }
         hasUnit = true;
     }
@@ -213,6 +213,14 @@ public class Tile {
      */
     public void unitLeaves(Unit unit) {
         this.unit = null;
+        for (Furniture furniture : furnitures) {
+            furniture.unitLeft(unit, this);
+        }
+        hasUnit = false;
+    }
+
+    public void removeUnit() {
+        this.unit = null;
         hasUnit = false;
     }
 
@@ -221,6 +229,10 @@ public class Tile {
      * @return boolean hasUnit.
      */
     public boolean hasUnit() {
+        if (getUnit() == null) {
+            hasUnit = false;
+            return false;
+        }
         return hasUnit;
     }
 

@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.elements.Sprite;
+import fi.tuni.tiko.gamengd.elements.Tile;
 
 /**
  * Furniture class is an Entity within game.
@@ -25,6 +26,9 @@ public class Furniture extends Entity {
         super();
     }
 
-    public void unitEntered(Unit unit) {
+    public void unitEntered(Unit unit, Tile tile) {
+    }
+
+    public void unitLeft(Unit unit, Tile tile) {
     }
 }

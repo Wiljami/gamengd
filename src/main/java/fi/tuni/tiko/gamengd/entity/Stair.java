@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd.entity;
 
 import fi.tuni.tiko.gamengd.elements.Sprite;
+import fi.tuni.tiko.gamengd.elements.Tile;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import javafx.scene.image.Image;
@@ -48,8 +49,9 @@ public class Stair extends Furniture {
     }
 
     @Override
-    public void unitEntered(Unit unit) {
+    public void unitEntered(Unit unit, Tile tile) {
         if (unit == unit.getLevel().getPlayer()) {
+            tile.removeUnit();
             unit.changeLevel(getTargetLevelId(), getTargetX(), getTargetY());
         }
     }
