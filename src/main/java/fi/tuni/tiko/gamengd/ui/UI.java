@@ -1,16 +1,23 @@
 package fi.tuni.tiko.gamengd.ui;
 
+import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
+import fi.tuni.tiko.gamengd.controller.ui.UIController;
+import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.*;
 
 public class UI extends BorderPane {
     private InputController inputController;
+    private UIController uiController;
+    private Player player;
 
-    public UI(GameView gameView, InputController inputController) {
-        this.inputController = inputController;
-        setCenter(gameView);
+    public UI(GameCore gameCore) {
+        this.inputController = gameCore.getInputController();
+        this.uiController = gameCore.getUiController();
+        this.player = gameCore.getLevel().getPlayer();
+        setCenter(gameCore.getGameView());
         setTop(topBar());
         setBottom(bottomBar());
         setRight(rightColumn());
@@ -32,7 +39,7 @@ public class UI extends BorderPane {
     }
 
     private Pane rightColumn() {
-        HBox rightColumn = new HBox(new ArrowPad(inputController));
+        VBox rightColumn = new VBox(new PlayerDisplay(uiController, player), new ArrowPad(inputController));
         return rightColumn;
     }
 

@@ -6,6 +6,7 @@ import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.crisis.CrisisController;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.turn.TurnController;
+import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.entity.Floor;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.entity.Player;
@@ -44,6 +45,7 @@ public class GameCore extends Application {
     private TurnController turnController;
     private InputController inputController;
     private CrisisController crisisController;
+    private UIController uiController;
 
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
@@ -60,6 +62,7 @@ public class GameCore extends Application {
         crisisController = new CrisisController();
         turnController = new TurnController(crisisController);
         inputController = new InputController();
+        uiController = new UIController();
         gameView = new GameView();
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
@@ -90,7 +93,6 @@ public class GameCore extends Application {
         stage.setFullScreen(fullScreen);
         startAnimationTimer();
         startTurnController();
-        level.randomSpawn();
     }
 
     private void startTurnController() {
@@ -128,7 +130,7 @@ public class GameCore extends Application {
     }
 
     private Scene createScene() {
-        UI ui = new UI(gameView, inputController);
+        UI ui = new UI(this);
         Scene scene = new Scene(ui, resolutionX, resolutionY);
 
         scene.setOnKeyPressed(keyEvent -> {
@@ -149,6 +151,7 @@ public class GameCore extends Application {
 
     private void addPlayer(Player player) {
         player.setupCamera(cameraController);
+        player.setupUIController(uiController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         inputController.registerPlayer(player);
         player.setLevel(level);
@@ -196,5 +199,21 @@ public class GameCore extends Application {
 
     public static void setFullScreen(boolean fullScreen) {
         GameCore.fullScreen = fullScreen;
+    }
+
+    public UIController getUiController() {
+        return uiController;
+    }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
+    public InputController getInputController() {
+        return inputController;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }

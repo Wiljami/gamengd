@@ -6,10 +6,12 @@ import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
+import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
+    private UIController uiController;
 
     public Player(JacksonPlayer playerData, Level level) {
         super(new Sprite(playerData.getPlayerGraphicFile()));
@@ -28,6 +30,10 @@ public class Player extends Unit implements CommandTarget {
 
     public void setupCamera (CameraController camera) {
         this.camera = camera;
+    }
+
+    public void setupUIController (UIController uiController) {
+        this.uiController = uiController;
     }
 
     private void sortInput(String input) {
@@ -111,7 +117,11 @@ public class Player extends Unit implements CommandTarget {
         camera.setXY(getX() + 0.5, getY() + 0.5);
     }
 
-
+    private void registerChange() {
+        if (uiController != null) {
+            uiController.trigger(this);
+        }
+    }
 
     @Override
     public void doTurn(TurnInfo turnInfo) {
@@ -125,5 +135,29 @@ public class Player extends Unit implements CommandTarget {
 
     public void setMovementDelay(int movementDelay) {
         this.movementDelay = movementDelay;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        registerChange();
+    }
+
+    @Override
+    public void setAttack(int attack) {
+        super.setAttack(attack);
+        registerChange();
+    }
+
+    @Override
+    public void setDefense(int defense) {
+        super.setDefense(defense);
+        registerChange();
+    }
+
+    @Override
+    public void setHitPoints(int hitPoints) {
+        super.setHitPoints(hitPoints);
+        registerChange();
     }
 }

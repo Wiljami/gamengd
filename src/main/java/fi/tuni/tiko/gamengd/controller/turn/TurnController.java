@@ -14,7 +14,6 @@ public class TurnController {
 
     public TurnController(CrisisController crisisController) {
         this.crisisController = crisisController;
-        setTurn(0);
         turnActors = new ArrayList<>();
         currentTurnActors = new ArrayList<>();
         turnListeners = new ArrayList<>();
