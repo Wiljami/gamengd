@@ -133,9 +133,10 @@ public class Level implements CrisisSource {
         }
 
         int i = 0;
-        for (int x = 0; x < getWidth(); x++) {
-            for (int y = 0; y < getHeight(); y++) {
-                Tile tile = null;
+        for (int y = 0; y < getHeight(); y++) {
+            for (int x = 0; x < getWidth(); x++) {
+
+                    Tile tile = null;
                 if (tileData[i] != 0) {
                     tile = new Tile(this, x, y, new Floor(tileSet[tileData[i] - 1]));
                     map[x][y] = tile;
@@ -312,7 +313,7 @@ public class Level implements CrisisSource {
     /**
      * randomSpawn randomly spawns a monster to an open Tile.
      */
-    public void randomSpawn() {
+    public void randomSpawn(String id) {
         Tile tile = new Tile(this);
         boolean okSpawn = false;
         while (!okSpawn) {
@@ -323,7 +324,7 @@ public class Level implements CrisisSource {
             }
         }
 
-        addUnit(Monster.spawn("monster01", tile, this));
+        addUnit(Monster.spawn(id, tile, this));
     }
 
     /**
@@ -344,7 +345,7 @@ public class Level implements CrisisSource {
      */
     @Override
     public void runCrisis(Crisis crisis) {
-        if (crisis.getId().equals("spawn01")) randomSpawn();
+        if (crisis.getId().equals("spawn01")) randomSpawn("monster01");
     }
 
     public String getId() {

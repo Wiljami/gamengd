@@ -116,6 +116,7 @@ public class GameCore extends Application {
         stage.setMinWidth(minResolutionX);
         stage.setMinHeight(minResolutionY);
         stage.setFullScreen(fullScreen);
+
         startAnimationTimer();
         startTurnController();
     }

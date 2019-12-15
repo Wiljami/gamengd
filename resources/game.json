@@ -3,41 +3,15 @@
   "levels": [
     {
       "map": "map01.json",
-      "monsterSpawns": [
-        {
-          "type": "monster01",
-          "spawnPointX": "45",
-          "spawnPointY": "60"
-        },
-        {
-          "type": "monster01",
-          "spawnPointX": "53",
-          "spawnPointY": "39"
-        },
-        {
-          "type": "monster01",
-          "spawnPointX": "45",
-          "spawnPointY": "60"
-        },
-        {
-          "type": "monster01",
-          "spawnPointX": "12",
-          "spawnPointY": "36"
-        },
-        {
-          "type": "monster01",
-          "spawnPointX": "37",
-          "spawnPointY": "16"
-        }
-      ],
+      "monsterSpawns": [],
       "id": "01",
       "stairs": [{
         "up": "false",
         "x": "10",
         "y": "10",
         "connection": "02",
-        "conX": "25",
-        "conY": "15"
+        "conX": "41",
+        "conY": "54"
       }]
     },
     {
@@ -46,8 +20,8 @@
       "id": "02",
         "stairs": [{
         "up": "true",
-        "x": "24",
-        "y": "15",
+        "x": "40",
+        "y": "54",
         "connection": "01",
         "conX": "11",
         "conY": "10"
