@@ -38,6 +38,7 @@ public class GameLog extends ScrollPane {
         textArea.setPrefRowCount(LOGSIZE);
         textArea.setWrapText(true);
         textArea.setEditable(false);
+        textArea.setFocusTraversable(false);
         return textArea;
     }
 
