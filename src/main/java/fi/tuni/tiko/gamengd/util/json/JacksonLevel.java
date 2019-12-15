@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class JacksonLevel {
     private String map;
+    private int level;
 
     private JacksonPlayer player;
 
@@ -35,5 +36,12 @@ public class JacksonLevel {
     public void setPlayer(JacksonPlayer player) {
         this.player = player;
     }
-}
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+}
