@@ -5,6 +5,6 @@ public class Config {
     static double resolutionY = 800;
     static double minResolutionX = 600;
     static double minResolutionY = 400;
-    static boolean fullScreen = true;
+    static boolean fullScreen = false;
     static String defaultGame = "game.json";
 }
