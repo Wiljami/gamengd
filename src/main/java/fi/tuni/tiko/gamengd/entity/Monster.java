@@ -101,6 +101,20 @@ public class Monster extends Unit {
         }
     }
 
+    /**
+     * Upon receiving an attack, Monster becomes automatically Aggressive.
+     *
+     * Override Unit's receiveAttack method, but call it right away. Set
+     * Monster behavior to Aggressive upon receiving an attack.
+     * @param attacker the unit attacking
+     * @param attackValue the attackValue
+     */
+    @Override
+    void receiveAttack(Unit attacker, int attackValue) {
+        super.receiveAttack(attacker, attackValue);
+        setBehavior(Behavior.AGGRESSIVE);
+    }
+
     private void chasePlayer() {
         Tile endTile = level.getPlayer().getTile();
         createNewPath(endTile);
