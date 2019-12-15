@@ -39,6 +39,7 @@ public class Monster extends Unit {
         setAttack(jm.getAttack());
         setDefense(jm.getDefense());
         setHitPoints(jm.getHitPoints());
+        setMaxHitPoints(getHitPoints());
     }
 
     public Monster(Monster protoMonster) {

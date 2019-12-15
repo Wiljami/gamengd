@@ -15,6 +15,7 @@ public class Unit extends Entity implements TurnActor {
     private int attack;
     private int defense;
     private int hitPoints;
+    private int maxHitPoints;
     static UIController uiController;
 
     public Unit(Sprite sprite) {
@@ -109,5 +110,13 @@ public class Unit extends Entity implements TurnActor {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public int getMaxHitPoints() {
+        return maxHitPoints;
+    }
+
+    public void setMaxHitPoints(int maxHitPoints) {
+        this.maxHitPoints = maxHitPoints;
     }
 }

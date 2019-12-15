@@ -17,7 +17,8 @@ public class Player extends Unit implements CommandTarget {
         setXY(playerData.getSpawnX(), playerData.getSpawnY());
         setAttack(playerData.getAttack());
         setDefense(playerData.getDefense());
-        setHitPoints(playerData.getMaxHitPoints());
+        setHitPoints(playerData.getHitPoints());
+        setMaxHitPoints(playerData.getMaxHitPoints());
         setName(playerData.getName());
     }
 
