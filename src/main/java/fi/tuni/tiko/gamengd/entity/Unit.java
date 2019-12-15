@@ -119,4 +119,12 @@ public class Unit extends Entity implements TurnActor {
     public void setMaxHitPoints(int maxHitPoints) {
         this.maxHitPoints = maxHitPoints;
     }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void changeLevel(String id, int x, int y) {
+        System.out.println(id);
+    }
 }

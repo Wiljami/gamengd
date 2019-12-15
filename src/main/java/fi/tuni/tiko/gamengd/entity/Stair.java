@@ -46,4 +46,11 @@ public class Stair extends Furniture {
     public void setTargetY(int targetY) {
         this.targetY = targetY;
     }
+
+    @Override
+    public void unitEntered(Unit unit) {
+        if (unit == unit.getLevel().getPlayer()) {
+            unit.changeLevel(getTargetLevelId(), getTargetX(), getTargetY());
+        }
+    }
 }
