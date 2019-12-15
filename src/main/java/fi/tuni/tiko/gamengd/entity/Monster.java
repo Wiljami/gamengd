@@ -56,6 +56,7 @@ public class Monster extends Unit {
         setAttack(protoMonster.getAttack());
         setDefense(protoMonster.getDefense());
         setHitPoints(protoMonster.getHitPoints());
+        setBehavior(protoMonster.getBehavior());
     }
 
     public static Monster spawn(String id, int x, int y, Level level) {
