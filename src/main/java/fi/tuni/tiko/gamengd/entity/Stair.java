@@ -6,6 +6,9 @@ import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import javafx.scene.image.Image;
 
 public class Stair extends Furniture {
+    private String targetLevelId;
+    private int targetX;
+    private int targetY;
     public Stair(JacksonLevel.StairData stairData) {
         Image image;
         if (stairData.isUp()) {
@@ -15,5 +18,32 @@ public class Stair extends Furniture {
         }
         setSprite(new Sprite(image));
         setXY(stairData.getX(), stairData.getY());
+        setTargetLevelId(stairData.getConnection());
+        setTargetX(stairData.getX());
+        setTargetY(stairData.getY());
+    }
+
+    public String getTargetLevelId() {
+        return targetLevelId;
+    }
+
+    public void setTargetLevelId(String targetLevelId) {
+        this.targetLevelId = targetLevelId;
+    }
+
+    public int getTargetX() {
+        return targetX;
+    }
+
+    public void setTargetX(int targetX) {
+        this.targetX = targetX;
+    }
+
+    public int getTargetY() {
+        return targetY;
+    }
+
+    public void setTargetY(int targetY) {
+        this.targetY = targetY;
     }
 }
