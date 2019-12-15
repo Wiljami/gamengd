@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class JacksonLevel {
     private String map;
-    private int level;
     private String id;
 
     private ArrayList<MonsterSpawn> monsterSpawns;
@@ -28,13 +27,6 @@ public class JacksonLevel {
         this.monsterSpawns = monsterSpawns;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 
     public String getId() {
         return id;
