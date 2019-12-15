@@ -12,12 +12,13 @@ public class Player extends Unit implements CommandTarget {
     private CameraController camera;
 
     public Player(JacksonPlayer playerData, Level level) {
-        super(new Sprite(playerData.getPlayerGraphicFile()));
+        super(new Sprite(playerData.getGraphicFile()));
         setLevel(level);
-        setXY(playerData.getPlayerSpawnX(), playerData.getPlayerSpawnY());
-        setAttack(playerData.getPlayerAttack());
-        setDefense(playerData.getPlayerDefense());
-        setHitPoints(playerData.getPlayerHitPoints());
+        setXY(playerData.getSpawnX(), playerData.getSpawnY());
+        setAttack(playerData.getAttack());
+        setDefense(playerData.getDefense());
+        setHitPoints(playerData.getMaxHitPoints());
+        setName(playerData.getName());
     }
 
     private TurnInfo latestTurn;

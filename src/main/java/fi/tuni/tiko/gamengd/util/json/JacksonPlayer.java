@@ -1,63 +1,73 @@
 package fi.tuni.tiko.gamengd.util.json;
 
 public class JacksonPlayer {
-    private String playerGraphicFile;
-    private int playerSpawnX;
-    private int playerSpawnY;
-    private int playerHitPoints;
-    private int playerAttack;
-    private int playerDefense;
+    private String graphicFile;
+    private int spawnX;
+    private int spawnY;
+    private int hitPoints;
+    private int maxHitPoints;
+    private int attack;
+    private int defense;
+    private String name;
     private String levelId;
 
     public JacksonPlayer() {
     }
 
-    public int getPlayerSpawnX() {
-        return playerSpawnX;
+    public String getGraphicFile() {
+        return graphicFile;
     }
 
-    public void setPlayerSpawnX(int playerSpawnX) {
-        this.playerSpawnX = playerSpawnX;
+    public void setGraphicFile(String graphicFile) {
+        this.graphicFile = graphicFile;
     }
 
-    public int getPlayerSpawnY() {
-        return playerSpawnY;
+    public int getSpawnX() {
+        return spawnX;
     }
 
-    public void setPlayerSpawnY(int playerSpawnY) {
-        this.playerSpawnY = playerSpawnY;
+    public void setSpawnX(int spawnX) {
+        this.spawnX = spawnX;
     }
 
-    public int getPlayerHitPoints() {
-        return playerHitPoints;
+    public int getSpawnY() {
+        return spawnY;
     }
 
-    public void setPlayerHitPoints(int playerHitPoints) {
-        this.playerHitPoints = playerHitPoints;
+    public void setSpawnY(int spawnY) {
+        this.spawnY = spawnY;
     }
 
-    public int getPlayerAttack() {
-        return playerAttack;
+    public int getHitPoints() {
+        return hitPoints;
     }
 
-    public void setPlayerAttack(int playerAttack) {
-        this.playerAttack = playerAttack;
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
     }
 
-    public int getPlayerDefense() {
-        return playerDefense;
+    public int getMaxHitPoints() {
+        return maxHitPoints;
     }
 
-    public void setPlayerDefense(int playerDefense) {
-        this.playerDefense = playerDefense;
+    public void setMaxHitPoints(int maxHitPoints) {
+        this.maxHitPoints = maxHitPoints;
     }
 
-    public String getPlayerGraphicFile() {
-        return playerGraphicFile;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setPlayerGraphicFile(String playerGraphicFile) {
-        this.playerGraphicFile = playerGraphicFile;
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
     public String getLevelId() {
@@ -66,5 +76,13 @@ public class JacksonPlayer {
 
     public void setLevelId(String levelId) {
         this.levelId = levelId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
