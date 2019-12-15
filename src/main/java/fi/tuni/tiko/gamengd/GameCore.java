@@ -84,7 +84,6 @@ public class GameCore extends Application {
         addPlayer(new Player(game.getPlayer(), currentLevel));
 
         setWindowTitle(game.getWindowTitle());
-        setResolution(game.getResolutionX(), game.getResolutionY());
     }
 
     @Override

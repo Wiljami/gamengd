@@ -33,8 +33,6 @@
       "id": "01"
     }
   ],
-  "resolutionX": 800,
-  "resolutionY": 600,
   "player": {
     "playerGraphicFile": "dude.png",
     "playerSpawnX": "12",
