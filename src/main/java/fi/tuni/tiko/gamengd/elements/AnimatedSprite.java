@@ -1,4 +1,4 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.elements;
 
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.scene.canvas.GraphicsContext;

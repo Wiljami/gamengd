@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
-import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.elements.Sprite;
 
 public abstract class Entity {
     private Sprite sprite;

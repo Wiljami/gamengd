@@ -1,9 +1,9 @@
 package fi.tuni.tiko.gamengd.entity;
 
-import fi.tuni.tiko.gamengd.Level;
-import fi.tuni.tiko.gamengd.Tile;
+import fi.tuni.tiko.gamengd.elements.Level;
+import fi.tuni.tiko.gamengd.elements.Tile;
 import fi.tuni.tiko.gamengd.controller.CameraController;
-import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.controller.ui.UIController;

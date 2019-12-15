@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
-import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;

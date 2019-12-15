@@ -1,7 +1,7 @@
 package fi.tuni.tiko.gamengd.scripts.pathfinding;
 
-import fi.tuni.tiko.gamengd.Level;
-import fi.tuni.tiko.gamengd.Tile;
+import fi.tuni.tiko.gamengd.elements.Level;
+import fi.tuni.tiko.gamengd.elements.Tile;
 
 import java.util.HashMap;
 import java.util.LinkedList;

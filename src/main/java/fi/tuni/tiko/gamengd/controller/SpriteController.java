@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.controller;
 
-import fi.tuni.tiko.gamengd.Sprite;
+import fi.tuni.tiko.gamengd.elements.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.LinkedList;

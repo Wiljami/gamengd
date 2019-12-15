@@ -1,5 +1,6 @@
-package fi.tuni.tiko.gamengd;
+package fi.tuni.tiko.gamengd.elements;
 
+import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.controller.crisis.*;
 import fi.tuni.tiko.gamengd.controller.turn.TurnController;
 import fi.tuni.tiko.gamengd.entity.*;
