@@ -10,8 +10,14 @@ import fi.tuni.tiko.gamengd.controller.turn.TurnListener;
 import fi.tuni.tiko.gamengd.entity.Furniture;
 import fi.tuni.tiko.gamengd.entity.Unit;
 import javafx.beans.value.ChangeListener;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 
@@ -105,18 +111,22 @@ public class CameraController implements CommandTarget, TurnListener {
     private void addToolTips(HashMap<Rectangle, String> tooltips) {
         Popup popup = new Popup();
         Label label = new Label("");
+        label.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         popup.getContent().add(label);
         popup.setAutoHide(true);
 
-        canvas.setOnMouseMoved(e -> {
-            popup.show(canvas, e.getScreenX(), e.getScreenY());
-            tooltips.forEach((bounds, toolTip) -> {
-                if (bounds.contains(e.getX(), e.getY())) {
-                    label.setText(toolTip);
-                }
-            });
+        canvas.setOnMousePressed(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                popup.show(canvas, e.getScreenX(), e.getScreenY());
+                tooltips.forEach((bounds, toolTip) -> {
+                    if (bounds.contains(e.getX(), e.getY())) {
+                        label.setText(toolTip);
+                    }
+                });
+            }
         });
-        canvas.setOnMouseExited(e -> {
+
+        canvas.setOnMouseReleased(e -> {
             popup.hide();
         });
     }
