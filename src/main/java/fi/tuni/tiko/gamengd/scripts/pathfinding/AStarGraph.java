@@ -11,7 +11,6 @@ public class AStarGraph {
     private HashMap<Tile, PathNode<Tile>> nodes;
 
     public AStarGraph(Level level) {
-        long systemStart = System.currentTimeMillis();
         nodes = new HashMap<>();
 
         for (int x = 0; x < level.getWidth(); x++) {
