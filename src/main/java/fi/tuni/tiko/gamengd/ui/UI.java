@@ -1,10 +1,12 @@
 package fi.tuni.tiko.gamengd.ui;
 
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.ui.UIController;
 import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -40,7 +42,11 @@ public class UI extends BorderPane {
     private Pane rightColumn() {
         PlayerDisplay playerDisplay = new PlayerDisplay(player);
         uiController.addUIListener(playerDisplay);
-        VBox rightColumn = new VBox(playerDisplay, new ArrowPad(inputController));
+        VBox rightColumn = new VBox(playerDisplay);
+        if (Config.mouseControl) {
+            ArrowPad arrowPad = new ArrowPad(inputController);
+            rightColumn.getChildren().add(arrowPad);
+        }
         return rightColumn;
     }
 
