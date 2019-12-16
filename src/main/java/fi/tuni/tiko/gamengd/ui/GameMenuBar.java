@@ -3,6 +3,9 @@ package fi.tuni.tiko.gamengd.ui;
 import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.application.Platform;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 
 public class GameMenuBar extends MenuBar {
     private Player player;
@@ -17,6 +20,7 @@ public class GameMenuBar extends MenuBar {
         MenuItem separator = new SeparatorMenuItem();
 
         MenuItem saveGame = new MenuItem("Save game");
+        saveGame.setOnAction(actionEvent -> saveGame());
 
         MenuItem loadGame = new MenuItem("Load game");
 
@@ -25,6 +29,13 @@ public class GameMenuBar extends MenuBar {
 
         menuFile.getItems().addAll(saveGame, loadGame, separator, itemExit);
         return menuFile;
+    }
+
+    private void saveGame() {
+        FileChooser fileChooser = new FileChooser();
+        File directory = new File(System.getProperty("user.dir"));
+        fileChooser.setInitialDirectory(directory);
+        fileChooser.showOpenDialog(null);
     }
 
     private Menu gameMenu() {
