@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.controller;
 
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
@@ -98,7 +99,7 @@ public class CameraController implements CommandTarget, TurnListener {
                 toolTips.put(rect, toolTip);
             }
         }
-        addToolTips(toolTips);
+        if (Config.toolTips) addToolTips(toolTips);
     }
 
     private void addToolTips(HashMap<Rectangle, String> tooltips) {

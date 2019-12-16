@@ -9,4 +9,5 @@ public class Config {
     public static final String defaultGame = "game.json";
 
     public static final boolean mouseControl = true;
+    public static final boolean toolTips = false;
 }

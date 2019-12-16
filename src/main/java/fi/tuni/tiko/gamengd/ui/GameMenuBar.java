@@ -12,14 +12,18 @@ public class GameMenuBar extends MenuBar {
     }
 
     private Menu menuFile() {
-        Menu menuFile = new javafx.scene.control.Menu("File");
+        Menu menuFile = new Menu("File");
 
         MenuItem separator = new SeparatorMenuItem();
 
-        MenuItem itemExit = new javafx.scene.control.MenuItem("Exit");
+        MenuItem saveGame = new MenuItem("Save game");
+
+        MenuItem loadGame = new MenuItem("Load game");
+
+        MenuItem itemExit = new MenuItem("Exit");
         itemExit.setOnAction(actionEvent -> Platform.exit());
 
-        menuFile.getItems().addAll(separator, itemExit);
+        menuFile.getItems().addAll(saveGame, loadGame, separator, itemExit);
         return menuFile;
     }
 
