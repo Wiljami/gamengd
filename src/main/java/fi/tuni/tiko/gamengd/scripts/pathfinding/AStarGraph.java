@@ -11,7 +11,6 @@ public class AStarGraph {
     private HashMap<Tile, PathNode<Tile>> nodes;
 
     public AStarGraph(Level level) {
-        System.out.println("AStarGraph::AStarGraph");
         long systemStart = System.currentTimeMillis();
         nodes = new HashMap<>();
 
@@ -26,10 +25,6 @@ public class AStarGraph {
             }
         }
 
-        System.out.println("AStarGraph: Created " + nodes.size() + " nodes");
-
-        int edgeCounter = 0;
-
         for (Tile tile : nodes.keySet()) {
             PathNode<Tile> node = nodes.get(tile);
             ArrayList<PathEdge<Tile>> edges = new ArrayList<>();
@@ -41,16 +36,11 @@ public class AStarGraph {
                     e.node = nodes.get(neighbour);
 
                     edges.add(e);
-
-                    edgeCounter++;
                 }
             }
 
             node.setEdges(edges);
         }
-
-        System.out.println("AstarGraph: Edgecount " + edgeCounter);
-        System.out.println("AstarGraph: Time taken: " + (System.currentTimeMillis() - systemStart)/1000d);
     }
 
     public HashMap<Tile, PathNode<Tile>> getNodes() {

@@ -24,12 +24,10 @@ public class AStar {
         HashMap<Tile, PathNode<Tile>> nodes = level.getaStarGraph().getNodes();
 
         if (!nodes.containsKey(startTile)) {
-            System.out.println("AStar: Starting tile not among nodes.");
             return;
         }
 
         if (!nodes.containsKey(endTile)) {
-            System.out.println("AStar: Ending tile not among nodes.");
             return;
         }
 

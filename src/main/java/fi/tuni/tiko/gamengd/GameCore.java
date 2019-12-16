@@ -48,7 +48,6 @@ public class GameCore extends Application {
 
     @Override
     public void init() {
-        System.out.println("This is GameCore::Init");
         Entity.setup(this);
         spriteController = new SpriteController();
         crisisController = new CrisisController();
@@ -96,7 +95,6 @@ public class GameCore extends Application {
 
     @Override
     public void stop() {
-        System.out.println("This is GameCore::Stop");
     }
 
     @Override
