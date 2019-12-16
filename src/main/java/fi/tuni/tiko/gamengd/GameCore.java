@@ -96,14 +96,21 @@ public class GameCore extends Application {
     }
 
     public void loadGame() {
-
+        File loadFile = fileChooser().showOpenDialog(null);
     }
 
     public void saveGame() {
+        File saveFile = fileChooser().showSaveDialog(null);
+    }
+
+    private FileChooser fileChooser() {
         FileChooser fileChooser = new FileChooser();
         File directory = new File(System.getProperty("user.dir"));
         fileChooser.setInitialDirectory(directory);
-        fileChooser.showOpenDialog(null);
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Gamengd save files", "*.sav")
+        );
+        return fileChooser;
     }
 
     @Override
