@@ -19,9 +19,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -91,6 +93,17 @@ public class GameCore extends Application {
         cameraController.setLevel(currentLevel);
         currentLevel.addUnit(player);
         currentLevel.setPlayer(player);
+    }
+
+    public void loadGame() {
+
+    }
+
+    public void saveGame() {
+        FileChooser fileChooser = new FileChooser();
+        File directory = new File(System.getProperty("user.dir"));
+        fileChooser.setInitialDirectory(directory);
+        fileChooser.showOpenDialog(null);
     }
 
     @Override

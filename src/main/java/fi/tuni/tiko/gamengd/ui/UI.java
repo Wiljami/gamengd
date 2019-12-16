@@ -12,11 +12,13 @@ import javafx.scene.layout.VBox;
 public class UI extends BorderPane {
     private InputController inputController;
     private UIController uiController;
+    private GameCore gameCore;
     private Player player;
 
     public UI(GameCore gameCore) {
         this.inputController = gameCore.getInputController();
         this.uiController = gameCore.getUiController();
+        this.gameCore = gameCore;
         this.player = gameCore.getCurrentLevel().getPlayer();
         setCenter(gameCore.getGameView());
         setTop(topBar());
@@ -27,7 +29,7 @@ public class UI extends BorderPane {
 
 
     private VBox topBar() {
-        VBox topBar = new VBox(new GameMenuBar(player));
+        VBox topBar = new VBox(new GameMenuBar(player, gameCore));
         return topBar;
     }
 
