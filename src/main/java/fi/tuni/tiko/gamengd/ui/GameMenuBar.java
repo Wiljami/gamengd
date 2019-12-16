@@ -36,7 +36,7 @@ public class GameMenuBar extends MenuBar {
     }
 
     private TextInputDialog renameCharacter() {
-        TextInputDialog dialog = new TextInputDialog("test");
+        TextInputDialog dialog = new TextInputDialog(player.getName());
         dialog.setHeaderText("Rename your character");
         return dialog;
     }
