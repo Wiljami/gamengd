@@ -20,9 +20,7 @@ public class Util {
      * @return array of Files in the folder
      */
     public static File[] walkFolder(String folder) {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL url = loader.getResource(folder);
-        String path = url.getPath();
+        String path = System.getProperty("user.dir") + "/" + folder;
         return new File(path).listFiles();
     }
 
@@ -32,8 +30,8 @@ public class Util {
      * @return loaded File
      */
     public static File loadFile(String fileName) {
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        return new File(classLoader.getResource(fileName).getFile());
+        String path = System.getProperty("user.dir") + "/" + fileName;
+        return new File(path);
     }
 
 }

@@ -263,8 +263,6 @@ public class Tile {
     public String getToolTip() {
         String toolTip = "";
         toolTip += "x: " + getX() + " y: " + getY();
-        if (hasWall) toolTip += "\nWall";
-        if (hasUnit) toolTip += "\n" + getUnit().getName();
         return toolTip;
     }
 }

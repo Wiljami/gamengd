@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -56,7 +57,7 @@ public class ImageLoader {
         if (images.containsKey(file)) return images.get(file);
         Image image;
         try {
-            image = new Image(GRAPHICSFOLDER + file);
+            image = accessImage(file);
             images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
@@ -74,7 +75,13 @@ public class ImageLoader {
     private static void initiateImages() {
         images = new TreeMap<>();
         tileSets = new HashMap<>();
-        images.put(failPicture, new Image(GRAPHICSFOLDER + failPicture));
+        images.put(failPicture, accessImage(failPicture));
+    }
+
+    private static Image accessImage(String fileName) {
+        String path = System.getProperty("user.dir") + "/" + GRAPHICSFOLDER + fileName;
+        path = new File(path).toURI().toString();
+        return new Image(path);
     }
 
     /**
