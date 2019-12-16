@@ -78,7 +78,6 @@ public class CameraController implements CommandTarget, TurnListener {
 
         for (int x = -horizontalTiles / 2; x <= horizontalTiles / 2; x++) {
             for (int y = -verticalTiles / 2; y <= verticalTiles / 2; y++) {
-                String toolTip = "x: " + (centerTileX + x) + " y: " + (centerTileY + y);
                 Tile tile = level.getTileAt(centerTileX + x, centerTileY + y);
                 Sprite floor = tile.getFloor().getSprite();
 
@@ -102,7 +101,7 @@ public class CameraController implements CommandTarget, TurnListener {
                     spriteController.addFurnSprite(furn);
                 }
                 Rectangle rect = new Rectangle(positionX, positionY, tileSize, tileSize);
-                toolTips.put(rect, toolTip);
+                toolTips.put(rect, tile.getToolTip());
             }
         }
         if (Config.toolTips) addToolTips(toolTips);
