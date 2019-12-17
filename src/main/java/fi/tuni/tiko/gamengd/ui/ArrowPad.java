@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.ui;
 
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.input.InputEvent;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
@@ -10,10 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class ArrowPad extends GridPane {
-    private static final String ARROWDIAGONAL = "arrowDiagonal.png";
-    private static final String ARROWSTRAIGHT = "arrowStraight.png";
-    private static final String CENTERSQUARE = "square.png";
-
     public ArrowPad(InputController inputController) {
         Button nw = movementButton(buttonImage(270, false));
         nw.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NW")));
@@ -23,7 +20,7 @@ public class ArrowPad extends GridPane {
         ne.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NE")));
         Button w = movementButton(buttonImage(270, true));
         w.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:W")));
-        Button none = movementButton(new ImageView(ImageLoader.loadImage(CENTERSQUARE)));
+        Button none = movementButton(new ImageView(ImageLoader.loadImage(Config.getCenterSquare())));
         none.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NONE")));
         Button e = movementButton(buttonImage(90, true));
         e.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:E")));
@@ -56,9 +53,9 @@ public class ArrowPad extends GridPane {
     private ImageView buttonImage (double rotation, boolean isStraight) {
         Image image;
         if (isStraight) {
-            image = ImageLoader.loadImage(ARROWSTRAIGHT);
+            image = ImageLoader.loadImage(Config.getArrowStraight());
         } else {
-            image = ImageLoader.loadImage(ARROWDIAGONAL);
+            image = ImageLoader.loadImage(Config.getArrowDiag());
         }
 
         ImageView imageView = new ImageView(image);

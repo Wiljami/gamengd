@@ -29,6 +29,10 @@ public class Config {
      */
     private static String mapFolder = "maps/";
 
+    private static String arrowDiag = "arrowDiagonal.png";
+    private static String arrowStraight = "arrowStraight.png";
+    private static String centerSquare = "square.png";
+
     public static double getResolutionX() {
         return resolutionX;
     }
@@ -123,5 +127,29 @@ public class Config {
 
     public static void setMapFolder(String mapFolder) {
         Config.mapFolder = mapFolder;
+    }
+
+    public static String getArrowDiag() {
+        return arrowDiag;
+    }
+
+    public static void setArrowDiag(String arrowDiag) {
+        Config.arrowDiag = arrowDiag;
+    }
+
+    public static String getArrowStraight() {
+        return arrowStraight;
+    }
+
+    public static void setArrowStraight(String arrowStraight) {
+        Config.arrowStraight = arrowStraight;
+    }
+
+    public static String getCenterSquare() {
+        return centerSquare;
+    }
+
+    public static void setCenterSquare(String centerSquare) {
+        Config.centerSquare = centerSquare;
     }
 }
