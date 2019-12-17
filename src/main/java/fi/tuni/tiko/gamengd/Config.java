@@ -1,12 +1,12 @@
 package fi.tuni.tiko.gamengd;
 
 public class Config {
+    private static String game = "game.json";
     private static double resolutionX = 1200;
     private static double resolutionY = 800;
     private static double minResolutionX = 600;
     private static double minResolutionY = 400;
     private static boolean fullScreen = false;
-    private static String defaultGame = "game.json";
     private static double tileSize = 50;
 
     private static boolean mouseControl = true;
@@ -77,12 +77,12 @@ public class Config {
         Config.fullScreen = fullScreen;
     }
 
-    public static String getDefaultGame() {
-        return defaultGame;
+    public static String getGame() {
+        return game;
     }
 
-    public static void setDefaultGame(String defaultGame) {
-        Config.defaultGame = defaultGame;
+    public static void setGame(String game) {
+        Config.game = game;
     }
 
     public static boolean isMouseControl() {

@@ -61,7 +61,7 @@ public class GameCore extends Application {
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         turnController.registerTurnListener(cameraController);
-        sortGameFile(JacksonLoader.loadGameFile(Config.getDefaultGame()));
+        sortGameFile(JacksonLoader.loadGameFile(Config.getGame()));
     }
 
     private void sortGameFile(JacksonGame game) {
@@ -97,7 +97,7 @@ public class GameCore extends Application {
 
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
-        sortGameFile(JacksonLoader.loadGameFile(Config.getDefaultGame()));
+        sortGameFile(JacksonLoader.loadGameFile(Config.getGame()));
     }
 
     public void saveGame() {
