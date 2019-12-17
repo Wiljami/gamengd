@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Tile class holds the information what is on this one specific Tile.
  *
  * @author Viljami Pietarila
- * @version 2019.1208
+ * @version 2019.1217
  */
 public class Tile {
     /**
@@ -260,6 +260,10 @@ public class Tile {
         return y;
     }
 
+    /**
+     * getToolTip returns a toolTip String of this Tile.
+     * @return String of a tooltip
+     */
     public String getToolTip() {
         String toolTip = "";
         toolTip += "x: " + getX() + " y: " + getY();
