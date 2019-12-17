@@ -11,6 +11,15 @@ public class Config {
     private static boolean mouseControl = true;
     private static boolean toolTips = true;
 
+    /**
+     * file name of the fail picture that is used when picture is not found.
+     */
+    private static String failPicture = "fail.png";
+    /**
+     * Default folder where the ImageLoader looks for the image files.
+     */
+    private static String graphicsFolder = "graphics/";
+
     public static double getResolutionX() {
         return resolutionX;
     }
@@ -73,5 +82,21 @@ public class Config {
 
     public static void setToolTips(boolean toolTips) {
         Config.toolTips = toolTips;
+    }
+
+    public static String getFailPicture() {
+        return failPicture;
+    }
+
+    public static void setFailPicture(String failPicture) {
+        Config.failPicture = failPicture;
+    }
+
+    public static String getGraphicsFolder() {
+        return graphicsFolder;
+    }
+
+    public static void setGraphicsFolder(String graphicsFolder) {
+        Config.graphicsFolder = graphicsFolder;
     }
 }

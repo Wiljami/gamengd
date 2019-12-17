@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.util;
 
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.util.json.TileSet;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -25,14 +26,6 @@ import java.util.TreeMap;
  * @version 2019.1207
  */
 public class ImageLoader {
-    /**
-     * file name of the fail picture that is used when picture is not found.
-     */
-    private static final String failPicture = "fail.png";
-    /**
-     * Default folder where the ImageLoader looks for the image files.
-     */
-    private static final String GRAPHICSFOLDER = "graphics/";
     /**
      * TreeMap of the images that have been loaded.
      */
@@ -63,7 +56,7 @@ public class ImageLoader {
             images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
-            image = images.get(failPicture);
+            image = images.get(Config.getFailPicture());
         }
         return image;
     }
@@ -77,12 +70,12 @@ public class ImageLoader {
     private static void initiateImages() {
         images = new TreeMap<>();
         tileSets = new HashMap<>();
-        images.put(failPicture, accessImage(failPicture));
+        images.put(Config.getFailPicture(), accessImage(Config.getFailPicture()));
     }
 
     private static Image accessImage(String fileName) {
         Path currentRelativePath = Paths.get("");
-        String path = currentRelativePath.toAbsolutePath().toString() + "/" + GRAPHICSFOLDER + fileName;
+        String path = currentRelativePath.toAbsolutePath().toString() + "/" + Config.getGraphicsFolder() + fileName;
         path = new File(path).toURI().toString();
         return new Image(path);
     }
