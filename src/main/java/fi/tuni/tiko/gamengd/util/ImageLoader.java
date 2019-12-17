@@ -6,6 +6,8 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -79,7 +81,8 @@ public class ImageLoader {
     }
 
     private static Image accessImage(String fileName) {
-        String path = System.getProperty("user.dir") + "/" + GRAPHICSFOLDER + fileName;
+        Path currentRelativePath = Paths.get("");
+        String path = currentRelativePath.toAbsolutePath().toString() + "/" + GRAPHICSFOLDER + fileName;
         path = new File(path).toURI().toString();
         return new Image(path);
     }

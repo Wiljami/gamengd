@@ -183,4 +183,11 @@ public class Player extends Unit implements CommandTarget {
     public void addKill() {
         setKillCount(getKillCount() + 1);
     }
+
+    public JacksonPlayer createJacksonPlayer() {
+        JacksonPlayer player = new JacksonPlayer();
+        player.setAttack(getAttack());
+        player.setDefense(getDefense());
+        return player;
+    }
 }

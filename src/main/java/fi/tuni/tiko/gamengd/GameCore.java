@@ -45,6 +45,7 @@ public class GameCore extends Application {
 
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
+        launch();
         System.exit(0);
     }
 
@@ -97,6 +98,7 @@ public class GameCore extends Application {
 
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
+        sortGameFile(JSONLoader.loadGameFile(Config.defaultGame));
     }
 
     public void saveGame() {

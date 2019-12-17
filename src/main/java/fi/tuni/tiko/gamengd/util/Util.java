@@ -2,6 +2,8 @@ package fi.tuni.tiko.gamengd.util;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Util class is colleciton of helpful methods.
@@ -20,7 +22,8 @@ public class Util {
      * @return array of Files in the folder
      */
     public static File[] walkFolder(String folder) {
-        String path = System.getProperty("user.dir") + "/" + folder;
+        Path currentRelativePath = Paths.get("");
+        String path = currentRelativePath.toAbsolutePath().toString() + "/" + folder;
         return new File(path).listFiles();
     }
 
@@ -30,7 +33,8 @@ public class Util {
      * @return loaded File
      */
     public static File loadFile(String fileName) {
-        String path = System.getProperty("user.dir") + "/" + fileName;
+        Path currentRelativePath = Paths.get("");
+        String path = currentRelativePath.toAbsolutePath().toString() + "/" + fileName;
         return new File(path);
     }
 
