@@ -158,7 +158,7 @@ public class CameraController implements CommandTarget, TurnListener {
                 toolTips.put(rect, tile.getToolTip());
             }
         }
-        if (Config.toolTips) addToolTips(toolTips);
+        if (Config.isToolTips()) addToolTips(toolTips);
     }
 
     /**

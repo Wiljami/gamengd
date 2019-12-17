@@ -61,7 +61,7 @@ public class GameCore extends Application {
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         turnController.registerTurnListener(cameraController);
-        sortGameFile(JSONLoader.loadGameFile(Config.defaultGame));
+        sortGameFile(JSONLoader.loadGameFile(Config.getDefaultGame()));
     }
 
     private void sortGameFile(JacksonGame game) {
@@ -97,7 +97,7 @@ public class GameCore extends Application {
 
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
-        sortGameFile(JSONLoader.loadGameFile(Config.defaultGame));
+        sortGameFile(JSONLoader.loadGameFile(Config.getDefaultGame()));
     }
 
     public void saveGame() {
@@ -125,9 +125,9 @@ public class GameCore extends Application {
         stage.setScene(createScene());
 
         stage.show();
-        stage.setMinWidth(Config.minResolutionX);
-        stage.setMinHeight(Config.minResolutionY);
-        stage.setFullScreen(Config.fullScreen);
+        stage.setMinWidth(Config.getMinResolutionX());
+        stage.setMinHeight(Config.getMinResolutionY());
+        stage.setFullScreen(Config.isFullScreen());
 
         startAnimationTimer();
         startTurnController();
@@ -169,7 +169,7 @@ public class GameCore extends Application {
 
     private Scene createScene() {
         UI ui = new UI(this);
-        Scene scene = new Scene(ui, Config.resolutionX, Config.resolutionY);
+        Scene scene = new Scene(ui, Config.getResolutionX(), Config.getResolutionX());
 
         scene.setOnKeyPressed(keyEvent -> {
             String key = keyEvent.getCode().toString();

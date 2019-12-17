@@ -44,7 +44,7 @@ public class UI extends BorderPane {
         PlayerDisplay playerDisplay = new PlayerDisplay(player);
         uiController.addUIListener(playerDisplay);
         VBox rightColumn = new VBox(playerDisplay);
-        if (Config.mouseControl) {
+        if (Config.isMouseControl()) {
             ArrowPad arrowPad = new ArrowPad(inputController);
             rightColumn.getChildren().add(arrowPad);
         }
