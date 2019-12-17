@@ -20,6 +20,15 @@ public class Config {
      */
     private static String graphicsFolder = "graphics/";
 
+    /**
+     * Folder for monster jsons.
+     */
+    private static String monsterFolder = "monsters/";
+    /**
+     * Folder for maps.
+     */
+    private static String mapFolder = "maps/";
+
     public static double getResolutionX() {
         return resolutionX;
     }
@@ -98,5 +107,21 @@ public class Config {
 
     public static void setGraphicsFolder(String graphicsFolder) {
         Config.graphicsFolder = graphicsFolder;
+    }
+
+    public static String getMonsterFolder() {
+        return monsterFolder;
+    }
+
+    public static void setMonsterFolder(String monsterFolder) {
+        Config.monsterFolder = monsterFolder;
+    }
+
+    public static String getMapFolder() {
+        return mapFolder;
+    }
+
+    public static void setMapFolder(String mapFolder) {
+        Config.mapFolder = mapFolder;
     }
 }

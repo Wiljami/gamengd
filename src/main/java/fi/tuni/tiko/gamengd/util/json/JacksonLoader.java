@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd.util.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.entity.Monster;
 import fi.tuni.tiko.gamengd.util.Util;
 
@@ -15,15 +16,6 @@ import java.io.File;
  * @version 2019.1208
  */
 public class JacksonLoader {
-    /**
-     * Folder for monster jsons.
-     */
-    private static final String MONSTERSFOLDER = "monsters/";
-    /**
-     * Folder for maps.
-     */
-    private static final String MAPSFOLDER = "maps/";
-
     /**
      * loadLevel loads a level from json file and creates an object of it.
      *
@@ -100,7 +92,7 @@ public class JacksonLoader {
      * @return Monster object
      */
     public static Monster loadMonster(String fileName) {
-        File file = Util.loadFile(MONSTERSFOLDER + fileName);
+        File file = Util.loadFile(Config.getMonsterFolder() + fileName);
 
         return loadMonster(file);
     }
@@ -113,7 +105,7 @@ public class JacksonLoader {
      * @return JacksonMap object
      */
     public static JacksonMap loadMap(String fileName) {
-        File file = Util.loadFile(MAPSFOLDER + fileName);
+        File file = Util.loadFile(Config.getMapFolder() + fileName);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JacksonMap map = new JacksonMap();
