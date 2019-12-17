@@ -45,7 +45,6 @@ public class GameCore extends Application {
 
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
-        launch();
         System.exit(0);
     }
 
