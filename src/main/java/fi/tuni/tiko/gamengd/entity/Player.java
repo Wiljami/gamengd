@@ -7,6 +7,7 @@ import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
+import javafx.scene.control.Alert;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
@@ -26,6 +27,7 @@ public class Player extends Unit implements CommandTarget {
     private long timeSinceLastMove = 0;
     private int movementDelay = 150;
     private int killCount = 0;
+    private boolean dead = false;
 
     private boolean playerTurn = false;
 
@@ -34,60 +36,67 @@ public class Player extends Unit implements CommandTarget {
     }
 
     private void sortInput(String input) {
-        if (playerTurn) {
-            int moveX = 0;
-            int moveY = 0;
-            boolean move = true;
-            boolean action = false;
-            switch (input) {
-                case "NW":
-                    moveX = -1;
-                    moveY = -1;
-                    break;
-                case "SW":
-                    moveX = -1;
-                    moveY = 1;
-                    break;
-                case "NE":
-                    moveX = 1;
-                    moveY = -1;
-                    break;
-                case "SE":
-                    moveX = 1;
-                    moveY = 1;
-                    break;
-                case "W":
-                    moveX = -1;
-                    moveY = 0;
-                    break;
-                case "E":
-                    moveX = 1;
-                    moveY = 0;
-                    break;
-                case "N":
-                    moveX = 0;
-                    moveY = -1;
-                    break;
-                case "S":
-                    moveX = 0;
-                    moveY = 1;
-                    break;
-                case "NONE":
-                    action = true;
-                    break;
-                default:
-                    move = false;
-                    break;
-            }
-
-            if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
-                timeSinceLastMove = System.currentTimeMillis();
-
-                if (!action) {
-                    Tile targetTile = level.getTileAt(getX() + moveX, getY() + moveY);
-                if (move && targetTile.isPassable()) sortMove(targetTile);
+        if (!dead) {
+            if (playerTurn) {
+                int moveX = 0;
+                int moveY = 0;
+                boolean move = true;
+                boolean action = false;
+                switch (input) {
+                    case "NW":
+                        moveX = -1;
+                        moveY = -1;
+                        break;
+                    case "SW":
+                        moveX = -1;
+                        moveY = 1;
+                        break;
+                    case "NE":
+                        moveX = 1;
+                        moveY = -1;
+                        break;
+                    case "SE":
+                        moveX = 1;
+                        moveY = 1;
+                        break;
+                    case "W":
+                        moveX = -1;
+                        moveY = 0;
+                        break;
+                    case "E":
+                        moveX = 1;
+                        moveY = 0;
+                        break;
+                    case "N":
+                        moveX = 0;
+                        moveY = -1;
+                        break;
+                    case "S":
+                        moveX = 0;
+                        moveY = 1;
+                        break;
+                    case "NONE":
+                        action = true;
+                        break;
+                    default:
+                        move = false;
+                        break;
                 }
-                finishTurn();
+
+                if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
+                    timeSinceLastMove = System.currentTimeMillis();
+
+                    if (!action) {
+                        Tile targetTile = level.getTileAt(getX() + moveX, getY() + moveY);
+                        if (move && targetTile.isPassable()) sortMove(targetTile);
+                    }
+                    finishTurn();
+                }
+            }
+        } else {
+            if (System.currentTimeMillis() - timeSinceLastMove > movementDelay) {
+                uiController.updateGameLog("Looks like you're dead. Too bad. You can close the game and start a new game");
+                timeSinceLastMove = System.currentTimeMillis();
             }
         }
     }
@@ -162,6 +171,10 @@ public class Player extends Unit implements CommandTarget {
     public void setHitPoints(int hitPoints) {
         super.setHitPoints(hitPoints);
         registerChange();
+        if (hitPoints <= 0) {
+            uiController.updateGameLog("Oh no! " + getName() + " has perished!");
+            dead = true;
+        }
     }
 
     @Override
