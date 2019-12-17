@@ -97,6 +97,7 @@ public class TurnController {
      *
      * When currentTurnActors is empty a new turn is created.
      */
+    @SuppressWarnings("unchecked")
     private void newTurn() {
         crisisController.run(turn);
         turn++;
