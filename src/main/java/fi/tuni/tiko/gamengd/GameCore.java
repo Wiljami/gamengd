@@ -11,7 +11,7 @@ import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.entity.*;
 import fi.tuni.tiko.gamengd.ui.GameView;
 import fi.tuni.tiko.gamengd.ui.UI;
-import fi.tuni.tiko.gamengd.util.json.JSONLoader;
+import fi.tuni.tiko.gamengd.util.json.JacksonLoader;
 import fi.tuni.tiko.gamengd.util.json.JacksonGame;
 import fi.tuni.tiko.gamengd.util.json.JacksonLevel;
 import javafx.animation.AnimationTimer;
@@ -61,7 +61,7 @@ public class GameCore extends Application {
         cameraController = new CameraController(gameView.getCanvas(), spriteController);
         inputController.registerCamera(cameraController);
         turnController.registerTurnListener(cameraController);
-        sortGameFile(JSONLoader.loadGameFile(Config.getDefaultGame()));
+        sortGameFile(JacksonLoader.loadGameFile(Config.getDefaultGame()));
     }
 
     private void sortGameFile(JacksonGame game) {
@@ -97,7 +97,7 @@ public class GameCore extends Application {
 
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
-        sortGameFile(JSONLoader.loadGameFile(Config.getDefaultGame()));
+        sortGameFile(JacksonLoader.loadGameFile(Config.getDefaultGame()));
     }
 
     public void saveGame() {

@@ -14,7 +14,7 @@ import java.io.File;
  * @author Viljami Pietarila
  * @version 2019.1208
  */
-public class JSONLoader {
+public class JacksonLoader {
     /**
      * Folder for monster jsons.
      */

@@ -5,7 +5,7 @@ import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
 import fi.tuni.tiko.gamengd.util.GameMechanic;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
-import fi.tuni.tiko.gamengd.util.json.JSONLoader;
+import fi.tuni.tiko.gamengd.util.json.JacksonLoader;
 import fi.tuni.tiko.gamengd.util.Util;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.scripts.pathfinding.AStar;
@@ -64,7 +64,7 @@ public class Monster extends Unit {
         monsterProtoTypes = new HashMap<>();
         File[] monsterFiles = Util.walkFolder(MONSTERFOLDER);
         for (File f : monsterFiles) {
-            Monster monster = JSONLoader.loadMonster(f);
+            Monster monster = JacksonLoader.loadMonster(f);
             if (monsterProtoTypes.containsKey(monster.getId())) {
                 System.out.println("Monster.setup()::Duplicate MonsterID: + " + monster.getId());
             }

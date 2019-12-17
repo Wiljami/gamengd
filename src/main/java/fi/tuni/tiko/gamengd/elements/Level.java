@@ -83,7 +83,7 @@ public class Level implements CrisisSource {
      * @param core reference to the gameCore
      */
     public Level(JacksonLevel levelData, GameCore core) {
-        JacksonMap mapData = JSONLoader.loadMap(levelData.getMap());
+        JacksonMap mapData = JacksonLoader.loadMap(levelData.getMap());
         this.id = levelData.getId();
         this.turnController = core.getTurnController();
         int width = mapData.getWidth();
