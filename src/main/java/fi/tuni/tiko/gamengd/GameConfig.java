@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd;
 
-public class Config {
+public class GameConfig {
     private static String game = "game.json";
     private static double resolutionX = 1200;
     private static double resolutionY = 800;
@@ -42,7 +42,7 @@ public class Config {
     }
 
     public static void setResolutionX(double resolutionX) {
-        Config.resolutionX = resolutionX;
+        GameConfig.resolutionX = resolutionX;
     }
 
     public static double getResolutionY() {
@@ -50,7 +50,7 @@ public class Config {
     }
 
     public static void setResolutionY(double resolutionY) {
-        Config.resolutionY = resolutionY;
+        GameConfig.resolutionY = resolutionY;
     }
 
     public static double getMinResolutionX() {
@@ -58,7 +58,7 @@ public class Config {
     }
 
     public static void setMinResolutionX(double minResolutionX) {
-        Config.minResolutionX = minResolutionX;
+        GameConfig.minResolutionX = minResolutionX;
     }
 
     public static double getMinResolutionY() {
@@ -66,7 +66,7 @@ public class Config {
     }
 
     public static void setMinResolutionY(double minResolutionY) {
-        Config.minResolutionY = minResolutionY;
+        GameConfig.minResolutionY = minResolutionY;
     }
 
     public static boolean isFullScreen() {
@@ -74,7 +74,7 @@ public class Config {
     }
 
     public static void setFullScreen(boolean fullScreen) {
-        Config.fullScreen = fullScreen;
+        GameConfig.fullScreen = fullScreen;
     }
 
     public static String getGame() {
@@ -82,7 +82,7 @@ public class Config {
     }
 
     public static void setGame(String game) {
-        Config.game = game;
+        GameConfig.game = game;
     }
 
     public static boolean isMouseControl() {
@@ -90,7 +90,7 @@ public class Config {
     }
 
     public static void setMouseControl(boolean mouseControl) {
-        Config.mouseControl = mouseControl;
+        GameConfig.mouseControl = mouseControl;
     }
 
     public static boolean isToolTips() {
@@ -98,7 +98,7 @@ public class Config {
     }
 
     public static void setToolTips(boolean toolTips) {
-        Config.toolTips = toolTips;
+        GameConfig.toolTips = toolTips;
     }
 
     public static String getFailPicture() {
@@ -106,7 +106,7 @@ public class Config {
     }
 
     public static void setFailPicture(String failPicture) {
-        Config.failPicture = failPicture;
+        GameConfig.failPicture = failPicture;
     }
 
     public static String getGraphicsFolder() {
@@ -114,7 +114,7 @@ public class Config {
     }
 
     public static void setGraphicsFolder(String graphicsFolder) {
-        Config.graphicsFolder = graphicsFolder;
+        GameConfig.graphicsFolder = graphicsFolder;
     }
 
     public static String getMonsterFolder() {
@@ -122,7 +122,7 @@ public class Config {
     }
 
     public static void setMonsterFolder(String monsterFolder) {
-        Config.monsterFolder = monsterFolder;
+        GameConfig.monsterFolder = monsterFolder;
     }
 
     public static String getMapFolder() {
@@ -130,7 +130,7 @@ public class Config {
     }
 
     public static void setMapFolder(String mapFolder) {
-        Config.mapFolder = mapFolder;
+        GameConfig.mapFolder = mapFolder;
     }
 
     public static String getArrowDiag() {
@@ -138,7 +138,7 @@ public class Config {
     }
 
     public static void setArrowDiag(String arrowDiag) {
-        Config.arrowDiag = arrowDiag;
+        GameConfig.arrowDiag = arrowDiag;
     }
 
     public static String getArrowStraight() {
@@ -146,7 +146,7 @@ public class Config {
     }
 
     public static void setArrowStraight(String arrowStraight) {
-        Config.arrowStraight = arrowStraight;
+        GameConfig.arrowStraight = arrowStraight;
     }
 
     public static String getCenterSquare() {
@@ -154,7 +154,7 @@ public class Config {
     }
 
     public static void setCenterSquare(String centerSquare) {
-        Config.centerSquare = centerSquare;
+        GameConfig.centerSquare = centerSquare;
     }
 
     public static String getStairsUp() {
@@ -162,7 +162,7 @@ public class Config {
     }
 
     public static void setStairsUp(String stairsUp) {
-        Config.stairsUp = stairsUp;
+        GameConfig.stairsUp = stairsUp;
     }
 
     public static String getStairsDown() {
@@ -170,7 +170,7 @@ public class Config {
     }
 
     public static void setStairsDown(String stairsDown) {
-        Config.stairsDown = stairsDown;
+        GameConfig.stairsDown = stairsDown;
     }
 
     public static String getVoidTile() {
@@ -178,7 +178,7 @@ public class Config {
     }
 
     public static void setVoidTile(String voidTile) {
-        Config.voidTile = voidTile;
+        GameConfig.voidTile = voidTile;
     }
 
     public static double getTileSize() {
@@ -186,6 +186,6 @@ public class Config {
     }
 
     public static void setTileSize(double tileSize) {
-        Config.tileSize = tileSize;
+        GameConfig.tileSize = tileSize;
     }
 }

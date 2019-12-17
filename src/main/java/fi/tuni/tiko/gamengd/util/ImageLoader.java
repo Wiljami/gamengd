@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.util;
 
-import fi.tuni.tiko.gamengd.Config;
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.util.json.TileSet;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -56,7 +56,7 @@ public class ImageLoader {
             images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
-            image = images.get(Config.getFailPicture());
+            image = images.get(GameConfig.getFailPicture());
         }
         return image;
     }
@@ -70,12 +70,12 @@ public class ImageLoader {
     private static void initiateImages() {
         images = new TreeMap<>();
         tileSets = new HashMap<>();
-        images.put(Config.getFailPicture(), accessImage(Config.getFailPicture()));
+        images.put(GameConfig.getFailPicture(), accessImage(GameConfig.getFailPicture()));
     }
 
     private static Image accessImage(String fileName) {
         Path currentRelativePath = Paths.get("");
-        String path = currentRelativePath.toAbsolutePath().toString() + "/" + Config.getGraphicsFolder() + fileName;
+        String path = currentRelativePath.toAbsolutePath().toString() + "/" + GameConfig.getGraphicsFolder() + fileName;
         path = new File(path).toURI().toString();
         return new Image(path);
     }

@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.ui;
 
-import fi.tuni.tiko.gamengd.Config;
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.ui.UIController;
@@ -44,7 +44,7 @@ public class UI extends BorderPane {
         PlayerDisplay playerDisplay = new PlayerDisplay(player);
         uiController.addUIListener(playerDisplay);
         VBox rightColumn = new VBox(playerDisplay);
-        if (Config.isMouseControl()) {
+        if (GameConfig.isMouseControl()) {
             ArrowPad arrowPad = new ArrowPad(inputController);
             rightColumn.getChildren().add(arrowPad);
         }

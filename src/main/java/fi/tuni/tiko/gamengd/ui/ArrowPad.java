@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.ui;
 
-import fi.tuni.tiko.gamengd.Config;
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.controller.input.InputController;
 import fi.tuni.tiko.gamengd.controller.input.InputEvent;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
@@ -20,7 +20,7 @@ public class ArrowPad extends GridPane {
         ne.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NE")));
         Button w = movementButton(buttonImage(270, true));
         w.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:W")));
-        Button none = movementButton(new ImageView(ImageLoader.loadImage(Config.getCenterSquare())));
+        Button none = movementButton(new ImageView(ImageLoader.loadImage(GameConfig.getCenterSquare())));
         none.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NONE")));
         Button e = movementButton(buttonImage(90, true));
         e.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:E")));
@@ -53,9 +53,9 @@ public class ArrowPad extends GridPane {
     private ImageView buttonImage (double rotation, boolean isStraight) {
         Image image;
         if (isStraight) {
-            image = ImageLoader.loadImage(Config.getArrowStraight());
+            image = ImageLoader.loadImage(GameConfig.getArrowStraight());
         } else {
-            image = ImageLoader.loadImage(Config.getArrowDiag());
+            image = ImageLoader.loadImage(GameConfig.getArrowDiag());
         }
 
         ImageView imageView = new ImageView(image);

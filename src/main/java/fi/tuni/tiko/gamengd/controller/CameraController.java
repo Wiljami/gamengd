@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.controller;
 
-import fi.tuni.tiko.gamengd.Config;
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
@@ -68,7 +68,7 @@ public class CameraController implements CommandTarget, TurnListener {
      * @param spriteController spriteController reference
      */
     public CameraController(Canvas canvas, SpriteController spriteController) {
-        this.tileSize = Config.getTileSize();
+        this.tileSize = GameConfig.getTileSize();
         this.canvas = canvas;
         this.spriteController = spriteController;
         ChangeListener<Number> canvasSizeListener = (observable, oldValue, newValue) ->
@@ -159,7 +159,7 @@ public class CameraController implements CommandTarget, TurnListener {
                 toolTips.put(rect, tile.getToolTip());
             }
         }
-        if (Config.isToolTips()) addToolTips(toolTips);
+        if (GameConfig.isToolTips()) addToolTips(toolTips);
     }
 
     /**

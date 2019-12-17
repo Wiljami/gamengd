@@ -1,6 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
-import fi.tuni.tiko.gamengd.Config;
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
@@ -14,9 +14,9 @@ public class Stair extends Furniture {
     public Stair(JacksonLevel.StairData stairData) {
         Image image;
         if (stairData.isUp()) {
-            image = ImageLoader.loadImage(Config.getStairsUp());
+            image = ImageLoader.loadImage(GameConfig.getStairsUp());
         } else {
-            image = ImageLoader.loadImage(Config.getStairsDown());
+            image = ImageLoader.loadImage(GameConfig.getStairsDown());
         }
         setSprite(new Sprite(image));
         setXY(stairData.getX(), stairData.getY());
