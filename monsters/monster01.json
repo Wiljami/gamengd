@@ -1,8 +1,0 @@
-{ "id": "monster01",
- "name": "Morko",
- "graphic": "monster.png",
- "attack": 50,
- "defense": 20,
- "hitPoints": 100,
- "behavior": "DEFAULT"
-}
