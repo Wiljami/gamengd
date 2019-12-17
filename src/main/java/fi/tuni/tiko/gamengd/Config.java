@@ -32,6 +32,8 @@ public class Config {
     private static String arrowDiag = "arrowDiagonal.png";
     private static String arrowStraight = "arrowStraight.png";
     private static String centerSquare = "square.png";
+    private static String stairsUp = "stairsUp.png";
+    private static String stairsDown = "stairsDown.png";
 
     public static double getResolutionX() {
         return resolutionX;
@@ -151,5 +153,21 @@ public class Config {
 
     public static void setCenterSquare(String centerSquare) {
         Config.centerSquare = centerSquare;
+    }
+
+    public static String getStairsUp() {
+        return stairsUp;
+    }
+
+    public static void setStairsUp(String stairsUp) {
+        Config.stairsUp = stairsUp;
+    }
+
+    public static String getStairsDown() {
+        return stairsDown;
+    }
+
+    public static void setStairsDown(String stairsDown) {
+        Config.stairsDown = stairsDown;
     }
 }
