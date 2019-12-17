@@ -34,6 +34,7 @@ public class Config {
     private static String centerSquare = "square.png";
     private static String stairsUp = "stairsUp.png";
     private static String stairsDown = "stairsDown.png";
+    private static String voidTile = "voidtile.png";
 
     public static double getResolutionX() {
         return resolutionX;
@@ -169,5 +170,13 @@ public class Config {
 
     public static void setStairsDown(String stairsDown) {
         Config.stairsDown = stairsDown;
+    }
+
+    public static String getVoidTile() {
+        return voidTile;
+    }
+
+    public static void setVoidTile(String voidTile) {
+        Config.voidTile = voidTile;
     }
 }

@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.Config;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.util.ImageLoader;
 import javafx.scene.image.Image;
@@ -21,7 +22,7 @@ public class Floor extends Entity {
      * Floor's static setup method setups the emptyFloor image.
      */
     public static void setup() {
-        emptyFloor = ImageLoader.loadImage("voidtile.png");
+        emptyFloor = ImageLoader.loadImage(Config.getVoidTile());
     }
 
     /**
