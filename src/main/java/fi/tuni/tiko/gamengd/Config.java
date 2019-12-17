@@ -7,6 +7,7 @@ public class Config {
     private static double minResolutionY = 400;
     private static boolean fullScreen = false;
     private static String defaultGame = "game.json";
+    private static double tileSize = 50;
 
     private static boolean mouseControl = true;
     private static boolean toolTips = true;
@@ -178,5 +179,13 @@ public class Config {
 
     public static void setVoidTile(String voidTile) {
         Config.voidTile = voidTile;
+    }
+
+    public static double getTileSize() {
+        return tileSize;
+    }
+
+    public static void setTileSize(double tileSize) {
+        Config.tileSize = tileSize;
     }
 }

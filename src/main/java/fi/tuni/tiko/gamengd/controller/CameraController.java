@@ -48,7 +48,7 @@ public class CameraController implements CommandTarget, TurnListener {
     /**
      * size of a game tile in pixels.
      */
-    private double tileSize = 50;
+    private double tileSize;
     /**
      * Reference to the game canvas.
      */
@@ -68,6 +68,7 @@ public class CameraController implements CommandTarget, TurnListener {
      * @param spriteController spriteController reference
      */
     public CameraController(Canvas canvas, SpriteController spriteController) {
+        this.tileSize = Config.getTileSize();
         this.canvas = canvas;
         this.spriteController = spriteController;
         ChangeListener<Number> canvasSizeListener = (observable, oldValue, newValue) ->
