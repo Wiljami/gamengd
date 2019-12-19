@@ -381,10 +381,12 @@ public class Level implements CrisisSource {
         ArrayList<JacksonLevel.MonsterSpawn> monsterSpawns = new ArrayList<>();
         for (Unit unit : units) {
             if (unit != player) {
+                System.out.println(unit);
                 JacksonLevel.MonsterSpawn spawn = new JacksonLevel.MonsterSpawn();
                 spawn.setSpawnPointX(unit.getX());
                 spawn.setSpawnPointY(unit.getY());
                 spawn.setType(unit.getId());
+                monsterSpawns.add(spawn);
             }
         }
         level.setMonsterSpawns(monsterSpawns);
