@@ -7,7 +7,6 @@ import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
-import javafx.scene.control.Alert;
 
 public class Player extends Unit implements CommandTarget {
     private CameraController camera;
@@ -21,6 +20,8 @@ public class Player extends Unit implements CommandTarget {
         setHitPoints(playerData.getHitPoints());
         setMaxHitPoints(playerData.getMaxHitPoints());
         setName(playerData.getName());
+        setKillCount(playerData.getKills());
+        registerChange();
     }
 
     private TurnInfo latestTurn;
@@ -131,7 +132,7 @@ public class Player extends Unit implements CommandTarget {
 
     private void registerChange() {
         if (uiController != null) {
-            uiController.trigger("");
+            uiController.trigger(this);
         }
     }
 

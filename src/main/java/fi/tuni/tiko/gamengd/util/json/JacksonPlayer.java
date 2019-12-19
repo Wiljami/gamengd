@@ -8,6 +8,7 @@ public class JacksonPlayer {
     private int maxHitPoints;
     private int attack;
     private int defense;
+    private int kills;
     private String name;
     private String levelId;
 
@@ -84,5 +85,13 @@ public class JacksonPlayer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public void setKills(int kills) {
+        this.kills = kills;
     }
 }

@@ -59,4 +59,8 @@ public class CrisisController {
     public boolean removeCrisis(Crisis crisis) {
         return crisisList.remove(crisis);
     }
+
+    public void clear() {
+        crisisList.clear();
+    }
 }

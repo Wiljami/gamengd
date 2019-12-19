@@ -46,10 +46,13 @@ public class JacksonLoader {
      * @return JacksonConfig object
      */
     public static JacksonGame loadGameFile(String fileName) {
+        File file = Util.loadFile(fileName);
+        return loadGameFile(file);
+    }
+
+    public static JacksonGame loadGameFile(File file) {
         JacksonGame config = new JacksonGame();
         ObjectMapper objectMapper = new ObjectMapper();
-
-        File file = Util.loadFile(fileName);
 
         try {
             config = objectMapper.readValue(file, JacksonGame.class);

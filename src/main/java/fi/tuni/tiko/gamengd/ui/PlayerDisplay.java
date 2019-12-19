@@ -24,7 +24,7 @@ public class PlayerDisplay extends GridPane implements UIListener {
         setupLabels();
         setupChangingTexts();
 
-        triggerUIListener();
+        triggerUIListener(player);
     }
 
     private void setupChangingTexts() {
@@ -70,12 +70,12 @@ public class PlayerDisplay extends GridPane implements UIListener {
     }
 
     @Override
-    public void triggerUIListener() {
-        name.setText(player.getName());
-        String hitPointsText = player.getHitPoints() + "/" + player.getMaxHitPoints();
+    public void triggerUIListener(Player source) {
+        name.setText(source.getName());
+        String hitPointsText = source.getHitPoints() + "/" + source.getMaxHitPoints();
         hitPoints.setText(hitPointsText);
-        attack.setText(Integer.toString(player.getAttack()));
-        defence.setText(Integer.toString(player.getDefense()));
-        killCount.setText(Integer.toString(player.getKillCount()));
+        attack.setText(Integer.toString(source.getAttack()));
+        defence.setText(Integer.toString(source.getDefense()));
+        killCount.setText(Integer.toString(source.getKillCount()));
     }
 }

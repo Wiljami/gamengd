@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gamengd.controller.ui;
 
+import fi.tuni.tiko.gamengd.entity.Player;
+
 /**
  * UIListener interface lets object listen to changes to ui.
  *
@@ -10,5 +12,5 @@ public interface UIListener {
     /**
      * UILIst
      */
-    void triggerUIListener();
+    void triggerUIListener(Player source);
 }
