@@ -4,9 +4,6 @@ import fi.tuni.tiko.gamengd.GameCore;
 import fi.tuni.tiko.gamengd.entity.Player;
 import javafx.application.Platform;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 
 public class GameMenuBar extends MenuBar {
     private Player player;

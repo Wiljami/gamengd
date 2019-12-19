@@ -137,4 +137,9 @@ public class TurnController {
     public int getTurn() {
         return turn;
     }
+
+    public void clear() {
+        currentTurnActors.clear();
+        turnActors.clear();
+    }
 }

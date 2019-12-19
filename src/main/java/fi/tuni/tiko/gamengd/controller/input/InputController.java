@@ -100,4 +100,8 @@ public class InputController {
             if (c.getInputs().contains(input)) c.triggerCommand();
         }
     }
+
+    public void clear() {
+        commands.clear();
+    }
 }

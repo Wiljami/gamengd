@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.controller.ui;
 
+import fi.tuni.tiko.gamengd.entity.Player;
 import fi.tuni.tiko.gamengd.ui.GameLog;
 
 import java.util.ArrayList;
@@ -56,9 +57,9 @@ public class UIController {
      * trigger goes through the uiListeners and sends given message to each.
      * @param message message to the uiListeners
      */
-    public void trigger (String message) {
+    public void trigger (Player source) {
         for (UIListener uiListener : uiListeners) {
-            uiListener.triggerUIListener();
+            uiListener.triggerUIListener(source);
         }
     }
 }

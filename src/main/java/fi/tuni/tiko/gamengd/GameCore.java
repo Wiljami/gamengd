@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class GameCore extends Application {
     private GameView gameView;
     private ArrayList<String> input = new ArrayList<>();
-    private HashMap<String, Level> levels = new HashMap<>();
+    private HashMap<String, Level> levels;
     private long lastNanoTime;
 
     private Level currentLevel;
@@ -45,6 +45,7 @@ public class GameCore extends Application {
 
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
+        launch();
         System.exit(0);
     }
 
@@ -65,6 +66,7 @@ public class GameCore extends Application {
     }
 
     private void sortGameFile(JacksonGame game) {
+        levels = new HashMap<>();
         for (JacksonLevel levelData: game.getLevels()) {
             levels.put(levelData.getId(), new Level(levelData, this));
         }
@@ -97,7 +99,11 @@ public class GameCore extends Application {
 
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
-        sortGameFile(JacksonLoader.loadGameFile(GameConfig.getGame()));
+        crisisController.clear();
+        inputController.clear();
+        turnController.clear();
+        sortGameFile(JacksonLoader.loadGameFile(loadFile));
+        startTurnController();
     }
 
     public void saveGame() {
