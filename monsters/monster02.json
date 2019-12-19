@@ -1,0 +1,8 @@
+{ "id": "monster02",
+ "name": "Mörökölli",
+ "graphic": "monster.png",
+ "attack": 5,
+ "defense": 2,
+ "hitPoints": 10,
+ "behavior": "DEFAULT"
+}

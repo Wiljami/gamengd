@@ -13,6 +13,7 @@ public class Player extends Unit implements CommandTarget {
 
     public Player(JacksonPlayer playerData, Level level) {
         super(new Sprite(playerData.getGraphicFile()));
+        setGraphicFile(playerData.getGraphicFile());
         setLevel(level);
         setXY(playerData.getSpawnX(), playerData.getSpawnY());
         setAttack(playerData.getAttack());
@@ -29,6 +30,8 @@ public class Player extends Unit implements CommandTarget {
     private int movementDelay = 150;
     private int killCount = 0;
     private boolean dead = false;
+
+    private String graphicFile;
 
     private boolean playerTurn = false;
 
@@ -198,10 +201,26 @@ public class Player extends Unit implements CommandTarget {
         setKillCount(getKillCount() + 1);
     }
 
+    public String getGraphicFile() {
+        return graphicFile;
+    }
+
+    public void setGraphicFile(String graphicFile) {
+        this.graphicFile = graphicFile;
+    }
+
     public JacksonPlayer createJacksonPlayer() {
         JacksonPlayer player = new JacksonPlayer();
         player.setAttack(getAttack());
         player.setDefense(getDefense());
+        player.setSpawnX(getX());
+        player.setSpawnY(getY());
+        player.setHitPoints(getHitPoints());
+        player.setMaxHitPoints(getMaxHitPoints());
+        player.setKills(getKillCount());
+        player.setName(getName());
+        player.setLevelId(getLevel().getId());
+        player.setGraphicFile(getGraphicFile());
         return player;
     }
 }

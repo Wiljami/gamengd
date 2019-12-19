@@ -1,6 +1,7 @@
 package fi.tuni.tiko.gamengd;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fi.tuni.tiko.gamengd.controller.CameraController;
 import fi.tuni.tiko.gamengd.controller.SpriteController;
 import fi.tuni.tiko.gamengd.controller.crisis.CrisisController;
@@ -24,8 +25,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameCore extends Application {
     private GameView gameView;
@@ -108,6 +111,24 @@ public class GameCore extends Application {
 
     public void saveGame() {
         File saveFile = fileChooser().showSaveDialog(null);
+        JacksonGame saveGame = new JacksonGame();
+        saveGame.setGameTitle(windowTitle);
+        saveGame.setLevels(new JacksonLevel[levels.size()]);
+        int index = 0;
+        for (Map.Entry<String, Level> entry : levels.entrySet()) {
+            JacksonLevel level = entry.getValue().createJacksonLevel();
+            saveGame.getLevels()[index] = level;
+            index++;
+        }
+        saveGame.setPlayer(currentLevel.getPlayer().createJacksonPlayer());
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            mapper.writeValue(saveFile, saveGame);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private FileChooser fileChooser() {

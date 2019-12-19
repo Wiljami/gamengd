@@ -11,6 +11,11 @@ import fi.tuni.tiko.gamengd.util.GameMechanic;
 public class Unit extends Entity implements TurnActor {
     Level level;
 
+    /**
+     * id of the Unit.
+     */
+    private String id;
+
     private String name;
     private int attack;
     private int defense;
@@ -125,5 +130,21 @@ public class Unit extends Entity implements TurnActor {
     }
 
     public void changeLevel(String id, int x, int y) {
+    }
+
+    /**
+     * getter for id.
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * setter for id.
+     * @param id new id
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 }

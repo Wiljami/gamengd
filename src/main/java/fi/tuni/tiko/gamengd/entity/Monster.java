@@ -41,11 +41,6 @@ public class Monster extends Unit {
     private static final String MONSTERFOLDER = "monsters/";
 
     /**
-     * id of the Monster.
-     */
-    private String id;
-
-    /**
      * AStar pathfinding data of the Monster.
      */
     private transient AStar pathfind;
@@ -280,22 +275,6 @@ public class Monster extends Unit {
             y = (int)(Math.random()*3) - 1;
         }
         move(x, y);
-    }
-
-    /**
-     * getter for id.
-     * @return id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * setter for id.
-     * @param id new id
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**

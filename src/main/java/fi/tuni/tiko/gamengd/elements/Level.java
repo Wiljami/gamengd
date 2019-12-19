@@ -28,6 +28,8 @@ public class Level implements CrisisSource {
      * 2D-array of the game map in Tiles.
      */
     private Tile[][] map;
+
+    private String mapName;
     /**
      * width of the map.
      */
@@ -62,6 +64,8 @@ public class Level implements CrisisSource {
 
     private String id;
 
+    private ArrayList<JacksonLevel.StairData> stairData;
+
     /**
      * Constructor for creating empty level.
      *
@@ -84,6 +88,7 @@ public class Level implements CrisisSource {
      */
     public Level(JacksonLevel levelData, GameCore core) {
         JacksonMap mapData = JacksonLoader.loadMap(levelData.getMap());
+        setMapName(levelData.getMap());
         this.id = levelData.getId();
         this.turnController = core.getTurnController();
         int width = mapData.getWidth();
@@ -165,6 +170,7 @@ public class Level implements CrisisSource {
     }
 
     private void addStairs(JacksonLevel levelData) {
+        setStairData(levelData.getStairs());
         if (levelData.getStairs() != null) {
             for (JacksonLevel.StairData s : levelData.getStairs()) {
                 Stair stair = new Stair(s);
@@ -190,6 +196,14 @@ public class Level implements CrisisSource {
             return new Tile(this);
         }
         return map[x][y];
+    }
+
+    public String getMapName() {
+        return mapName;
+    }
+
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
     }
 
     /**
@@ -350,5 +364,33 @@ public class Level implements CrisisSource {
 
     public String getId() {
         return id;
+    }
+
+    public ArrayList<JacksonLevel.StairData> getStairData() {
+        return stairData;
+    }
+
+    public void setStairData(ArrayList<JacksonLevel.StairData> stairData) {
+        this.stairData = stairData;
+    }
+
+    public JacksonLevel createJacksonLevel() {
+        JacksonLevel level = new JacksonLevel();
+        level.setId(getId());
+        level.setMap(getMapName());
+        ArrayList<JacksonLevel.MonsterSpawn> monsterSpawns = new ArrayList<>();
+        for (Unit unit : units) {
+            if (unit != player) {
+                JacksonLevel.MonsterSpawn spawn = new JacksonLevel.MonsterSpawn();
+                spawn.setSpawnPointX(unit.getX());
+                spawn.setSpawnPointY(unit.getY());
+                spawn.setType(unit.getId());
+            }
+        }
+        level.setMonsterSpawns(monsterSpawns);
+        ArrayList<JacksonLevel.StairData> stairData = new ArrayList<>();
+        level.setStairs(getStairData());
+
+        return level;
     }
 }
