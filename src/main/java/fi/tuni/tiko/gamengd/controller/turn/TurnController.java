@@ -138,6 +138,9 @@ public class TurnController {
         return turn;
     }
 
+    /**
+     * clear empties the currentTurnActor and turnActors Lists.
+     */
     public void clear() {
         currentTurnActors.clear();
         turnActors.clear();

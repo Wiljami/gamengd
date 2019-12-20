@@ -101,6 +101,9 @@ public class InputController {
         }
     }
 
+    /**
+     * clear empties the commands List.
+     */
     public void clear() {
         commands.clear();
     }

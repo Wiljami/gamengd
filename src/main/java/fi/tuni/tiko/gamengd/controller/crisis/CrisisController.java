@@ -60,6 +60,9 @@ public class CrisisController {
         return crisisList.remove(crisis);
     }
 
+    /**
+     * clear empties the crisisList.
+     */
     public void clear() {
         crisisList.clear();
     }

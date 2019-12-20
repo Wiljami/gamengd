@@ -21,14 +21,16 @@ import java.util.Set;
  * spawns.
  *
  * @author Viljami Pietarila
- * @version 2019.1208
+ * @version 2019.1220
  */
 public class Level implements CrisisSource {
     /**
      * 2D-array of the game map in Tiles.
      */
     private Tile[][] map;
-
+    /**
+     * name of the TiledMap map for this level.
+     */
     private String mapName;
     /**
      * width of the map.
@@ -62,8 +64,14 @@ public class Level implements CrisisSource {
      */
     private Tile[] openTiles;
 
+    /**
+     * Identifier String of this level.
+     */
     private String id;
 
+    /**
+     * StairData data package of this level.
+     */
     private ArrayList<JacksonLevel.StairData> stairData;
 
     /**
@@ -169,6 +177,13 @@ public class Level implements CrisisSource {
         }
     }
 
+    /**
+     * addStairs adds stairs furniture to the level
+     *
+     * addStairs uses the JacksonLevel data to place the stairs either up or
+     * down and adds to them the data where they are connected.
+     * @param levelData JacksonLevel data.
+     */
     private void addStairs(JacksonLevel levelData) {
         setStairData(levelData.getStairs());
         if (levelData.getStairs() != null) {
@@ -177,12 +192,6 @@ public class Level implements CrisisSource {
                 getTileAt(s.getX(), s.getY()).addFurniture(stair);
             }
         }
-    }
-
-    private void spawnPlayer(Player player) {
-        player.setLevel(this);
-        setPlayer(player);
-        addUnit(player);
     }
 
     /**
@@ -198,10 +207,18 @@ public class Level implements CrisisSource {
         return map[x][y];
     }
 
+    /**
+     * getter for mapName.
+     * @return mapName
+     */
     public String getMapName() {
         return mapName;
     }
 
+    /**
+     * setter for mapName.
+     * @param mapName new mapName.
+     */
     public void setMapName(String mapName) {
         this.mapName = mapName;
     }
@@ -362,18 +379,37 @@ public class Level implements CrisisSource {
         if (crisis.getId().equals("spawn01")) randomSpawn("monster01");
     }
 
+    /**
+     * getter for id.
+     * @return id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * getter for stairData.
+     * @return stairData
+     */
     public ArrayList<JacksonLevel.StairData> getStairData() {
         return stairData;
     }
 
+    /**
+     * setter for stairData.
+     * @param stairData new stairData.
+     */
     public void setStairData(ArrayList<JacksonLevel.StairData> stairData) {
         this.stairData = stairData;
     }
 
+    /**
+     * createJacksonLevel method creates a new data package out of the Level.
+     *
+     * createJacksonLevel creates a new JacksonLevel object for game saving
+     * purposes. It is used to create a json file.
+     * @return JacksonLevel of this Level.
+     */
     public JacksonLevel createJacksonLevel() {
         JacksonLevel level = new JacksonLevel();
         level.setId(getId());

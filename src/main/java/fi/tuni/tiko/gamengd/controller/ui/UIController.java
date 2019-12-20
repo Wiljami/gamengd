@@ -55,7 +55,7 @@ public class UIController {
 
     /**
      * trigger goes through the uiListeners and sends given message to each.
-     * @param message message to the uiListeners
+     * @param source reference to the Player source.
      */
     public void trigger (Player source) {
         for (UIListener uiListener : uiListeners) {
