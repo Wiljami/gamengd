@@ -74,7 +74,7 @@ public class UI extends BorderPane {
     private Pane bottomBar() {
         GameLog gameLog = new GameLog();
         uiController.addGameLog(gameLog);
-        HBox bottomBar = new HBox(gameLog);
+        VBox bottomBar = new VBox(gameLog);
         return bottomBar;
     }
 

@@ -161,10 +161,9 @@ public class Monster extends Unit {
     private void aggressiveBehavior() {
         if (checkForPlayerAdjacency()) {
             deliverAttack(level.getPlayer());
-        } else if (pathfind != null) {
-            movePathFinding();
         } else {
             chasePlayer();
+            movePathFinding();
         }
     }
 

@@ -97,6 +97,7 @@ public class GameCore extends Application {
      */
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
+        launch();
         System.exit(0);
     }
 
@@ -172,7 +173,6 @@ public class GameCore extends Application {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
         cameraController.setLevel(currentLevel);
-        currentLevel.addUnit(player);
         currentLevel.setPlayer(player);
     }
 

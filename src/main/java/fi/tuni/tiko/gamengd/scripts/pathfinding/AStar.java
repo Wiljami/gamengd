@@ -55,14 +55,8 @@ public class AStar {
 
         HashMap<PathNode<Tile>, PathNode<Tile>> cameFrom = new HashMap<>();
 
-        HashMap<PathNode<Tile>, Double> fScore = new HashMap<>();
-        HashMap<PathNode<Tile>, Double> gScore = new HashMap<>();
-        for (PathNode<Tile> node : nodes.values()) {
-            gScore.put(node, Double.MAX_VALUE);
-            fScore.put(node, Double.MAX_VALUE);
-        }
-        gScore.put(start, 0.0);
-        fScore.put(start, heuristicEstimate(start, end));
+        start.setGScore(0.0);
+        start.setFScore(heuristicEstimate(start, end));
 
         while (openSet.size() > 0) {
             PathNode<Tile> currentNode = openSet.poll();
@@ -76,12 +70,12 @@ public class AStar {
                 PathNode<Tile> neighbor = edgeNeighbor.node;
                 if (closedSet.contains(neighbor)) continue;
 
-                double tentGScore = gScore.get(currentNode) + 1;
-                if (openSet.contains(neighbor) && tentGScore >= gScore.get(neighbor)) continue;
+                double tentGScore = currentNode.getGScore() + 1;
+                if (openSet.contains(neighbor) && tentGScore >= neighbor.getGScore()) continue;
 
                 cameFrom.put(neighbor, currentNode);
-                gScore.put(neighbor, tentGScore);
-                fScore.put(neighbor, gScore.get(neighbor) + heuristicEstimate(neighbor, end));
+                neighbor.setGScore(tentGScore);
+                neighbor.setFScore(neighbor.getGScore() + heuristicEstimate(neighbor, end));
 
                 if (!openSet.contains(neighbor)) {
                     openSet.add(neighbor);
