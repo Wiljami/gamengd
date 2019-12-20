@@ -1,56 +1,143 @@
 package fi.tuni.tiko.gamengd.util.json;
 
 import java.util.ArrayList;
-
+/**
+ * JacksonLevel is an object created from a JSONFile using Jackson.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1220
+ */
 public class JacksonLevel {
+    /**
+     * fileName of the mapFile for this level.
+     */
     private String map;
+    /**
+     * id of this level.
+     */
     private String id;
-
+    /**
+     * ArrayList of Monsters to spawn to this level.
+     */
     private ArrayList<MonsterSpawn> monsterSpawns;
+    /**
+     * ArrayList of Stairs within this level.
+     */
     private ArrayList<StairData> stairs;
 
+    /**
+     * JacksonLevel constructor.
+     */
     public JacksonLevel() {
     }
 
+    /**
+     * Getter for map
+     *
+     * @return value of map
+     */
     public String getMap() {
         return map;
     }
 
+    /**
+     * Sets map
+     *
+     * @param map new value
+     */
     public void setMap(String map) {
         this.map = map;
     }
 
-    public ArrayList<MonsterSpawn> getMonsterSpawns() {
-        return monsterSpawns;
-    }
-
-    public void setMonsterSpawns(ArrayList<MonsterSpawn> monsterSpawns) {
-        this.monsterSpawns = monsterSpawns;
-    }
-
+    /**
+     * Getter for id
+     *
+     * @return value of id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Sets id
+     *
+     * @param id new value
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Getter for monsterSpawns
+     *
+     * @return value of monsterSpawns
+     */
+    public ArrayList<MonsterSpawn> getMonsterSpawns() {
+        return monsterSpawns;
+    }
+
+    /**
+     * Sets monsterSpawns
+     *
+     * @param monsterSpawns new value
+     */
+    public void setMonsterSpawns(ArrayList<MonsterSpawn> monsterSpawns) {
+        this.monsterSpawns = monsterSpawns;
+    }
+
+    /**
+     * Getter for stairs
+     *
+     * @return value of stairs
+     */
     public ArrayList<StairData> getStairs() {
         return stairs;
     }
 
+    /**
+     * Sets stairs
+     *
+     * @param stairs new value
+     */
     public void setStairs(ArrayList<StairData> stairs) {
         this.stairs = stairs;
     }
 
+    /**
+     * StairData is an object holding data for Stair elements.
+     *
+     * @author Viljami Pietarila
+     * @version 2019.1220
+     */
     public static class StairData {
+        /**
+         * boolean wether the stair Sprite should point up or down.
+         */
         private boolean up;
+        /**
+         * x-coordinate of the stair.
+         */
         private int x;
+        /**
+         * y-coordinate of the stair.
+         */
         private int y;
+        /**
+         * destination x-coordinate of the stair.
+         */
         private int conX;
+        /**
+         * destination y-coordinate of the stair.
+         */
         private int conY;
+        /**
+         * destination level id.
+         */
         private String connection;
+
+        /**
+         * StairData constructor.
+         */
         public StairData() {}
 
         /**
