@@ -120,6 +120,8 @@ public class Crisis {
      * Trigger runs the the source's runCrisis method which it has implemented
      * from CrisisSource interface. If the turn is less than lastOccurance +
      * cooldown then the crisis does not trigger.
+     *
+     * @param turn turn number this crisis is triggered.
      */
     public void trigger(int turn) {
         if (turn > lastOccurance + coolDown) {

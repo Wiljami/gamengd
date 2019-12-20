@@ -10,7 +10,8 @@ import fi.tuni.tiko.gamengd.entity.Player;
  */
 public interface UIListener {
     /**
-     * UILIst
+     * triggerUIListener is the method called when listener is triggered.
+     * @param source source Player
      */
     void triggerUIListener(Player source);
 }
