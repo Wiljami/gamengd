@@ -10,7 +10,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
+/**
+ * ArrowPad is an UI element with movement arrows.
+ *
+ * Each arrow button is hooked up to the inputController to relay the button
+ * press information to the player object.
+ * @author Viljam Pietarila
+ * @version 2019.1220
+ */
 public class ArrowPad extends GridPane {
+    /**
+     * ArrowPad constructor. It creates the pad UI element.
+     * @param inputController reference to the InputController
+     */
     public ArrowPad(InputController inputController) {
         Button nw = movementButton(buttonImage(270, false));
         nw.setOnAction(event -> inputController.receiveInputEvent(new InputEvent("button:NW")));
@@ -44,12 +56,25 @@ public class ArrowPad extends GridPane {
         setAlignment(Pos.BASELINE_CENTER);
     }
 
+    /**
+     * movementButton is the Button UI element.
+     *
+     * movementButton applies some common changes to each button.
+     * @param image ImageView of the button
+     * @return Button
+     */
     private Button movementButton(ImageView image) {
         Button b = new Button("", image);
         b.setFocusTraversable(false);
         return b;
     }
 
+    /**
+     * buttonImage sorts out which ImageView each button holds.
+     * @param rotation rotation of the ImageView
+     * @param isStraight wether ImageView is straight or diagonal
+     * @return ImageView of the button
+     */
     private ImageView buttonImage (double rotation, boolean isStraight) {
         Image image;
         if (isStraight) {
