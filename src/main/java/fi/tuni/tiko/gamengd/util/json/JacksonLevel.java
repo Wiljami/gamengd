@@ -53,52 +53,112 @@ public class JacksonLevel {
         private String connection;
         public StairData() {}
 
+        /**
+         * Getter for up
+         *
+         * @return value of up
+         */
         public boolean isUp() {
             return up;
         }
 
+        /**
+         * Sets up
+         *
+         * @param up new value
+         */
         public void setUp(boolean up) {
             this.up = up;
         }
 
+        /**
+         * Getter for x
+         *
+         * @return value of x
+         */
         public int getX() {
             return x;
         }
 
+        /**
+         * Sets x
+         *
+         * @param x new value
+         */
         public void setX(int x) {
             this.x = x;
         }
 
+        /**
+         * Getter for y
+         *
+         * @return value of y
+         */
         public int getY() {
             return y;
         }
 
+        /**
+         * Sets y
+         *
+         * @param y new value
+         */
         public void setY(int y) {
             this.y = y;
         }
 
-        public String getConnection() {
-            return connection;
-        }
-
-        public void setConnection(String connection) {
-            this.connection = connection;
-        }
-
+        /**
+         * Getter for conX
+         *
+         * @return value of conX
+         */
         public int getConX() {
             return conX;
         }
 
+        /**
+         * Sets conX
+         *
+         * @param conX new value
+         */
         public void setConX(int conX) {
             this.conX = conX;
         }
 
+        /**
+         * Getter for conY
+         *
+         * @return value of conY
+         */
         public int getConY() {
             return conY;
         }
 
+        /**
+         * Sets conY
+         *
+         * @param conY new value
+         */
         public void setConY(int conY) {
             this.conY = conY;
+        }
+
+        /**
+         * Getter for connection
+         *
+         * @return value of connection
+         */
+        public String getConnection() {
+            return connection;
+        }
+
+        /**
+         * Sets connection
+         *
+         * @param connection new value
+         */
+        public void setConnection(String connection) {
+            this.connection = connection;
         }
     }
 
