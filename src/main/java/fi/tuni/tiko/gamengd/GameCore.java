@@ -97,7 +97,6 @@ public class GameCore extends Application {
      */
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
-        launch();
         System.exit(0);
     }
 
@@ -195,6 +194,12 @@ public class GameCore extends Application {
         }
     }
 
+    /**
+     * saveGame saves the current game state to a file.
+     *
+     * saveGame reads the current game state and creates a JacksonGame object
+     * out of it. It then saves the file to the disk.
+     */
     public void saveGame() {
         File saveFile = fileChooser().showSaveDialog(null);
         JacksonGame saveGame = new JacksonGame();
@@ -217,6 +222,13 @@ public class GameCore extends Application {
         }
     }
 
+    /**
+     * fileChooser creates a FileChooser dialogue.
+     *
+     * fileChooser is used for both saving and loading. fileChooser sets up
+     * the common settings for both saving and loading.
+     * @return FileChooser
+     */
     private FileChooser fileChooser() {
         FileChooser fileChooser = new FileChooser();
         File directory = new File(System.getProperty("user.dir"));
@@ -227,10 +239,21 @@ public class GameCore extends Application {
         return fileChooser;
     }
 
+    /**
+     * stop is an overridden method from Application.
+     *
+     * stop is called when the Application window closes.
+     */
     @Override
     public void stop() {
     }
 
+    /**
+     * start is an overridden method from Application.
+     *
+     * start begins the Application and it displays the visible elements.
+     * @param stage the displayed window
+     */
     @Override
     public void start(Stage stage) {
         stage.setTitle(windowTitle);
@@ -246,10 +269,16 @@ public class GameCore extends Application {
         startTurnController();
     }
 
+    /**
+     * startTurnController starts the turnController.
+     */
     private void startTurnController() {
         turnController.doTurn();
     }
 
+    /**
+     * startAnimationTimer handles time between frames.
+     */
     private void startAnimationTimer() {
         lastNanoTime = System.nanoTime();
         new AnimationTimer() {
@@ -263,6 +292,15 @@ public class GameCore extends Application {
         }.start();
     }
 
+    /**
+     * handleGraphics creates handles graphics.
+     *
+     * handleGraphics gives the SpriteController the GraphicsContext and the
+     * time since last frame to let the SpriteController draw different
+     * Sprites on the canvas. If CameraController has changed, it tells it to
+     * calculate new List of Sprites that are displayed on the Canvas.
+     * @param elapsedTime time since last frame.
+     */
     private void handleGraphics(double elapsedTime) {
         Canvas canvas = gameView.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -271,15 +309,28 @@ public class GameCore extends Application {
         spriteController.render(gc, elapsedTime, cameraController.getTileSize());
     }
 
+    /**
+     * updateSprites tells updates the list of displayed Sprites.
+     */
     private void updateSprites() {
         spriteController.clear();
         cameraController.updateSprites();
     }
 
+    /**
+     * handleInput gives inputController the inputs.
+     * @param elapsedTime time since last frame.
+     */
     private void handleInput(double elapsedTime) {
         inputController.receiveInput(input, elapsedTime);
     }
 
+    /**
+     * createScene creates the displayed portions of the game engine.
+     *
+     * createScene creates the UI for the game and adds it as to the scene's root.
+     * @return created Scene
+     */
     private Scene createScene() {
         UI ui = new UI(this);
         Scene scene = new Scene(ui, GameConfig.getResolutionX(), GameConfig.getResolutionX());
@@ -300,35 +351,174 @@ public class GameCore extends Application {
         return scene;
     }
 
-    public static void setWindowTitle(String title) {
-        windowTitle = title;
+    /**
+     * Getter for a specific level using a id key.
+     * @param id id of the level
+     * @return Level with matching id
+     */
+    public Level getLevel(String id) {
+        return levels.get(id);
     }
 
-    public CrisisController getCrisisController() {
-        return crisisController;
-    }
-
-    public TurnController getTurnController() {
-        return turnController;
-    }
-
-    public UIController getUiController() {
-        return uiController;
-    }
-
+    /**
+     * Getter for gameView
+     *
+     * @return value of gameView
+     */
     public GameView getGameView() {
         return gameView;
     }
 
-    public InputController getInputController() {
-        return inputController;
+    /**
+     * Sets gameView
+     *
+     * @param gameView new value
+     */
+    public void setGameView(GameView gameView) {
+        this.gameView = gameView;
     }
 
+    /**
+     * Getter for currentLevel
+     *
+     * @return value of currentLevel
+     */
     public Level getCurrentLevel() {
         return currentLevel;
     }
 
-    public Level getLevel(String id) {
-        return levels.get(id);
+    /**
+     * Sets currentLevel
+     *
+     * @param currentLevel new value
+     */
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+    /**
+     * Getter for windowTitle
+     *
+     * @return value of windowTitle
+     */
+    public static String getWindowTitle() {
+        return windowTitle;
+    }
+
+    /**
+     * Sets windowTitle
+     *
+     * @param windowTitle new value
+     */
+    public static void setWindowTitle(String windowTitle) {
+        GameCore.windowTitle = windowTitle;
+    }
+
+    /**
+     * Getter for cameraController
+     *
+     * @return value of cameraController
+     */
+    public CameraController getCameraController() {
+        return cameraController;
+    }
+
+    /**
+     * Sets cameraController
+     *
+     * @param cameraController new value
+     */
+    public void setCameraController(CameraController cameraController) {
+        this.cameraController = cameraController;
+    }
+
+    /**
+     * Getter for spriteController
+     *
+     * @return value of spriteController
+     */
+    public SpriteController getSpriteController() {
+        return spriteController;
+    }
+
+    /**
+     * Sets spriteController
+     *
+     * @param spriteController new value
+     */
+    public void setSpriteController(SpriteController spriteController) {
+        this.spriteController = spriteController;
+    }
+
+    /**
+     * Getter for turnController
+     *
+     * @return value of turnController
+     */
+    public TurnController getTurnController() {
+        return turnController;
+    }
+
+    /**
+     * Sets turnController
+     *
+     * @param turnController new value
+     */
+    public void setTurnController(TurnController turnController) {
+        this.turnController = turnController;
+    }
+
+    /**
+     * Getter for inputController
+     *
+     * @return value of inputController
+     */
+    public InputController getInputController() {
+        return inputController;
+    }
+
+    /**
+     * Sets inputController
+     *
+     * @param inputController new value
+     */
+    public void setInputController(InputController inputController) {
+        this.inputController = inputController;
+    }
+
+    /**
+     * Getter for crisisController
+     *
+     * @return value of crisisController
+     */
+    public CrisisController getCrisisController() {
+        return crisisController;
+    }
+
+    /**
+     * Sets crisisController
+     *
+     * @param crisisController new value
+     */
+    public void setCrisisController(CrisisController crisisController) {
+        this.crisisController = crisisController;
+    }
+
+    /**
+     * Getter for uiController
+     *
+     * @return value of uiController
+     */
+    public UIController getUiController() {
+        return uiController;
+    }
+
+    /**
+     * Sets uiController
+     *
+     * @param uiController new value
+     */
+    public void setUiController(UIController uiController) {
+        this.uiController = uiController;
     }
 }
