@@ -141,10 +141,20 @@ public class JacksonMonster {
         this.graphic = graphic;
     }
 
+    /**
+     * Getter for behavior
+     *
+     * @return value of behavior
+     */
     public Monster.Behavior getBehavior() {
         return behavior;
     }
 
+    /**
+     * Sets behavior
+     *
+     * @param behavior new value
+     */
     public void setBehavior(Monster.Behavior behavior) {
         this.behavior = behavior;
     }
