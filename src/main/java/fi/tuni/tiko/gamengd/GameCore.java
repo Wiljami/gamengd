@@ -30,27 +30,83 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * GameCore is the core of the game engine.
+ *
+ * GameCore is the heart of the engine. It initiates all the other elements
+ * and objects of the game engine. It extends the Application from javaFX.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1220
+ */
 public class GameCore extends Application {
+    /**
+     * gameView is the displayed game elements view.
+     */
     private GameView gameView;
+    /**
+     * input is the List of inputs sent to the javafx.
+     */
     private ArrayList<String> input = new ArrayList<>();
+    /**
+     * levels is hashMap of levels within the game.
+     */
     private HashMap<String, Level> levels;
+    /**
+     * time of last frame in nanoseconds
+     */
     private long lastNanoTime;
 
+    /**
+     * currentLevel is the level currently in use.
+     */
     private Level currentLevel;
+    /**
+     * windowTitle is the title of the javafx window.
+     */
     private static String windowTitle;
 
+    /**
+     * Reference to cameraController.
+     */
     private CameraController cameraController;
+    /**
+     * Reference to spriteController.
+     */
     private SpriteController spriteController;
+    /**
+     * Reference to turnController.
+     */
     private TurnController turnController;
+    /**
+     * Reference to inputController.
+     */
     private InputController inputController;
+    /**
+     * Reference to crisisController.
+     */
     private CrisisController crisisController;
+    /**
+     * Reference to uiController.
+     */
     private UIController uiController;
 
+    /**
+     * main method. Only prints out the author.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         System.out.println("Author: Viljami Pietarila");
+        launch();
         System.exit(0);
     }
 
+    /**
+     * init method setups the game engine.
+     *
+     * init method is overridden from the Application. It is used to setup
+     * different controllers within the game engine and load the game file.
+     */
     @Override
     public void init() {
         Entity.setup(this);
@@ -67,6 +123,10 @@ public class GameCore extends Application {
         sortGameFile(JacksonLoader.loadGameFile(GameConfig.getGame()));
     }
 
+    /**
+     * sortGameFile sorts the JacksonGame file for game data.
+     * @param game JacksonGame file to sort
+     */
     private void sortGameFile(JacksonGame game) {
         levels = new HashMap<>();
         for (JacksonLevel levelData: game.getLevels()) {
@@ -80,17 +140,35 @@ public class GameCore extends Application {
         setWindowTitle(game.getGameTitle());
     }
 
+    /**
+     * changeLevel changes the current active level.
+     * @param id id of the new level
+     * @param player Player moving between the levels
+     */
     public void changeLevel(String id, Player player) {
         currentLevel.removeUnit(player);
         currentLevel = levels.get(id);
         updatePlayerOnLevel(player);
     }
 
+    /**
+     * addPlayer adds the player entity.
+     *
+     * addPlayer registers the given player to the inputController.
+     * @param player Player to be added
+     */
     private void addPlayer(Player player) {
         updatePlayerOnLevel(player);
         inputController.registerPlayer(player);
     }
 
+    /**
+     * updatePlayerOnLevel updates the player positioning.
+     *
+     * Sets the cameraController to be centered on the player position and adds
+     * the player to currentLevel's unit list and sets player to be its player.
+     * @param player Player to be adjusted
+     */
     private void updatePlayerOnLevel(Player player) {
         player.setupCamera(cameraController);
         cameraController.setXY(player.getX() + 0.5, player.getY() + 0.5);
@@ -99,13 +177,22 @@ public class GameCore extends Application {
         currentLevel.setPlayer(player);
     }
 
+    /**
+     * loadGame loads a saved game.
+     *
+     * loadGame opens a fileChooser dialog and from its file loads a previous
+     * game state. It clears the controllers and essentially starts a new game
+     * using the loaded save as a game file.
+     */
     public void loadGame() {
         File loadFile = fileChooser().showOpenDialog(null);
-        crisisController.clear();
-        inputController.clear();
-        turnController.clear();
-        sortGameFile(JacksonLoader.loadGameFile(loadFile));
-        startTurnController();
+        if (loadFile != null) {
+            crisisController.clear();
+            inputController.clear();
+            turnController.clear();
+            sortGameFile(JacksonLoader.loadGameFile(loadFile));
+            startTurnController();
+        }
     }
 
     public void saveGame() {
