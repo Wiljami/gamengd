@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Tile;
 import fi.tuni.tiko.gamengd.controller.CameraController;
@@ -8,9 +9,26 @@ import fi.tuni.tiko.gamengd.controller.turn.TurnInfo;
 import fi.tuni.tiko.gamengd.controller.input.CommandTarget;
 import fi.tuni.tiko.gamengd.util.json.JacksonPlayer;
 
+/**
+ * Player class is the game entity controlled by the actual player.
+ *
+ * Player object is controlled by the actual player. The class holds the logic
+ * and checks for the functionality.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.1220
+ */
 public class Player extends Unit implements CommandTarget {
+    /**
+     * Reference to the CameraController.
+     */
     private CameraController camera;
 
+    /**
+     * Player controller.
+     * @param playerData JacksonPlayer data package.
+     * @param level Level where the player begins.
+     */
     public Player(JacksonPlayer playerData, Level level) {
         super(new Sprite(playerData.getGraphicFile()));
         setGraphicFile(playerData.getGraphicFile());
@@ -22,13 +40,29 @@ public class Player extends Unit implements CommandTarget {
         setMaxHitPoints(playerData.getMaxHitPoints());
         setName(playerData.getName());
         setKillCount(playerData.getKills());
+        setMovementDelay(GameConfig.getPlayerMovementDelay());
         registerChange();
     }
 
+    /**
+     * info package of the latest turn.
+     */
     private TurnInfo latestTurn;
+    /**
+     * Time since last move in milliseconds.
+     */
     private long timeSinceLastMove = 0;
+    /**
+     * Delay between the player actions in milliseconds.
+     */
     private int movementDelay = 150;
+    /**
+     * Number of kills the player has done.
+     */
     private int killCount = 0;
+    /**
+     * Wether the player is dead or not.
+     */
     private boolean dead = false;
 
     private String graphicFile;
@@ -150,6 +184,7 @@ public class Player extends Unit implements CommandTarget {
     }
 
     public void setMovementDelay(int movementDelay) {
+        if (movementDelay < 0) movementDelay = 0;
         this.movementDelay = movementDelay;
     }
 

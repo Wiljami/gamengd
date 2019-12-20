@@ -37,6 +37,8 @@ public class GameConfig {
     private static String stairsDown = "stairsDown.png";
     private static String voidTile = "voidtile.png";
 
+    private static int playerMovementDelay = 150;
+
     public static double getResolutionX() {
         return resolutionX;
     }
@@ -187,5 +189,13 @@ public class GameConfig {
 
     public static void setTileSize(double tileSize) {
         GameConfig.tileSize = tileSize;
+    }
+
+    public static int getPlayerMovementDelay() {
+        return playerMovementDelay;
+    }
+
+    public static void setPlayerMovementDelay(int playerMovementDelay) {
+        GameConfig.playerMovementDelay = playerMovementDelay;
     }
 }
