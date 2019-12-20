@@ -190,51 +190,92 @@ public class Player extends Unit implements CommandTarget {
         sortInput(message);
     }
 
+    /**
+     * move is Unit's method that is overridden in Player.
+     *
+     * The override is for letting the camera know its new center position
+     * on the player. Otherwise the Player uses super.
+     * @param tile destination Tile for movemnt
+     */
     @Override
     void move(Tile tile) {
         super.move(tile);
         camera.setXY(getX() + 0.5, getY() + 0.5);
     }
 
+    /**
+     * registerChange lets the uiController know of a change in stats.
+     */
     private void registerChange() {
         if (uiController != null) {
             uiController.trigger(this);
         }
     }
 
+    /**
+     * doTurn is a TurnActor interface method.
+     * @param turnInfo information of the turn.
+     */
     @Override
     public void doTurn(TurnInfo turnInfo) {
         playerTurn = true;
         latestTurn = turnInfo;
     }
 
+    /**
+     * getter for movementDelay.
+     * @return movementDelay
+     */
     public int getMovementDelay() {
         return movementDelay;
     }
 
+    /**
+     * setter for movementDelay.
+     * @param movementDelay new movementDelay.
+     */
     public void setMovementDelay(int movementDelay) {
         if (movementDelay < 0) movementDelay = 0;
         this.movementDelay = movementDelay;
     }
 
+    /**
+     * setter for name.
+     * @param name new name
+     */
     @Override
     public void setName(String name) {
         super.setName(name);
         registerChange();
     }
 
+    /**
+     * setter for attack.
+     * @param attack new attack
+     */
     @Override
     public void setAttack(int attack) {
         super.setAttack(attack);
         registerChange();
     }
 
+    /**
+     * setter for defense.
+     * @param defense new defense
+     */
     @Override
     public void setDefense(int defense) {
         super.setDefense(defense);
         registerChange();
     }
 
+    /**
+     * setter for hitPoints.
+     *
+     * setter also checks if the player has died or not. So all changes in
+     * hitPoints should be done through this setter!
+     * @param hitPoints new hitPoints value.
+     */
     @Override
     public void setHitPoints(int hitPoints) {
         super.setHitPoints(hitPoints);
@@ -245,6 +286,12 @@ public class Player extends Unit implements CommandTarget {
         }
     }
 
+    /**
+     * ChangeLevel is Unit method overridden here.
+     * @param id id of the new Level
+     * @param x x-coordinate on the new Level
+     * @param y y-coordinate on the new level
+     */
     @Override
     public void changeLevel(String id, int x, int y) {
         setLevel(gameCore.getLevel(id));
@@ -252,27 +299,53 @@ public class Player extends Unit implements CommandTarget {
         gameCore.changeLevel(id, this);
     }
 
+    /**
+     * getter for killCount.
+     * @return killCount
+     */
     public int getKillCount() {
         return killCount;
     }
 
+    /**
+     * setter for killCount
+     * @param killCount new killCount
+     */
     public void setKillCount(int killCount) {
         this.killCount = killCount;
         registerChange();
     }
 
+    /**
+     * addKill adds a single kill to the killCount.
+     */
     public void addKill() {
         setKillCount(getKillCount() + 1);
     }
 
+    /**
+     * getter for graphicFile.
+     * @return graphicFile
+     */
     public String getGraphicFile() {
         return graphicFile;
     }
 
+    /**
+     * setter for graphicFile.
+     * @param graphicFile new graphicFile
+     */
     public void setGraphicFile(String graphicFile) {
         this.graphicFile = graphicFile;
     }
 
+    /**
+     * createJacksonPlayer turns the player data to a JacksonPlayer object.
+     *
+     * createJacksonPlayer gathers the player information to a JacksonPlayer
+     * object that is then used for saving the game.
+     * @return JacksonPlayer object
+     */
     public JacksonPlayer createJacksonPlayer() {
         JacksonPlayer player = new JacksonPlayer();
         player.setAttack(getAttack());
