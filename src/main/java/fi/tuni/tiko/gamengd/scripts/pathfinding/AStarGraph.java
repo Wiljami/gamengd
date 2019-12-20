@@ -6,10 +6,28 @@ import fi.tuni.tiko.gamengd.elements.Tile;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * AStarGraph is the mapping of a game Level for pathfinding.
+ *
+ * AStarGraph takes a level and goes through its Tiles to see each Tile's
+ * connection to other Tiles. It then constructs a comprehensive map of the
+ * connections.
+ * @author Viljami Pietarila
+ * @version 2019.1220
+ */
 public class AStarGraph {
-
+    /**
+     * nodes is the mapping of the connections between the Tiles.
+     */
     private HashMap<Tile, PathNode<Tile>> nodes;
 
+    /**
+     * AStarGraph constructor
+     *
+     * It iterates through all the Tiles of the level and maps their
+     * connections to nodes HashMap.
+     * @param level level to be mapped
+     */
     public AStarGraph(Level level) {
         nodes = new HashMap<>();
 
@@ -42,6 +60,10 @@ public class AStarGraph {
         }
     }
 
+    /**
+     * getter for nodes.
+     * @return nodes
+     */
     public HashMap<Tile, PathNode<Tile>> getNodes() {
         return nodes;
     }
