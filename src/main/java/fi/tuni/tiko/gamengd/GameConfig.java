@@ -30,6 +30,9 @@ public class GameConfig {
      */
     private static String mapFolder = "maps/";
 
+    private static int logHistory = 100;
+    private static int logHeight = 6;
+
     private static String arrowDiag = "arrowDiagonal.png";
     private static String arrowStraight = "arrowStraight.png";
     private static String centerSquare = "square.png";
@@ -197,5 +200,21 @@ public class GameConfig {
 
     public static void setPlayerMovementDelay(int playerMovementDelay) {
         GameConfig.playerMovementDelay = playerMovementDelay;
+    }
+
+    public static int getLogHistory() {
+        return logHistory;
+    }
+
+    public static void setLogHistory(int logHistory) {
+        GameConfig.logHistory = logHistory;
+    }
+
+    public static int getLogHeight() {
+        return logHeight;
+    }
+
+    public static void setLogHeight(int logHeight) {
+        GameConfig.logHeight = logHeight;
     }
 }
