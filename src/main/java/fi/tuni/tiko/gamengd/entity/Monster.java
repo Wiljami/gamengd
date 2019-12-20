@@ -1,5 +1,6 @@
 package fi.tuni.tiko.gamengd.entity;
 
+import fi.tuni.tiko.gamengd.GameConfig;
 import fi.tuni.tiko.gamengd.elements.Level;
 import fi.tuni.tiko.gamengd.elements.Sprite;
 import fi.tuni.tiko.gamengd.elements.Tile;
@@ -36,11 +37,6 @@ public class Monster extends Unit {
     private static HashMap<String, Monster> monsterProtoTypes;
 
     /**
-     * The folder where the monsterProtoTypes are read from.
-     */
-    private static final String MONSTERFOLDER = "monsters/";
-
-    /**
      * AStar pathfinding data of the Monster.
      */
     private transient AStar pathfind;
@@ -53,11 +49,11 @@ public class Monster extends Unit {
     /**
      * setup is a static method to setup the Monster.
      *
-     * It creates the monsterProtoTypes by reading through the MONSTERFOLDER.
+     * It creates the monsterProtoTypes by reading through the folder.
      */
     public static void setup() {
         monsterProtoTypes = new HashMap<>();
-        File[] monsterFiles = Util.walkFolder(MONSTERFOLDER);
+        File[] monsterFiles = Util.walkFolder(GameConfig.getMonsterFolder());
         for (File f : monsterFiles) {
             Monster monster = JacksonLoader.loadMonster(f);
             if (monsterProtoTypes.containsKey(monster.getId())) {
