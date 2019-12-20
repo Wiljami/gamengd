@@ -23,7 +23,7 @@ import java.util.TreeMap;
  * returned to avoid creating duplicates.
  *
  * @author Viljami Pietarila
- * @version 2019.1207
+ * @version 2019.1220
  */
 public class ImageLoader {
     /**
@@ -52,7 +52,7 @@ public class ImageLoader {
         if (images.containsKey(file)) return images.get(file);
         Image image;
         try {
-            image = accessImage(file);
+            image = loadImageFromDisk(file);
             images.put(file, image);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " " + file);
@@ -70,10 +70,15 @@ public class ImageLoader {
     private static void initiateImages() {
         images = new TreeMap<>();
         tileSets = new HashMap<>();
-        images.put(GameConfig.getFailPicture(), accessImage(GameConfig.getFailPicture()));
+        images.put(GameConfig.getFailPicture(), loadImageFromDisk(GameConfig.getFailPicture()));
     }
 
-    private static Image accessImage(String fileName) {
+    /**
+     * loadImageFromDisk loads a file from the disk to be converted to Image.
+     * @param fileName file to be loaded.
+     * @return Image loaded.
+     */
+    private static Image loadImageFromDisk(String fileName) {
         Path currentRelativePath = Paths.get("");
         String path = currentRelativePath.toAbsolutePath().toString() + "/" + GameConfig.getGraphicsFolder() + fileName;
         path = new File(path).toURI().toString();
@@ -116,7 +121,13 @@ public class ImageLoader {
         return frames;
     }
 
-
+    /**
+     * readTileSets reads takes a TileSet data and reads them to tileSets.
+     *
+     * readTileSets loads the Images set in the TileSets and then creates the
+     * WritableImage regions on the Images to match the TileSet data.
+     * @param data ArrayList of TileSets
+     */
     public static void readTileSet(ArrayList<TileSet> data) {
         for (TileSet ts : data) {
             String key = ts.getName();
@@ -138,6 +149,11 @@ public class ImageLoader {
         }
     }
 
+    /**
+     * getTileSet gets a tileSet matching the key.
+     * @param key key of the tileSet
+     * @return WritableImage array containing the tileSet
+     */
     public static WritableImage[] getTileSet(String key) {
         return tileSets.get(key);
     }
