@@ -42,13 +42,12 @@ public abstract class Entity {
     /**
      * setup is a static method for Entity.
      *
-     * setup will also call static setup methods for Floor, Wall and Monster.
+     * setup will also call static setup methods for Floor and Monster.
      * @param c reference to the GameCore
      */
     public static void setup(GameCore c) {
         gameCore = c;
         Floor.setup();
-        Wall.setup();
         Monster.setup();
     }
 
